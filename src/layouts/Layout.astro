@@ -1,0 +1,32 @@
+---
+import "@/styles/globals.css";
+import { Font } from "astro:assets";
+import Navbar from "@/components/Navbar.astro";
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- bejamas:astro-fonts:start -->
+<Font cssVariable="--font-sans" />
+<!-- bejamas:astro-fonts:end -->
+    <script is:inline>
+      const theme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (theme === "dark" || (!theme && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Ovelha Tech — AppSec &amp; SaaS</title>
+  </head>
+  <body>
+    <Navbar />
+    <main class="pt-16">
+      <slot />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+---
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "@/ui/navigation-menu";
+import { Button } from "@/ui/button";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+
+const linkClass = navigationMenuTriggerStyle();
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300 opacity-0"
+>
+  <div
+    class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between"
+  >
+    <a id="navbar-logo" href="/" class="font-bold text-xl tracking-tight opacity-0">Ovelha Tech</a>
+
+    <nav id="navbar-links" class="opacity-0">
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuLink href="#servicos" class={linkClass}
+              >Serviços</NavigationMenuLink
+            >
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink href="#cases" class={linkClass}
+              >Cases</NavigationMenuLink
+            >
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink href="#sobre" class={linkClass}
+              >Sobre</NavigationMenuLink
+            >
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink href="#contato" class={linkClass}
+              >Contato</NavigationMenuLink
+            >
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </nav>
+
+    <div id="navbar-cta" class="flex items-center gap-2 opacity-0">
+      <ThemeToggle />
+      <Button as="a" href="#contato">Falar com a equipe</Button>
+    </div>
+  </div>
+</header>
+
+<script>
+  import { animate, stagger } from "motion";
+
+  const navbar = document.getElementById("navbar");
+  const logo = document.getElementById("navbar-logo");
+  const links = document.getElementById("navbar-links");
+  const cta = document.getElementById("navbar-cta");
+
+  // entrada: header desliza de cima + fade
+  animate(
+    navbar! as Element,
+    { opacity: [0, 1], y: [-20, 0] },
+    { duration: 0.5, easing: "ease-out" },
+  );
+
+  // logo, links e CTA entram em sequência com stagger
+  animate(
+    [logo!, links!, cta!] as Element[],
+    { opacity: [0, 1], y: [-8, 0] },
+    { duration: 0.4, delay: stagger(0.1, { startDelay: 0.25 }), easing: "ease-out" },
+  );
+
+  // scroll: fundo sólido
+  if (navbar) {
+    const update = () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add("bg-background/95", "backdrop-blur-sm", "border-b");
+      } else {
+        navbar.classList.remove(
+          "bg-background/95",
+          "backdrop-blur-sm",
+          "border-b",
+        );
+      }
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+</script>
