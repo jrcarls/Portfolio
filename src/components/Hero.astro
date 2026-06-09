@@ -1,0 +1,165 @@
+---
+import { Button } from "@/ui/button";
+---
+
+<section
+  id="hero"
+  class="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden"
+>
+  <!-- Background -->
+  <div class="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+    <div
+      id="blob-1"
+      class="absolute -top-40 -right-32 h-[480px] w-[480px] rounded-full bg-primary/15 blur-3xl"
+    ></div>
+    <div
+      id="blob-2"
+      class="absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
+    ></div>
+    <svg class="absolute inset-0 h-full w-full opacity-40" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path
+            d="M 40 0 L 0 0 0 40"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="0.5"
+            class="text-border"
+          ></path>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"></rect>
+    </svg>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-24 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Conteúdo -->
+      <div class="space-y-8">
+        <div
+          id="hero-badge"
+          class="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5 text-sm text-muted-foreground opacity-0"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
+          AppSec · SaaS · Dev especializado
+        </div>
+
+        <h1
+          id="hero-title"
+          class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] opacity-0"
+        >
+          Segurança e software<br />
+          <span class="text-primary">que escalam</span><br />
+          com o seu negócio.
+        </h1>
+
+        <p
+          id="hero-subtitle"
+          class="text-lg text-muted-foreground max-w-lg leading-relaxed opacity-0"
+        >
+          Da auditoria de segurança ao produto digital completo — a Ovelha Tech
+          entrega software robusto e ambientes protegidos para startups e
+          empresas que não podem se dar ao luxo de falhar.
+        </p>
+
+        <div id="hero-ctas" class="flex flex-wrap gap-3 opacity-0">
+          <Button as="a" href="#contato" size="lg">
+            Quero um diagnóstico gratuito
+          </Button>
+          <Button as="a" href="#servicos" variant="outline" size="lg">
+            Ver nossos serviços
+          </Button>
+        </div>
+      </div>
+
+      <!-- Visual: terminal card -->
+      <div
+        id="hero-visual"
+        class="hidden lg:flex justify-center items-center opacity-0"
+      >
+        <div class="relative w-full max-w-sm">
+          <div
+            class="rounded-xl border border-border bg-card shadow-2xl overflow-hidden"
+          >
+            <div
+              class="flex items-center gap-2 border-b border-border bg-muted/50 px-4 py-3"
+            >
+              <div class="h-3 w-3 rounded-full bg-red-500/70"></div>
+              <div class="h-3 w-3 rounded-full bg-yellow-500/70"></div>
+              <div class="h-3 w-3 rounded-full bg-green-500/70"></div>
+              <span class="ml-2 text-xs text-muted-foreground font-mono"
+                >audit.sh</span
+              >
+            </div>
+            <div class="p-5 font-mono text-sm space-y-2">
+              <p class="text-muted-foreground">
+                <span class="text-primary">$</span> ovelha scan --target prod
+              </p>
+              <p id="tl-1" class="text-green-500 opacity-0">✓ Autenticação verificada</p>
+              <p id="tl-2" class="text-green-500 opacity-0">✓ Endpoints auditados: 47</p>
+              <p id="tl-3" class="text-yellow-500 opacity-0">⚠ 2 findings de média severidade</p>
+              <p id="tl-4" class="text-red-500 opacity-0">✗ 1 vuln crítica encontrada</p>
+              <p id="tl-5" class="text-muted-foreground opacity-0 mt-2">
+                <span class="text-primary">$</span> ovelha remediate --auto
+              </p>
+              <p id="tl-6" class="text-green-500 opacity-0">✓ Patch aplicado com sucesso</p>
+              <p class="text-muted-foreground flex items-center gap-1 mt-1">
+                <span class="text-primary">$</span>
+                <span
+                  id="cursor"
+                  class="inline-block h-4 w-2 bg-primary align-middle ml-0.5"
+                ></span>
+              </p>
+            </div>
+          </div>
+
+          <div
+            id="badge-vulns"
+            class="absolute -top-4 -right-4 rounded-lg border border-border bg-card px-3 py-2 shadow-lg opacity-0"
+          >
+            <p class="text-xs text-muted-foreground">Vulnerabilidades corrigidas</p>
+            <p class="text-2xl font-bold text-primary">150+</p>
+          </div>
+
+          <div
+            id="badge-projects"
+            class="absolute -bottom-4 -left-4 rounded-lg border border-border bg-card px-3 py-2 shadow-lg opacity-0"
+          >
+            <p class="text-xs text-muted-foreground">Projetos entregues</p>
+            <p class="text-2xl font-bold text-primary">20+</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate } from "motion";
+
+  // Entrada do conteúdo principal
+  animate("#hero-badge", { opacity: [0, 1], y: [-16, 0] }, { duration: 0.5, delay: 0.1, easing: "ease-out" });
+  animate("#hero-title", { opacity: [0, 1], y: [-24, 0] }, { duration: 0.6, delay: 0.25, easing: "ease-out" });
+  animate("#hero-subtitle", { opacity: [0, 1], y: [-16, 0] }, { duration: 0.5, delay: 0.4, easing: "ease-out" });
+  animate("#hero-ctas", { opacity: [0, 1], y: [-12, 0] }, { duration: 0.5, delay: 0.55, easing: "ease-out" });
+
+  // Visual card entra da direita
+  animate("#hero-visual", { opacity: [0, 1], x: [32, 0] }, { duration: 0.7, delay: 0.4, easing: "ease-out" });
+
+  // Linhas do terminal aparecem em sequência
+  const terminalLines = ["#tl-1", "#tl-2", "#tl-3", "#tl-4", "#tl-5", "#tl-6"];
+  terminalLines.forEach((id, i) => {
+    animate(id, { opacity: [0, 1], x: [-8, 0] }, { duration: 0.3, delay: 0.9 + i * 0.25, easing: "ease-out" });
+  });
+
+  // Badges flutuantes
+  animate("#badge-vulns", { opacity: [0, 1], y: [-8, 0] }, { duration: 0.4, delay: 2.6, easing: "ease-out" });
+  animate("#badge-projects", { opacity: [0, 1], y: [8, 0] }, { duration: 0.4, delay: 2.8, easing: "ease-out" });
+
+  // Cursor piscando
+  animate("#cursor", { opacity: [1, 0] }, { duration: 0.8, repeat: Infinity, easing: "steps(2, end)" });
+
+  // Blobs flutuando
+  animate("#blob-1", { y: [-20, 20] }, { duration: 6, repeat: Infinity, direction: "alternate", easing: "ease-in-out" });
+  animate("#blob-2", { y: [20, -20] }, { duration: 8, repeat: Infinity, direction: "alternate", easing: "ease-in-out" });
+</script>
