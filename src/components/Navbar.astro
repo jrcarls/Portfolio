@@ -27,28 +27,20 @@ const linkClass = navigationMenuTriggerStyle();
   >
     <a id="navbar-logo" href="/" class="font-bold text-xl tracking-tight opacity-0">Ovelha Tech</a>
 
-    <nav id="navbar-links" class="opacity-0">
+    <nav id="navbar-links" class="hidden md:block opacity-0">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuLink href="#servicos" class={linkClass}
-              >Serviços</NavigationMenuLink
-            >
+            <NavigationMenuLink href="#servicos" class={linkClass}>Serviços</NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuLink href="#cases" class={linkClass}
-              >Cases</NavigationMenuLink
-            >
+            <NavigationMenuLink href="#cases" class={linkClass}>Cases</NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuLink href="#sobre" class={linkClass}
-              >Sobre</NavigationMenuLink
-            >
+            <NavigationMenuLink href="#sobre" class={linkClass}>Sobre</NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuLink href="#contato" class={linkClass}
-              >Contato</NavigationMenuLink
-            >
+            <NavigationMenuLink href="#contato" class={linkClass}>Contato</NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
@@ -56,8 +48,37 @@ const linkClass = navigationMenuTriggerStyle();
 
     <div id="navbar-cta" class="flex items-center gap-2 opacity-0">
       <ThemeToggle />
-      <Button as="a" href="#contato">Falar com a equipe</Button>
+      <Button as="a" href="#contato" class="hidden md:inline-flex">Falar com a equipe</Button>
+      <button
+        id="menu-toggle"
+        class="md:hidden inline-flex items-center justify-center rounded-md p-2 text-foreground hover:bg-accent transition-colors"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+      >
+        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
     </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-border bg-background/95 backdrop-blur-sm"
+  >
+    <nav class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-1">
+      <a data-mobile-index="0" href="#servicos" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Serviços</a>
+      <a data-mobile-index="1" href="#cases" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Cases</a>
+      <a data-mobile-index="2" href="#sobre" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Sobre</a>
+      <a data-mobile-index="3" href="#contato" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Contato</a>
+      <div class="pt-2 border-t border-border mt-1">
+        <Button as="a" href="#contato" class="w-full">Falar com a equipe</Button>
+      </div>
+    </nav>
   </div>
 </header>
 
@@ -90,6 +111,43 @@ const linkClass = navigationMenuTriggerStyle();
       progressBar.style.width = `${progress * 100}%`;
     });
   }
+
+  // menu mobile
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const iconOpen = document.getElementById("icon-open");
+  const iconClose = document.getElementById("icon-close");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+
+  menuToggle?.addEventListener("click", () => {
+    const isOpen = !mobileMenu?.classList.contains("hidden");
+    if (isOpen) {
+      animate("#mobile-menu", { opacity: [1, 0], y: [0, -8] }, { duration: 0.2, easing: "ease-in" }).then(() => {
+        mobileMenu?.classList.add("hidden");
+      });
+      iconOpen?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+      menuToggle.setAttribute("aria-expanded", "false");
+    } else {
+      mobileMenu?.classList.remove("hidden");
+      animate("#mobile-menu", { opacity: [0, 1], y: [-8, 0] }, { duration: 0.25, easing: "ease-out" });
+      for (let i = 0; i < 4; i++) {
+        animate(`[data-mobile-index="${i}"]`, { opacity: [0, 1], x: [-10, 0] }, { duration: 0.2, delay: 0.05 + i * 0.05, easing: "ease-out" });
+      }
+      iconOpen?.classList.add("hidden");
+      iconClose?.classList.remove("hidden");
+      menuToggle.setAttribute("aria-expanded", "true");
+    }
+  });
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+      iconOpen?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    });
+  });
 
   // scroll: fundo sólido
   if (navbar) {
