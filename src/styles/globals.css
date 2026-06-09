@@ -4,6 +4,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes marquee-y {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
 @theme inline {
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);

@@ -28,5 +28,23 @@ import Navbar from "@/components/Navbar.astro";
     <main class="pt-16">
       <slot />
     </main>
+
+    <script>
+      import { animate, inView } from "motion";
+
+      document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
+        const delay = parseFloat(el.dataset.revealDelay ?? "0");
+        el.style.opacity = "0";
+        el.style.transform = "translateY(32px)";
+
+        inView(el, () => {
+          animate(
+            el as Element,
+            { opacity: [0, 1], y: [32, 0] },
+            { duration: 0.6, delay, easing: [0.25, 0.1, 0.25, 1] },
+          );
+        }, { amount: 0.2 });
+      });
+    </script>
   </body>
 </html>
