@@ -1,0 +1,176 @@
+---
+import { Button } from "@/ui/button";
+---
+
+<section id="contato" class="py-24 relative overflow-hidden">
+  <div
+    class="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl -z-10"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Esquerda: texto -->
+      <div data-reveal class="space-y-8">
+        <div>
+          <span
+            class="inline-block rounded-full border border-border bg-muted px-4 py-1.5 text-sm text-muted-foreground mb-4"
+          >
+            Contato
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+            Vamos conversar sobre o seu projeto
+          </h2>
+          <p class="text-muted-foreground text-lg leading-relaxed">
+            Conte o que você precisa e retornamos em até 1 dia útil com uma
+            análise inicial sem compromisso.
+          </p>
+        </div>
+
+        <ul class="space-y-5">
+          <li class="flex items-start gap-4">
+            <div class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Diagnóstico inicial gratuito</p>
+              <p class="text-muted-foreground text-sm mt-0.5">
+                Analisamos o seu contexto e identificamos os principais riscos antes de qualquer proposta.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Resposta em até 1 dia útil</p>
+              <p class="text-muted-foreground text-sm mt-0.5">
+                Sem formulários que somem no vazio. Você recebe uma resposta real, de uma pessoa real.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Sem intermediários</p>
+              <p class="text-muted-foreground text-sm mt-0.5">
+                Você fala diretamente com quem vai trabalhar no seu projeto.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Direita: formulário -->
+      <div data-reveal data-reveal-delay="0.15">
+        <form
+          id="contact-form"
+          class="rounded-2xl border border-border bg-card p-8 shadow-sm space-y-5"
+        >
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div class="space-y-1.5">
+              <label for="name" class="text-sm font-medium">Nome</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder="Seu nome"
+                class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+              />
+            </div>
+            <div class="space-y-1.5">
+              <label for="email" class="text-sm font-medium">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="seu@email.com"
+                class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <label for="company" class="text-sm font-medium">
+              Empresa <span class="text-muted-foreground font-normal">(opcional)</span>
+            </label>
+            <input
+              id="company"
+              name="company"
+              type="text"
+              placeholder="Nome da empresa ou produto"
+              class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+            />
+          </div>
+
+          <div class="space-y-1.5">
+            <label for="service" class="text-sm font-medium">Serviço de interesse</label>
+            <select
+              id="service"
+              name="service"
+              class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow appearance-none"
+            >
+              <option value="">Selecione uma opção</option>
+              <option value="appsec">AppSec e Segurança de Aplicações</option>
+              <option value="dev">APIs e Produtos Web</option>
+              <option value="both">Ambos</option>
+              <option value="other">Ainda não sei, quero conversar</option>
+            </select>
+          </div>
+
+          <div class="space-y-1.5">
+            <label for="message" class="text-sm font-medium">Mensagem</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="4"
+              placeholder="Conte um pouco sobre o seu projeto ou dúvida..."
+              class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow resize-none"
+            ></textarea>
+          </div>
+
+          <Button type="submit" class="w-full">
+            Enviar mensagem
+          </Button>
+
+          <p class="text-center text-xs text-muted-foreground">
+            Ao enviar, você concorda com nossa política de privacidade.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    // TODO: conectar ao serviço de formulário (ex: Formspree, Resend)
+    const btn = form.querySelector("button[type=submit]");
+    if (btn) {
+      btn.textContent = "Mensagem enviada!";
+      (btn as HTMLButtonElement).disabled = true;
+    }
+  });
+</script>
