@@ -157,9 +157,9 @@ import { Button } from "@/ui/button";
   animate("#badge-projects", { opacity: [0, 1], y: [8, 0] }, { duration: 0.4, delay: 2.8, easing: "ease-out" });
 
   // Cursor piscando
-  animate("#cursor", { opacity: [1, 0] }, { duration: 0.8, repeat: Infinity, easing: "steps(2, end)" });
+  animate("#cursor", { opacity: [1, 0] }, { duration: 0.8, repeat: Infinity, repeatType: "reverse" });
 
   // Blobs flutuando
-  animate("#blob-1", { y: [-20, 20] }, { duration: 6, repeat: Infinity, direction: "alternate", easing: "ease-in-out" });
-  animate("#blob-2", { y: [20, -20] }, { duration: 8, repeat: Infinity, direction: "alternate", easing: "ease-in-out" });
+  animate("#blob-1", { y: [-30, 30] }, { duration: 6, repeat: Infinity, repeatType: "reverse", easing: "ease-in-out" });
+  animate("#blob-2", { y: [30, -30] }, { duration: 8, repeat: Infinity, repeatType: "reverse", easing: "ease-in-out" });
 </script>

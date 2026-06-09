@@ -12,6 +12,12 @@ import ThemeToggle from "@/components/ThemeToggle.astro";
 const linkClass = navigationMenuTriggerStyle();
 ---
 
+<div
+  id="scroll-progress"
+  class="fixed top-0 left-0 z-60 h-[2px] w-0 bg-primary origin-left"
+  aria-hidden="true"
+></div>
+
 <header
   id="navbar"
   class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300 opacity-0"
@@ -56,7 +62,7 @@ const linkClass = navigationMenuTriggerStyle();
 </header>
 
 <script>
-  import { animate, stagger } from "motion";
+  import { animate, stagger, scroll } from "motion";
 
   const navbar = document.getElementById("navbar");
   const logo = document.getElementById("navbar-logo");
@@ -76,6 +82,14 @@ const linkClass = navigationMenuTriggerStyle();
     { opacity: [0, 1], y: [-8, 0] },
     { duration: 0.4, delay: stagger(0.1, { startDelay: 0.25 }), easing: "ease-out" },
   );
+
+  // barra de progresso de scroll
+  const progressBar = document.getElementById("scroll-progress");
+  if (progressBar) {
+    scroll((progress) => {
+      progressBar.style.width = `${progress * 100}%`;
+    });
+  }
 
   // scroll: fundo sólido
   if (navbar) {

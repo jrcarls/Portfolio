@@ -1,0 +1,151 @@
+---
+import { Button } from "@/ui/button";
+
+const services = [
+  {
+    id: "appsec",
+    tag: "Segurança",
+    title: "AppSec & Segurança de Aplicações",
+    description:
+      "Identificamos e corrigimos vulnerabilidades antes que virem incidentes. Do pentest ao code review, protegemos seu produto digital em todas as camadas.",
+    deliverables: [
+      "Teste de intrusão (black/gray/white box)",
+      "Revisão de código e análise estática (SAST)",
+      "Modelagem de ameaças e threat modeling",
+      "Relatório técnico + executivo com plano de remediação",
+    ],
+    tags: ["Pentest", "SAST", "DAST", "Code Review"],
+    cta: "Quero uma auditoria",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>`,
+  },
+  {
+    id: "saas",
+    tag: "Desenvolvimento",
+    title: "Desenvolvimento de SaaS",
+    description:
+      "Construímos produtos digitais do zero ao deploy com foco em escalabilidade, segurança nativa e entrega contínua. Do MVP ao produto maduro.",
+    deliverables: [
+      "Arquitetura e design do produto",
+      "Desenvolvimento full-stack (frontend + backend + infra)",
+      "CI/CD, testes automatizados e observabilidade",
+      "Documentação técnica e handoff para o time",
+    ],
+    tags: ["Astro", "Next.js", "Python", "PostgreSQL"],
+    cta: "Quero construir meu produto",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  },
+];
+---
+
+<section id="servicos" class="py-24 relative overflow-hidden">
+  <!-- Subtle background accent -->
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/5 blur-3xl -z-10"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Header -->
+    <div id="services-header" class="text-center mb-16 opacity-0">
+      <span
+        class="inline-block rounded-full border border-border bg-muted px-4 py-1.5 text-sm text-muted-foreground mb-4"
+      >
+        O que fazemos
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+        Dois serviços. Um compromisso.
+      </h2>
+      <p class="text-muted-foreground text-lg max-w-xl mx-auto">
+        Segurança e desenvolvimento que trabalham juntos para que seu produto
+        chegue ao mercado rápido <em>e</em> protegido.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-2 gap-8">
+      {
+        services.map((service, i) => (
+          <div
+            id={`service-card-${i}`}
+            class="group relative flex flex-col rounded-2xl border border-border bg-card p-8 shadow-sm transition-shadow hover:shadow-md opacity-0"
+          >
+            <!-- Tag -->
+            <span class="text-xs font-medium text-primary uppercase tracking-widest mb-6">
+              {service.tag}
+            </span>
+
+            <!-- Icon -->
+            <div class="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
+              <Fragment set:html={service.icon} />
+            </div>
+
+            <!-- Title + description -->
+            <h3 class="text-xl font-bold mb-3">{service.title}</h3>
+            <p class="text-muted-foreground leading-relaxed mb-6">
+              {service.description}
+            </p>
+
+            <!-- Deliverables -->
+            <ul class="space-y-2.5 mb-8 flex-1">
+              {service.deliverables.map((item) => (
+                <li class="flex items-start gap-2.5 text-sm">
+                  <svg
+                    class="mt-0.5 h-4 w-4 shrink-0 text-primary"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span class="text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <!-- Tech tags -->
+            <div class="flex flex-wrap gap-2 mb-8">
+              {service.tags.map((tag) => (
+                <span class="rounded-md border border-border bg-muted px-2.5 py-1 text-xs text-muted-foreground">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <!-- CTA -->
+            <Button as="a" href="#contato" variant="outline" class="w-full">
+              {service.cta}
+            </Button>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate, inView } from "motion";
+
+  inView("#servicos", () => {
+    animate(
+      "#services-header",
+      { opacity: [0, 1], y: [-20, 0] },
+      { duration: 0.5, easing: "ease-out" },
+    );
+
+    animate(
+      "#service-card-0",
+      { opacity: [0, 1], y: [40, 0] },
+      { duration: 0.5, delay: 0.15, easing: "ease-out" },
+    );
+
+    animate(
+      "#service-card-1",
+      { opacity: [0, 1], y: [40, 0] },
+      { duration: 0.5, delay: 0.3, easing: "ease-out" },
+    );
+  });
+</script>
