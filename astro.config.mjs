@@ -12,6 +12,12 @@ const BEJAMAS_ASTRO_FONTS = [
     cssVariable: "--font-sans",
     subsets: ["latin"],
   },
+  {
+    provider: fontProviders.google(),
+    name: "Audiowide",
+    cssVariable: "--font-logo",
+    subsets: ["latin"],
+  },
 ];
 // bejamas:astro-fonts:end
 

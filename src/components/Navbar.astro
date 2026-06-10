@@ -25,7 +25,13 @@ const linkClass = navigationMenuTriggerStyle();
   <div
     class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between"
   >
-    <a id="navbar-logo" href="/" class="font-bold text-xl tracking-tight opacity-0">Ovelha Tech</a>
+    <a id="navbar-logo" href="/" class="flex items-center gap-2 text-xl tracking-tight opacity-0 font-[family-name:var(--font-logo)]">
+      <!-- Modo claro: sheep_dk (ovelha escura) -->
+      <img src="/sheep_dk.png" alt="" class="h-7 w-auto dark:hidden" aria-hidden="true" />
+      <!-- Modo escuro: sheep_lt (ovelha clara) -->
+      <img src="/sheep_lt.png" alt="" class="h-7 w-auto hidden dark:block" aria-hidden="true" />
+      OVELHA TECH
+    </a>
 
     <nav id="navbar-links" class="hidden md:block opacity-0">
       <NavigationMenu>
@@ -107,6 +113,38 @@ const linkClass = navigationMenuTriggerStyle();
     { opacity: [0, 1], y: [-8, 0] },
     { duration: 0.4, delay: stagger(0.1, { startDelay: 0.25 }), easing: "ease-out" },
   );
+
+  // Efeito bolha deslizante nos links do menu desktop
+  const navList = document.querySelector<HTMLElement>("[data-slot='navigation-menu-list']");
+  const navLinks = document.querySelectorAll<HTMLElement>("[data-slot='navigation-menu-link']");
+
+  if (navList && navLinks.length) {
+    const pillH = 32;
+    const pillTop = (navList.offsetHeight - pillH) / 2;
+
+    const pill = document.createElement("span");
+    pill.style.cssText = `position:absolute;top:${pillTop}px;left:0;height:${pillH}px;width:0;border-radius:9999px;background:var(--color-muted);pointer-events:none;opacity:0;z-index:0`;
+    navList.appendChild(pill);
+
+    navLinks.forEach((link) => {
+      link.style.zIndex = "1";
+      link.style.position = "relative";
+
+      link.addEventListener("mouseenter", () => {
+        const listRect = navList.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
+        animate(pill, {
+          x: linkRect.left - listRect.left,
+          width: linkRect.width,
+          opacity: 1,
+        }, { duration: 0.3, easing: [0.34, 1.1, 0.64, 1] });
+      });
+    });
+
+    navList.addEventListener("mouseleave", () => {
+      animate(pill, { opacity: 0 }, { duration: 0.2, easing: "ease-out" });
+    });
+  }
 
   // barra de progresso de scroll
   const progressBar = document.getElementById("scroll-progress");
