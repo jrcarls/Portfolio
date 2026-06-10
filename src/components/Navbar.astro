@@ -40,6 +40,9 @@ const linkClass = navigationMenuTriggerStyle();
             <NavigationMenuLink href="#sobre" class={linkClass}>Sobre</NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
+            <NavigationMenuLink href="#faq" class={linkClass}>FAQ</NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
             <NavigationMenuLink href="#contato" class={linkClass}>Contato</NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
@@ -74,7 +77,8 @@ const linkClass = navigationMenuTriggerStyle();
       <a data-mobile-index="0" href="#servicos" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Serviços</a>
       <a data-mobile-index="1" href="#cases" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Cases</a>
       <a data-mobile-index="2" href="#sobre" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Sobre</a>
-      <a data-mobile-index="3" href="#contato" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Contato</a>
+      <a data-mobile-index="3" href="#faq" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">FAQ</a>
+      <a data-mobile-index="4" href="#contato" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Contato</a>
       <div class="pt-2 border-t border-border mt-1">
         <Button as="a" href="#contato" class="w-full">Falar comigo</Button>
       </div>
@@ -131,7 +135,7 @@ const linkClass = navigationMenuTriggerStyle();
     } else {
       mobileMenu?.classList.remove("hidden");
       animate("#mobile-menu", { opacity: [0, 1], y: [-8, 0] }, { duration: 0.25, easing: "ease-out" });
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 5; i++) {
         animate(`[data-mobile-index="${i}"]`, { opacity: [0, 1], x: [-10, 0] }, { duration: 0.2, delay: 0.05 + i * 0.05, easing: "ease-out" });
       }
       iconOpen?.classList.add("hidden");
