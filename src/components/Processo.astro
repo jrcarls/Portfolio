@@ -1,0 +1,103 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Diagnóstico gratuito",
+    description: "Conversa de 30 a 45 minutos para entender o seu produto, os problemas que você quer resolver e o que espera como resultado. Sem compromisso.",
+    color: "text-primary",
+    border: "border-primary/30",
+    bg: "bg-primary/10",
+    icon: `<g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"><path stroke-linecap="round" d="M8.5 14.5h7m-7-5H12"/><path d="M14.17 20.89c4.184-.277 7.516-3.657 7.79-7.9c.053-.83.053-1.69 0-2.52c-.274-4.242-3.606-7.62-7.79-7.899a33 33 0 0 0-4.34 0c-4.184.278-7.516 3.657-7.79 7.9a20 20 0 0 0 0 2.52c.1 1.545.783 2.976 1.588 4.184c.467.845.159 1.9-.328 2.823c-.35.665-.526.997-.385 1.237c.14.24.455.248 1.084.263c1.245.03 2.084-.322 2.75-.813c.377-.279.566-.418.696-.434s.387.09.899.3c.46.19.995.307 1.485.34c1.425.094 2.914.094 4.342 0Z"/></g>`,
+  },
+  {
+    number: "02",
+    title: "Proposta e escopo",
+    description: "Com o contexto em mãos, preparo uma proposta detalhada: o que será feito, como será feito, prazo e valor. Tudo documentado antes de começar.",
+    color: "text-indigo-500 dark:text-indigo-400",
+    border: "border-indigo-500/30",
+    bg: "bg-indigo-500/10",
+    icon: `<g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"><path d="M13 20.827V22h1.173c.41 0 .614 0 .799-.076c.184-.076.328-.221.618-.51l4.823-4.825c.273-.273.41-.41.483-.556c.139-.28.139-.61 0-.89c-.073-.147-.21-.283-.483-.556s-.41-.41-.556-.483a1 1 0 0 0-.89 0c-.147.073-.284.21-.557.483l-4.823 4.824c-.29.289-.434.434-.51.618s-.077.388-.077.798Z"/><path stroke-linecap="round" d="M19 11s0-1.57-.152-1.937s-.441-.657-1.02-1.235l-4.736-4.736c-.499-.499-.748-.748-1.058-.896a2 2 0 0 0-.197-.082C11.514 2 11.161 2 10.456 2c-3.245 0-4.868 0-5.967.886a4 4 0 0 0-.603.603C3 4.59 3 6.211 3 9.456V14c0 3.771 0 5.657 1.172 6.828C5.235 21.892 6.886 21.99 10 22m2-19.5V3c0 2.828 0 4.243.879 5.121C13.757 9 15.172 9 18 9h.5"/></g>`,
+  },
+  {
+    number: "03",
+    title: "Execução",
+    description: "Desenvolvimento com entregas parciais e atualizações semanais. Você acompanha o progresso em tempo real e pode dar feedback em cada etapa.",
+    color: "text-yellow-500 dark:text-yellow-400",
+    border: "border-yellow-500/30",
+    bg: "bg-yellow-500/10",
+    icon: `<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9.5 9.5l-1.533 1.322C7.322 11.377 7 11.655 7 12s.322.623.967 1.178L9.5 14.5m5-5l1.533 1.322c.645.555.967.833.967 1.178s-.322.623-.967 1.178L14.5 14.5"/></g>`,
+  },
+  {
+    number: "04",
+    title: "Entrega e suporte",
+    description: "Deploy, documentação e handoff completo. Inclui período de suporte pós-entrega para garantir que tudo esteja funcionando em produção.",
+    color: "text-green-500 dark:text-green-400",
+    border: "border-green-500/30",
+    bg: "bg-green-500/10",
+    icon: `<g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="m11.801 6.49l1.486-1.486c1.673-1.673 3.862-2.367 6.18-2.48c.902-.044 1.352-.066 1.714.295c.361.362.34.812.295 1.714c-.113 2.318-.807 4.507-2.48 6.18L17.511 12.2c-1.224 1.223-1.572 1.571-1.315 2.898c.254 1.014.499 1.995-.238 2.732c-.894.895-1.71.895-2.604 0l-7.183-7.183c-.895-.894-.895-1.71 0-2.604c.737-.737 1.718-.492 2.732-.238c1.327.257 1.675-.091 2.898-1.315Z"/><path stroke-linecap="round" d="m2.5 21.5l5-5m1 5l2-2m-8-4l2-2"/><path stroke-linecap="round" stroke-linejoin="round" d="M17.125 7H17m.25 0a.25.25 0 1 1-.5 0a.25.25 0 0 1 .5 0"/></g>`,
+  },
+];
+---
+
+<section id="processo" class="py-24 relative overflow-hidden">
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 h-[400px] w-[800px] rounded-full bg-primary/5 blur-[100px] -z-10"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+    <!-- Header -->
+    <div data-reveal class="text-center mb-16">
+      <span class="inline-block rounded-full border border-border bg-muted px-4 py-1.5 text-sm text-muted-foreground mb-4">
+        Como funciona
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+        Do primeiro contato à entrega
+      </h2>
+      <p class="text-muted-foreground text-lg max-w-xl mx-auto">
+        Um processo simples e transparente, sem surpresas no meio do caminho.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {steps.map((step, i) => (
+        <div
+          data-reveal
+          data-reveal-delay={i * 0.1}
+          class="relative flex flex-col rounded-2xl border border-border bg-card p-6 gap-4"
+        >
+          <!-- Linha conectora (exceto último) -->
+          {i < steps.length - 1 && (
+            <div class="hidden lg:block absolute top-10 -right-3 z-10">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-border">
+                <path d="M9 6s6 4.419 6 6s-6 6-6 6"/>
+              </svg>
+            </div>
+          )}
+
+          <!-- Número + ícone -->
+          <div class="flex items-center gap-3">
+            <div class={`h-11 w-11 rounded-xl flex items-center justify-center shrink-0 ${step.bg} ${step.color}`}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                <Fragment set:html={step.icon} />
+              </svg>
+            </div>
+            <span class={`text-2xl font-bold tabular-nums ${step.color} opacity-30`}>{step.number}</span>
+          </div>
+
+          <!-- Texto -->
+          <div>
+            <h3 class="font-semibold mb-2">{step.title}</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+          </div>
+
+          <!-- Borda inferior colorida -->
+          <div class={`absolute bottom-0 left-6 right-6 h-0.5 rounded-full ${step.bg}`}></div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
