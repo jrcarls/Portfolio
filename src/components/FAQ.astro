@@ -1,0 +1,103 @@
+---
+const faqs = [
+  {
+    q: "Quanto custa um projeto?",
+    a: "Depende do escopo. Auditorias de segurança partem de R$ 2.500 e projetos de desenvolvimento são orçados sob medida após o diagnóstico gratuito. Não trabalho com tabela fixa porque cada produto tem complexidade diferente — prefiro entender o seu problema antes de colocar um número.",
+  },
+  {
+    q: "Quanto tempo leva para entregar?",
+    a: "Uma auditoria AppSec leva de 1 a 2 semanas. Projetos de desenvolvimento variam: MVPs simples saem em 4 a 6 semanas, produtos mais completos entre 8 e 12 semanas. Sempre defino um cronograma realista na proposta — sem promessa de prazo impossível.",
+  },
+  {
+    q: "Como funciona o diagnóstico gratuito?",
+    a: "É uma conversa de 30 a 45 minutos onde entendo o seu produto, os problemas que você quer resolver e o que você espera como resultado. Sem compromisso. No final você sai com clareza sobre o que fazer, independente de fechar comigo ou não.",
+  },
+  {
+    q: "Como é a comunicação durante o projeto?",
+    a: "Direto comigo, sem intermediários. Usamos a ferramenta que funcionar melhor para você (WhatsApp, Slack ou e-mail). Envio atualizações semanais de progresso e estou disponível para dúvidas durante o horário comercial.",
+  },
+  {
+    q: "Você faz manutenção depois da entrega?",
+    a: "Sim. Ofereço um período de suporte pós-entrega incluso em todos os projetos. Para demandas contínuas, tenho planos de manutenção mensal — útil para quem precisa de evolução constante do produto sem abrir uma vaga CLT.",
+  },
+  {
+    q: "Você consegue atender bem sendo solo dev?",
+    a: "Essa é exatamente a vantagem. Sendo solo, escolho cuidadosamente quantos projetos aceito por vez. Quando o seu projeto entra na minha agenda, ele tem atenção total — não fica esperando na fila de um time ou sendo repassado para um júnior.",
+  },
+  {
+    q: "Você trabalha com contrato?",
+    a: "Sim, sempre. Todo projeto começa com um contrato claro definindo escopo, prazo, valor e condições de pagamento. Isso protege os dois lados e evita desentendimentos no meio do caminho.",
+  },
+  {
+    q: "E se eu não gostar do resultado?",
+    a: "Trabalho com revisões incluídas no escopo e entregas parciais ao longo do projeto — exatamente para evitar surpresas no final. Se algo não estiver como esperado, corrigimos juntos. Nunca entrego um projeto e sumo.",
+  },
+];
+---
+
+<section id="faq" class="py-24 relative overflow-hidden">
+  <div
+    class="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-primary/8 blur-[100px] -z-10"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+
+    <!-- Header -->
+    <div data-reveal class="text-center mb-16">
+      <span class="inline-block rounded-full border border-border bg-muted px-4 py-1.5 text-sm text-muted-foreground mb-4">
+        FAQ
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+        Perguntas frequentes
+      </h2>
+      <p class="text-muted-foreground text-lg">
+        Tudo que você precisa saber antes de entrar em contato.
+      </p>
+    </div>
+
+    <!-- Accordions -->
+    <div data-reveal class="space-y-3">
+      {faqs.map((faq, i) => (
+        <details
+          class="group rounded-xl border border-border bg-card overflow-hidden"
+        >
+          <summary class="flex cursor-pointer items-center justify-between gap-4 px-6 py-5 text-sm font-medium select-none hover:bg-muted/50 transition-colors list-none">
+            <span>{faq.q}</span>
+            <!-- Ícone + -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="shrink-0 text-muted-foreground transition-transform duration-300 group-open:rotate-45"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-5 text-sm text-muted-foreground leading-relaxed border-t border-border pt-4">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div data-reveal data-reveal-delay="0.1" class="mt-12 text-center rounded-2xl border border-border bg-muted/50 px-8 py-8">
+      <p class="font-semibold text-lg mb-1">Ainda tem dúvidas?</p>
+      <p class="text-muted-foreground text-sm mb-5">O diagnóstico gratuito é sem compromisso. Conversa de 30 minutos e você já sai com clareza.</p>
+      <a
+        href="#contato"
+        class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+      >
+        Agendar diagnóstico gratuito
+      </a>
+    </div>
+
+  </div>
+</section>
