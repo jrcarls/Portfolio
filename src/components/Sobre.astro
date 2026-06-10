@@ -1,0 +1,128 @@
+---
+---
+
+<section id="sobre" class="py-24 relative overflow-hidden">
+
+  <!-- Blob de fundo -->
+  <div
+    class="absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full bg-primary/8 blur-[100px] -z-10"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+    <!-- Header -->
+    <div data-reveal class="text-center mb-16">
+      <span class="inline-block rounded-full border border-border bg-muted px-4 py-1.5 text-sm text-muted-foreground mb-4">
+        Sobre
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
+        Quem está por trás da Ovelha Tech
+      </h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Visual -->
+      <div data-reveal class="flex justify-center">
+        <div class="relative">
+          <!-- Anel decorativo externo -->
+          <div class="absolute inset-0 -m-8 rounded-full border border-dashed border-primary/20 animate-spin" style="animation-duration:25s"></div>
+          <!-- Anel intermediário -->
+          <div class="absolute inset-0 -m-4 rounded-full border border-primary/10"></div>
+
+          <!-- Imagem -->
+          <div class="relative w-72 h-72 rounded-full overflow-hidden border-2 border-border shadow-2xl bg-card">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-transparent"></div>
+            <img
+              src="/bg_ovelha.svg"
+              alt="Jean Reis — Ovelha Tech"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <!-- Card com nome -->
+          <div
+            data-reveal
+            data-reveal-delay="0.2"
+            class="absolute -bottom-5 left-1/2 -translate-x-1/2 w-max rounded-xl border border-border bg-card px-4 py-2.5 shadow-lg text-center"
+          >
+            <p class="text-sm font-semibold">Jean Reis</p>
+            <p class="text-xs text-muted-foreground">Fundador · Dev · AppSec</p>
+          </div>
+
+          <!-- Badge flutuante: localização -->
+          <div
+            data-reveal
+            data-reveal-delay="0.3"
+            class="absolute -top-3 -right-6 rounded-xl border border-border bg-card px-3 py-2 shadow-lg flex items-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" class="text-primary shrink-0">
+              <g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13.618 21.367A2.37 2.37 0 0 1 12 22a2.37 2.37 0 0 1-1.617-.633C6.412 17.626 1.09 13.447 3.685 7.38C5.09 4.1 8.458 2 12.001 2s6.912 2.1 8.315 5.38c2.592 6.06-2.717 10.259-6.698 13.987Z"/><path d="M15.5 11a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0Z"/></g>
+            </svg>
+            <span class="text-xs font-medium">Brasil</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conteúdo -->
+      <div class="space-y-6">
+
+        <div data-reveal class="space-y-4 text-muted-foreground leading-relaxed">
+          <p>
+            Sou desenvolvedor especializado em construir produtos web seguros e escaláveis.
+            Fundei a Ovelha Tech com uma premissa simples: <strong class="text-foreground">você merece um dev que entende o seu negócio</strong>,
+            não apenas o código que está escrevendo.
+          </p>
+          <p>
+            Trabalho com Python, Django e Tailwind — uma stack que prioriza simplicidade,
+            robustez e entrega rápida. E por ser solo dev, cada projeto que entra na minha
+            agenda recebe atenção total. Sem time para repassar. Sem reuniões sem propósito.
+            Direto ao ponto.
+          </p>
+          <p>
+            Segurança não é um extra que vem no final — é parte do processo desde o primeiro
+            commit. Sigo práticas de AppSec (OWASP, SAST, modelagem de ameaças) porque acredito
+            que produto bom é produto que não quebra em produção.
+          </p>
+        </div>
+
+        <!-- Destaques -->
+        <div data-reveal data-reveal-delay="0.1" class="grid sm:grid-cols-3 gap-4 pt-2">
+
+          <div class="rounded-xl border border-primary/20 bg-card p-4 space-y-2">
+            <div class="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9.5 9.5l-1.533 1.322C7.322 11.377 7 11.655 7 12s.322.623.967 1.178L9.5 14.5m5-5l1.533 1.322c.645.555.967.833.967 1.178s-.322.623-.967 1.178L14.5 14.5"/></g>
+              </svg>
+            </div>
+            <p class="text-sm font-semibold">Dev Web</p>
+            <p class="text-xs text-muted-foreground">Python · Django · Tailwind</p>
+          </div>
+
+          <div class="rounded-xl border border-indigo-500/20 bg-card p-4 space-y-2">
+            <div class="h-9 w-9 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-500 dark:text-indigo-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.709 3.495C16.817 2.554 14.5 2 12 2s-4.816.554-6.709 1.495c-.928.462-1.392.693-1.841 1.419S3 6.342 3 7.748v3.49c0 5.683 4.542 8.842 7.173 10.196c.734.377 1.1.566 1.827.566s1.093-.189 1.827-.566C16.457 20.08 21 16.92 21 11.237V7.748c0-1.406 0-2.108-.45-2.834s-.913-.957-1.841-1.419"/>
+              </svg>
+            </div>
+            <p class="text-sm font-semibold">AppSec</p>
+            <p class="text-xs text-muted-foreground">OWASP · SAST · Code Review</p>
+          </div>
+
+          <div class="rounded-xl border border-yellow-500/20 bg-card p-4 space-y-2">
+            <div class="h-9 w-9 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-500 dark:text-yellow-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M15.131 2.5A10 10 0 0 0 12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10a10 10 0 0 0-.458-3"/><path stroke-linejoin="round" d="M17 12a5 5 0 1 1-5-5"/><path d="M19.5 4.5L12 12m7.5-7.5V2m0 2.5H22"/></g>
+              </svg>
+            </div>
+            <p class="text-sm font-semibold">Foco</p>
+            <p class="text-xs text-muted-foreground">Direto · Sem intermediários</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
