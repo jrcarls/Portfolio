@@ -24,28 +24,111 @@ import Navbar from "@/components/Navbar.astro";
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO primário -->
-    <title>Jean Reis, Desenvolvedor de Software</title>
-    <meta name="description" content="Dev especializado em Python, Django e AppSec. Construo produtos web seguros, eficientes e prontos para escalar. Atendimento direto, sem intermediários." />
+    <title>Jean Reis - Desenvolvedor LegalTech para Escritórios de Advocacia</title>
+    <meta name="description" content="Desenvolvo sistemas e automações sob medida para escritórios de advocacia. LegalTech, APIs jurídicas e automações que eliminam o retrabalho. Atendimento direto, sem intermediários." />
+    <meta name="keywords" content="legaltech, software jurídico, automação jurídica, sistema para escritório de advocacia, desenvolvedor para advogados, Python Django jurídico, desenvolvedor legaltech" />
     <meta name="author" content="Jean Reis" />
-    <link rel="canonical" href="https://ovelhatech.com.br/" />
+    <link rel="canonical" href="https://jeanreis.dev.br/" />
 
     <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ovelhatech.com.br/" />
-    <meta property="og:title" content="Jean Reis, Desenvolvedor de Software" />
-    <meta property="og:description" content="Dev especializado em Python, Django e AppSec. Produtos web seguros e prontos para escalar. Atendimento direto, sem intermediários." />
-    <meta property="og:image" content="https://ovelhatech.com.br/og.png" />
+    <meta property="og:url" content="https://jeanreis.dev.br/" />
+    <meta property="og:title" content="Jean Reis - Sistemas & Automações para Escritórios de Advocacia" />
+    <meta property="og:description" content="Sistemas e automações jurídicas sob medida para escritórios de advocacia. Elimine retrabalho, automatize processos e escale o seu escritório com tecnologia segura." />
+    <meta property="og:image" content="https://jeanreis.dev.br/og.png" />
     <meta property="og:locale" content="pt_BR" />
-    <meta property="og:site_name" content="Jean Reis" />
+    <meta property="og:site_name" content="Jean Reis - LegalTech" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Jean Reis, Desenvolvedor de Software" />
-    <meta name="twitter:description" content="Dev especializado em Python, Django e AppSec. Produtos web seguros e prontos para escalar." />
-    <meta name="twitter:image" content="https://ovelhatech.com.br/og.png" />
+    <meta name="twitter:title" content="Jean Reis - Sistemas & Automações para Escritórios de Advocacia" />
+    <meta name="twitter:description" content="Sistemas e automações jurídicas sob medida. LegalTech, APIs e produtos web seguros para escritórios de advocacia." />
+    <meta name="twitter:image" content="https://jeanreis.dev.br/og.png" />
 
     <!-- Indexação -->
     <meta name="robots" content="index, follow" />
+
+    <!-- Dados estruturados -->
+    <script is:inline type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jean Reis",
+      "url": "https://jeanreis.dev.br/",
+      "jobTitle": "Desenvolvedor de Software LegalTech",
+      "description": "Desenvolvedor especializado em sistemas e automações para escritórios de advocacia. LegalTech, APIs jurídicas e segurança de aplicações.",
+      "knowsAbout": ["LegalTech", "Automação Jurídica", "Software Jurídico", "Python", "Django", "FastAPI", "AppSec", "OWASP"],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Sistemas e Automações para Escritórios de Advocacia",
+          "description": "Desenvolvimento de sistemas jurídicos sob medida, automações de processos e APIs para escritórios de advocacia."
+        },
+        {
+          "@type": "Offer",
+          "name": "AppSec & Segurança de Aplicações",
+          "description": "Auditoria de segurança com metodologia OWASP, revisão de código e análise estática para produtos web."
+        }
+      ],
+      "sameAs": []
+    }
+    </script>
+    <script is:inline type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quanto custa um projeto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende do escopo. Auditorias de segurança partem de R$ 2.500 e projetos de desenvolvimento são orçados sob medida após o diagnóstico gratuito. Não trabalho com tabela fixa porque cada produto tem complexidade diferente, prefiro entender o seu problema antes de colocar um número."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quanto tempo leva para entregar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Uma auditoria AppSec leva de 1 a 2 semanas. Projetos de desenvolvimento variam: MVPs simples saem em 4 a 6 semanas, produtos mais completos entre 8 e 12 semanas. Sempre defino um cronograma realista na proposta, sem promessa de prazo impossível."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona o diagnóstico gratuito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "É uma conversa de 30 a 45 minutos onde entendo o seu produto, os problemas que você quer resolver e o que você espera como resultado. Sem compromisso. No final você sai com clareza sobre o que fazer, independente de fechar comigo ou não."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Você tem experiência com sistemas para escritórios de advocacia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Tenho histórico prático em LegalTech, desenvolvendo sistemas e automações para escritórios de advocacia. Esse contexto me permite entender as dores do negócio jurídico antes de escrever a primeira linha de código: gestão de prazos, controle de processos, automação de documentos e integrações com sistemas do Poder Judiciário."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Você consegue atender bem sendo solo dev?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Essa é exatamente a vantagem. Sendo solo, escolho cuidadosamente quantos projetos aceito por vez. Quando o seu projeto entra na minha agenda, ele tem atenção total, não fica esperando na fila de um time ou sendo repassado para diversos desenvolvedores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Você trabalha com contrato?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim, sempre. Todo projeto começa com um contrato claro definindo escopo, prazo, valor e condições de pagamento. Isso protege os dois lados e evita desentendimentos no meio do caminho."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <Navbar />
