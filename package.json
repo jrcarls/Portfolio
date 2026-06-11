@@ -9,16 +9,22 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^10.0.8",
     "@data-slot/navigation-menu": "^0.2.166",
+    "@data-slot/select": "^0.2.166",
     "@iconify-json/hugeicons": "latest",
     "@tailwindcss/vite": "^4.1.17",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
     "astro": "^6.0.3",
     "bejamas": "^0.3.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "motion": "^12.40.0",
+    "resend": "^6.12.4",
     "rough-notation": "^0.5.1",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "shadcn": "^4.11.0",

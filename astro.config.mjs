@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
-
+import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 
 // bejamas:astro-fonts:start
@@ -23,6 +23,9 @@ const BEJAMAS_ASTRO_FONTS = [
 
 // https://astro.build/config
 export default defineConfig({
+  output: "hybrid",
+  adapter: vercel(),
+  security: { checkOrigin: true },
   fonts: BEJAMAS_ASTRO_FONTS,
   integrations: [],
   vite: {

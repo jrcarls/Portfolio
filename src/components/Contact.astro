@@ -1,5 +1,8 @@
 ---
 import { Button } from "@/ui/button";
+import { Input } from "@/ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/ui/select";
+import { Textarea } from "@/ui/textarea";
 ---
 
 <section id="contato" class="py-24 relative overflow-hidden">
@@ -112,24 +115,24 @@ import { Button } from "@/ui/button";
           <div class="grid sm:grid-cols-2 gap-5">
             <div class="space-y-1.5">
               <label for="name" class="text-sm font-medium">Nome</label>
-              <input
+              <Input
                 id="name"
                 name="name"
                 type="text"
                 required
                 placeholder="Seu nome"
-                class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                size="lg"
               />
             </div>
             <div class="space-y-1.5">
               <label for="email" class="text-sm font-medium">Email</label>
-              <input
+              <Input
                 id="email"
                 name="email"
                 type="email"
                 required
                 placeholder="seu@email.com"
-                class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                size="lg"
               />
             </div>
           </div>
@@ -138,41 +141,41 @@ import { Button } from "@/ui/button";
             <label for="company" class="text-sm font-medium">
               Empresa <span class="text-muted-foreground font-normal">(opcional)</span>
             </label>
-            <input
+            <Input
               id="company"
               name="company"
               type="text"
               placeholder="Nome da empresa ou produto"
-              class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+              size="lg"
             />
           </div>
 
           <div class="space-y-1.5">
-            <label for="service" class="text-sm font-medium">Serviço de interesse</label>
-            <select
-              id="service"
-              name="service"
-              class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow appearance-none"
-            >
-              <option value="">Selecione uma opção</option>
-              <option value="legaltech-automacao">Automações para escritório de advocacia</option>
-              <option value="legaltech-sistema">Sistema jurídico sob medida</option>
-              <option value="appsec">AppSec e Segurança de Aplicações</option>
-              <option value="dev">APIs e Produtos Web</option>
-              <option value="other">Ainda não sei, quero conversar</option>
-            </select>
+            <label class="text-sm font-medium">Serviço de interesse</label>
+            <Select name="service" size="lg" class="w-full">
+              <SelectTrigger size="lg" class="w-full">
+                <SelectValue placeholder="Selecione uma opção" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="legaltech-automacao">Automações para escritório de advocacia</SelectItem>
+                <SelectItem value="legaltech-sistema">Sistema jurídico sob medida</SelectItem>
+                <SelectItem value="appsec">AppSec e Segurança de Aplicações</SelectItem>
+                <SelectItem value="dev">APIs e Produtos Web</SelectItem>
+                <SelectItem value="other">Ainda não sei, quero conversar</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div class="space-y-1.5">
             <label for="message" class="text-sm font-medium">Mensagem</label>
-            <textarea
+            <Textarea
               id="message"
               name="message"
               required
-              rows="4"
+              rows={4}
               placeholder="Conte um pouco sobre o seu projeto ou dúvida..."
-              class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow resize-none"
-            ></textarea>
+              class="resize-none"
+            />
           </div>
 
           <Button type="submit" class="w-full">
@@ -192,13 +195,31 @@ import { Button } from "@/ui/button";
 <script>
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
 
-  form?.addEventListener("submit", (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    // TODO: conectar ao serviço de formulário (ex: Formspree, Resend)
-    const btn = form.querySelector("button[type=submit]");
-    if (btn) {
-      btn.textContent = "Mensagem enviada!";
-      (btn as HTMLButtonElement).disabled = true;
+
+    const btn = form.querySelector("button[type=submit]") as HTMLButtonElement | null;
+    if (!btn) return;
+
+    btn.disabled = true;
+    btn.textContent = "Enviando...";
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: new FormData(form),
+      });
+
+      if (res.ok) {
+        btn.textContent = "Mensagem enviada!";
+        form.reset();
+      } else {
+        btn.textContent = "Erro ao enviar. Tente novamente.";
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = "Erro ao enviar. Tente novamente.";
+      btn.disabled = false;
     }
   });
 </script>
