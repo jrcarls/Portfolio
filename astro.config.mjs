@@ -2,6 +2,7 @@
 import { defineConfig, fontProviders } from "astro/config";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
+import sitemap from "@astrojs/sitemap";
 
 // bejamas:astro-fonts:start
 /** @type {NonNullable<import("astro/config").AstroUserConfig["fonts"]>} */
@@ -23,11 +24,12 @@ const BEJAMAS_ASTRO_FONTS = [
 
 // https://astro.build/config
 export default defineConfig({
-  output: "hybrid",
+  site: "https://jeanreis.dev.br",
+  output: "static",
   adapter: vercel(),
   security: { checkOrigin: true },
   fonts: BEJAMAS_ASTRO_FONTS,
-  integrations: [],
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },

@@ -1,5 +1,7 @@
 ---
 import { Button } from "@/ui/button";
+import { Image } from "astro:assets";
+import avatar from "@/assets/avatar.png";
 ---
 
 <section
@@ -135,7 +137,7 @@ import { Button } from "@/ui/button";
             style="width:280px;height:280px;top:50%;left:50%;transform:translate(-50%,-50%)"
           >
             <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5"></div>
-            <img src="/foto_perfil.png" alt="Jean Reis" class="w-full h-full object-cover" />
+            <Image src={avatar} alt="Jean Reis, desenvolvedor LegalTech e AppSec para escritórios de advocacia" width={280} height={280} loading="eager" fetchpriority="high" class="w-full h-full object-cover" />
           </div>
 
           <!--

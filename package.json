@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@astrojs/vercel": "^10.0.8",
     "@data-slot/navigation-menu": "^0.2.166",
     "@data-slot/select": "^0.2.166",
@@ -23,6 +24,7 @@
     "motion": "^12.40.0",
     "resend": "^6.12.4",
     "rough-notation": "^0.5.1",
+    "sharp": "^0.35.0",
     "tailwind-merge": "^3.4.0",
     "zod": "^4.4.3"
   },

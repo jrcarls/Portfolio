@@ -1,0 +1,1 @@
+import{i as a}from"./index.C0jUHF-2.js";import{a as t}from"./index.h44cml32.js";a("#techstack-marquee",()=>{t("#techstack-marquee",{opacity:[0,1],y:[24,0]},{duration:.7,easing:[.25,.1,.25,1]})},{amount:.3});

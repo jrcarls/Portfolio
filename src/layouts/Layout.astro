@@ -20,57 +20,92 @@ import Navbar from "@/components/Navbar.astro";
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/avatar.png" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO primário -->
-    <title>Jean Reis - Desenvolvedor LegalTech para Escritórios de Advocacia</title>
-    <meta name="description" content="Desenvolvo sistemas e automações sob medida para escritórios de advocacia. LegalTech, APIs jurídicas e automações que eliminam o retrabalho. Atendimento direto, sem intermediários." />
-    <meta name="keywords" content="legaltech, software jurídico, automação jurídica, sistema para escritório de advocacia, desenvolvedor para advogados, Python Django jurídico, desenvolvedor legaltech" />
+    <title>Jean Reis - Desenvolvedor LegalTech e AppSec para Escritórios de Advocacia</title>
+    <meta name="description" content="Desenvolvo sistemas, automações e auditorias de segurança (AppSec/OWASP) para escritórios de advocacia. LegalTech sob medida, sem intermediários. Salvador, BA - atendimento nacional." />
+    <meta name="keywords" content="legaltech, software jurídico, automação jurídica, sistema para escritório de advocacia, desenvolvedor para advogados, appsec, auditoria de segurança OWASP, Python Django jurídico" />
     <meta name="author" content="Jean Reis" />
     <link rel="canonical" href="https://jeanreis.dev.br/" />
 
-    <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jeanreis.dev.br/" />
-    <meta property="og:title" content="Jean Reis - Sistemas & Automações para Escritórios de Advocacia" />
-    <meta property="og:description" content="Sistemas e automações jurídicas sob medida para escritórios de advocacia. Elimine retrabalho, automatize processos e escale o seu escritório com tecnologia segura." />
-    <meta property="og:image" content="https://jeanreis.dev.br/og.png" />
+    <meta property="og:title" content="Jean Reis - Sistemas, Automações e AppSec para Escritórios de Advocacia" />
+    <meta property="og:description" content="Sistemas e automações jurídicas sob medida + auditoria de segurança OWASP. Elimine retrabalho e proteja o seu escritório com tecnologia segura." />
+    <meta property="og:image" content="https://jeanreis.dev.br/og.svg" />
     <meta property="og:locale" content="pt_BR" />
-    <meta property="og:site_name" content="Jean Reis - LegalTech" />
+    <meta property="og:site_name" content="Jean Reis - LegalTech & AppSec" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Jean Reis - Sistemas & Automações para Escritórios de Advocacia" />
-    <meta name="twitter:description" content="Sistemas e automações jurídicas sob medida. LegalTech, APIs e produtos web seguros para escritórios de advocacia." />
-    <meta name="twitter:image" content="https://jeanreis.dev.br/og.png" />
+    <meta name="twitter:title" content="Jean Reis - Sistemas, Automações e AppSec para Escritórios de Advocacia" />
+    <meta name="twitter:description" content="Sistemas e automações jurídicas sob medida + auditoria de segurança OWASP. LegalTech e AppSec para escritórios de advocacia." />
+    <meta name="twitter:image" content="https://jeanreis.dev.br/og.svg" />
 
     <!-- Indexação -->
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#7c3aed" />
 
     <!-- Dados estruturados -->
     <script is:inline type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Jean Reis",
-      "url": "https://jeanreis.dev.br/",
-      "jobTitle": "Desenvolvedor de Software LegalTech",
-      "description": "Desenvolvedor especializado em sistemas e automações para escritórios de advocacia. LegalTech, APIs jurídicas e segurança de aplicações.",
-      "knowsAbout": ["LegalTech", "Automação Jurídica", "Software Jurídico", "Python", "Django", "FastAPI", "AppSec", "OWASP"],
-      "offers": [
+      "@graph": [
         {
-          "@type": "Offer",
-          "name": "Sistemas e Automações para Escritórios de Advocacia",
-          "description": "Desenvolvimento de sistemas jurídicos sob medida, automações de processos e APIs para escritórios de advocacia."
+          "@type": "ProfessionalService",
+          "@id": "https://jeanreis.dev.br/#service",
+          "name": "Jean Reis - Desenvolvimento LegalTech & AppSec",
+          "url": "https://jeanreis.dev.br/",
+          "description": "Desenvolvimento de sistemas e automações sob medida para escritórios de advocacia, e auditoria de segurança de aplicações (AppSec/OWASP).",
+          "areaServed": "Brasil",
+          "priceRange": "$$",
+          "telephone": "+5571991516655",
+          "email": "contato@jeanreis.dev.br",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Serviços",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Sistemas e Automações para Escritórios de Advocacia",
+                  "description": "Desenvolvimento de sistemas jurídicos sob medida, automações de processos (RPA/LLM) e APIs para escritórios de advocacia."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Auditoria de Segurança AppSec / OWASP",
+                  "description": "Auditoria de segurança com metodologia OWASP, análise estática (SAST), revisão de código e hardening para produtos web."
+                }
+              }
+            ]
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Jean Reis",
+            "jobTitle": "Desenvolvedor de Software LegalTech & AppSec",
+            "url": "https://jeanreis.dev.br/",
+            "sameAs": [
+              "https://github.com/jrcarls",
+              "https://www.linkedin.com/in/jeanreis-dev/"
+            ]
+          }
         },
         {
-          "@type": "Offer",
-          "name": "AppSec & Segurança de Aplicações",
-          "description": "Auditoria de segurança com metodologia OWASP, revisão de código e análise estática para produtos web."
+          "@type": "WebSite",
+          "@id": "https://jeanreis.dev.br/#website",
+          "url": "https://jeanreis.dev.br/",
+          "name": "Jean Reis - LegalTech & AppSec",
+          "description": "Desenvolvedor de software especializado em LegalTech e AppSec para escritórios de advocacia.",
+          "inLanguage": "pt-BR"
         }
-      ],
-      "sameAs": []
+      ]
     }
     </script>
     <script is:inline type="application/ld+json">

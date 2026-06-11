@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import fotoPerfil from "@/assets/foto_perfil.png";
 ---
 
 <section id="sobre" class="py-24 relative overflow-hidden">
@@ -34,9 +36,12 @@
           <!-- Imagem -->
           <div class="relative w-72 h-72 rounded-full overflow-hidden border-2 border-border shadow-2xl bg-card">
             <div class="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-transparent"></div>
-            <img
-              src="/foto_perfil.png"
-              alt="Jean Reis"
+            <Image
+              src={fotoPerfil}
+              alt="Jean Reis, desenvolvedor de software LegalTech e AppSec"
+              width={288}
+              height={288}
+              loading="lazy"
               class="w-full h-full object-cover"
             />
           </div>

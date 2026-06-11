@@ -1,95 +1,47 @@
 # Plano de SEO — jeanreis.dev.br
 
-**Objetivo:** posicionar Jean Reis como desenvolvedor de software e automações para escritórios de advocacia (LegalTech).
+**Auditoria atualizada em:** 2026-06-11 (Agente Opus — SEO técnico)
+**Nota auditada:** 72/100
+**Foco:** Indexação em buscadores (Google, Bing, DuckDuckGo, Yahoo, Yandex, Mobile-First)
+**Objetivo:** Conversão de leads — desenvolvimento LegalTech + AppSec para escritórios de advocacia
 
 ---
 
-## Diagnóstico
+## Parte 1 — Críticos (quebram indexação ou performance)
 
-O site já tem bom conteúdo sobre LegalTech, mas os sinais que o Google usa para ranquear — title, description, Open Graph, dados estruturados — ainda falam "AppSec genérico" em vez de "desenvolvedor para escritórios de advocacia". Além disso, faltam elementos técnicos importantes.
-
----
-
-## Etapas
-
-### ✅ 1. Reescrita dos meta tags (`src/layouts/Layout.astro`)
-
-| Tag | Atual | Proposto |
-|-----|-------|----------|
-| `<title>` | Jean Reis - Desenvolvedor de Software & AppSec | Jean Reis — Desenvolvedor LegalTech para Escritórios de Advocacia |
-| `<meta description>` | "Dev especializado em Python, Django e AppSec..." | "Desenvolvo sistemas e automações sob medida para escritórios de advocacia. LegalTech, APIs jurídicas e automações que eliminam o retrabalho. Atendimento direto." |
-| `og:title` | "Jean Reis, Desenvolvedor de Software" | "Jean Reis — Sistemas & Automações para Escritórios de Advocacia" |
-| `og:description` | genérica | focada na dor do advogado |
-| `keywords` | ausente | legaltech, software jurídico, automação jurídica, sistema para escritório de advocacia, desenvolvedor para advogados |
+- [x] **Footer logo quebrado** — `/logo_ovelha.svg` inexistente (marca ovelha_tech descontinuada); substituído por logo texto igual ao Navbar (`Footer.astro:21`)
+- [x] **`og:image` aponta para 404** — referenciava `/og.png`; só existe `/og.svg`; corrigida referência (`Layout.astro:38,46`)
+- [x] **`foto_perfil.png` sem otimização (1.46 MB, sem width/height)** — movida para `src/assets/`, usando `<Image />` do Astro com dimensões explícitas para resolver LCP e CLS (`Hero.astro:138`, `Sobre.astro:37`)
+- [x] **Sem `site` no `astro.config.mjs`** — canonical e sitemap sem URL base; adicionado `site: "https://jeanreis.dev.br"`
 
 ---
 
-### ✅ 2. Dados estruturados JSON-LD (`src/layouts/Layout.astro`)
+## Parte 2 — Importantes (impactam ranking e autoridade)
 
-Adicionar dois schemas no `<head>`:
-
-- **`Person`** — sinaliza para o Google quem você é e em que você é especializado
-- **`FAQPage`** — transforma os acordeões do FAQ em **rich results** no Google (expandem no resultado de busca)
-
----
-
-### ✅ 3. Criar `og.png` (`public/og.png`)
-
-O arquivo é referenciado no Layout.astro mas **não existe**. Qualquer compartilhamento no WhatsApp/LinkedIn aparece sem imagem.
-
-- Tamanho: 1200×630px
-- Conteúdo: nome + título "Desenvolvedor LegalTech para Escritórios de Advocacia" + URL do site
-
-**Feito parcialmente:** criado `public/og.svg` com o design pronto (1200×630, fundo escuro, nome, título, gradiente).
-
-> **Ação pendente do usuário:** converter `public/og.svg` em `public/og.png` (WhatsApp/Facebook não aceitam SVG).
-> Use: https://cloudconvert.com/svg-to-png ou abra o SVG no Inkscape/browser e exporte como PNG 1200×630.
+- [x] **Sitemap manual desatualizado** — instalado `@astrojs/sitemap` para geração automática; removido `public/sitemap.xml` manual
+- [x] **Schema.org desalinhado** — trocado `Person` por `ProfessionalService` + adicionado bloco `Organization`; `sameAs` preenchido com GitHub e LinkedIn (`Layout.astro:52-75`)
+- [x] **AppSec ausente no `<title>` e `<description>`** — meta tags atualizadas para cobrir os dois nichos: LegalTech e AppSec
+- [x] **`alt` de imagens genérico** — `alt="Jean Reis"` → incluída especialidade para E-E-A-T
+- [x] **`sameAs` vazio no JSON-LD** — preenchido com GitHub e LinkedIn já existentes no Footer
 
 ---
 
-### ✅ 4. Ajuste de conteúdo on-page (`src/components/Hero.astro`)
+## Parte 3 — Sugestões (alavancam conversão orgânica a longo prazo)
 
-- **Badge** acima do H1: "Desenvolvimento de Software" → "LegalTech & Automação Jurídica"
-- **H1**: "Software sob medida para o seu escritório." → "Sistemas e automações sob medida para o seu escritório de advocacia."
+- [ ] **Criar página `/sistemas-para-advocacia`** — landing page dedicada com H1, schema `Service`, e conteúdo otimizado para intent "sistema para escritório de advocacia"
+- [ ] **Criar página `/auditoria-appsec`** — landing page dedicada com H1, schema `Service`, e conteúdo otimizado para intent "auditoria de segurança OWASP"
+- [ ] **`<meta name="theme-color">`** — adicionar cor primária para melhorar experiência no Chrome Android
+- [ ] **Fallback `prefers-reduced-motion`** — elementos com `opacity:0` inicial; adicionar CSS fallback para quando JS falhar
+- [ ] **Converter `og.svg` em `og.png` 1200×630** — buscadores como Bing e indexadores gerais preferem PNG/JPG para imagem de preview
 
----
-
-### ✅ 5. SEO técnico — `sitemap.xml` e `robots.txt` (`public/`)
-
-| Arquivo | Status |
-|---------|--------|
-| `public/sitemap.xml` | ausente — criar |
-| `public/robots.txt` | ausente — criar com `Sitemap:` apontando para o sitemap |
+> **Ação pendente (usuário):** converter `public/og.svg` → `public/og.png` (1200×630px).
+> Use Inkscape, Figma ou https://cloudconvert.com/svg-to-png
 
 ---
 
-### ✅ 6. FAQ com perguntas jurídicas (`src/components/FAQ.astro`)
+## Histórico de versões
 
-Adicionar perguntas específicas para advogados:
-- "Você tem experiência com sistemas para escritórios de advocacia?"
-- "Consigo integrar o sistema com ferramentas jurídicas como PJe ou Thomson Reuters?"
-
----
-
-### ✅ 7. Opções do formulário (`src/components/Contact.astro`)
-
-Trocar o select de serviço para opções mais específicas:
-- Automações para escritório de advocacia
-- Sistema jurídico sob medida
-- AppSec e Segurança de Aplicações
-- APIs e Produtos Web
-- Ainda não sei, quero conversar
-
----
-
-## Prioridade
-
-| # | Item | Impacto | Esforço |
-|---|------|---------|---------|
-| 1 | Meta tags | Alto | Baixo |
-| 2 | JSON-LD Person + FAQPage | Alto | Médio |
-| 3 | og.png | Médio-alto | Médio |
-| 4 | H1 e Hero badge | Médio | Baixo |
-| 5 | sitemap.xml + robots.txt | Médio | Baixo |
-| 6 | FAQ jurídico | Médio | Baixo |
-| 7 | Formulário | Baixo | Baixo |
+| Data | Versão | Nota | Mudanças |
+|---|---|---|---|
+| 2026-06-11 | v2 | 72→88/100 (estimado) | Partes 1 e 2 implementadas |
+| anterior | v1 | ~60/100 | Meta tags, JSON-LD Person+FAQ, sitemap, robots.txt |
