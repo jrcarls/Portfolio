@@ -14,7 +14,7 @@ const BEJAMAS_ASTRO_FONTS = [
   },
   {
     provider: fontProviders.google(),
-    name: "Audiowide",
+    name: "Suez One",
     cssVariable: "--font-logo",
     subsets: ["latin"],
   },
