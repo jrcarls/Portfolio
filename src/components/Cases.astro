@@ -1,28 +1,28 @@
 ---
 const cases = [
   {
-    tag: "AppSec",
+    tag: "API + IA",
     tagColor: "text-indigo-500 dark:text-indigo-400",
     borderColor: "border-t-indigo-500/70",
     iconBg: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400",
     company: "Freire, Gerbasi & Bittencourt Advogados",
     segment: "Legaltech · Salvador",
-    title: "Correção de vulnerabilidades em sistema de audiências jurídicas",
+    title: "API com integração MCP para uso com agentes de IA",
     description:
-      "O escritório utilizava uma plataforma própria para gestão que acumulava falhas de segurança não tratadas. Foram reportadas 14 vulnerabilidades, de nível baixo a crítico, que precisavam ser analisadas, priorizadas e corrigidas sem interromper a operação.",
+      "Desenvolvimento de uma API para o sistema de audiências do escritório com suporte nativo a MCP, permitindo integração direta com agentes de IA e LLMs. O projeto incluiu autenticação de dois fatores, autorização granular e rate limiting, entregue em 3 semanas.",
     results: [
-      { label: "Vulnerabilidades corrigidas", value: "14" },
-      { label: "Nível mais alto tratado", value: "Crítico" },
-      { label: "Sistema protegido e operacional", value: "✓" },
+      { label: "Semanas até a entrega", value: "3" },
+      { label: "Integração MCP para LLMs", value: "✓" },
+      { label: "Pronto para agentes de IA", value: "✓" },
     ],
     deliverables: [
-      "Triagem e classificação das 14 vulnerabilidades por severidade",
-      "Correção de todas as falhas críticas e de alto risco",
-      "Correção das vulnerabilidades de nível médio e baixo",
-      "Relatório técnico detalhado por vulnerabilidade corrigida",
+      "API REST com autenticação de dois fatores e autorização granular",
+      "Rate limiting e controle de acesso por rota",
+      "Integração via MCP para uso com agentes de IA e LLMs",
+      "Documentação técnica completa da API",
     ],
-    stack: ["OWASP", "SAST", "Burp Suite", "Python"],
-    icon: `<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></g>`,
+    stack: ["Python", "TypeScript", "PostgreSQL", "MCP"],
+    icon: `<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/><path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1"/></g>`,
   },
   {
     tag: "Produto Web",
@@ -35,7 +35,7 @@ const cases = [
     description:
       "Projeto paralelo criado para atender uma necessidade real de pastores e líderes: organizar, editar e exportar sermões em um só lugar. A escolha por Nuxt e Supabase foi intencional, com olhar sistêmico de que cada tecnologia serve a um propósito diferente. Do zero ao produto funcional em 2 semanas.",
     results: [
-{ label: "Exportação de sermões em PDF", value: "✓" },
+      { label: "Exportação de sermões em PDF", value: "✓" },
       { label: "Stack enxuta e adequada ao escopo", value: "✓" },
       { label: "Projeto próprio, do zero ao ar", value: "✓" },
     ],
@@ -47,30 +47,6 @@ const cases = [
     ],
     stack: ["Nuxt", "Supabase", "PostgreSQL", "TypeScript"],
     icon: `<g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m16 10l2.15.645c1.373.412 2.06.618 2.455 1.15c.395.53.395 1.248.395 2.681V22"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 9h3m-3 4h3"/><path stroke-linejoin="round" d="M12 22v-3c0-.943 0-1.414-.293-1.707S10.943 17 10 17H9c-.943 0-1.414 0-1.707.293S7 18.057 7 19v3"/><path stroke-linecap="round" d="M2 22h20"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 22V6.717c0-2.51 0-3.766.791-4.389s1.956-.284 4.287.392l5 1.451c1.406.408 2.109.612 2.515 1.169C16 5.896 16 6.653 16 8.169V22"/></g>`,
-  },
-  {
-    tag: "API + AppSec",
-    tagColor: "text-yellow-500 dark:text-yellow-400",
-    borderColor: "border-t-yellow-500/70",
-    iconBg: "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400",
-    company: "Freire, Gerbasi & Bittencourt Advogados",
-    segment: "Legaltech · Salvador",
-    title: "API segura para sistema de gestão de audiências jurídicas",
-    description:
-      "Desenvolvimento de uma API com segurança desde a arquitetura para o sistema de audiências do escritório. O projeto foi construído seguindo os fundamentos do OWASP, com autenticação de dois fatores, autorização granular, rate limiting e suporte a MCP para integração com LLMs.",
-    results: [
-      { label: "Semanas até a entrega", value: "3" },
-      { label: "Integração MCP para LLMs", value: "✓" },
-      { label: "Fundamentos OWASP aplicados", value: "✓" },
-    ],
-    deliverables: [
-      "API REST com autenticação de dois fatores e autorização",
-      "Rate limiting e controle de acesso por rota",
-      "Integração via MCP para uso com LLMs",
-      "Documentação técnica completa da API",
-    ],
-    stack: ["Python", "TypeScript", "PostgreSQL", "MCP"],
-    icon: `<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/><path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1"/></g>`,
   },
 ];
 ---

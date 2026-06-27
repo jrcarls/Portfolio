@@ -1,24 +1,32 @@
 ---
 const faqs = [
   {
-    q: "Você tem experiência com sistemas para escritórios de advocacia?",
-    a: "Sim. Tenho histórico prático em LegalTech, desenvolvendo sistemas e automações para escritórios de advocacia. Esse contexto me permite entender as dores do negócio jurídico antes de escrever a primeira linha de código: gestão de prazos, controle de processos, automação de documentos e integrações com sistemas do Poder Judiciário.",
+    q: "Você constrói agentes de IA que funcionam de verdade, não só protótipos?",
+    a: "Sim. Meu foco é IA aplicada a problemas reais de negócio, não demos em notebook. Trabalho com avaliação de resultados, testes de regressão de prompts e observabilidade das chamadas aos modelos para garantir que o agente se comporte de forma previsível em produção.",
   },
   {
-    q: "Consigo integrar o sistema com ferramentas jurídicas como PJe ou Thomson Reuters?",
-    a: "Depende do que cada plataforma disponibiliza em termos de API ou exportação de dados. Para sistemas com APIs abertas ou arquivos estruturados (XML, JSON, CSV), a integração é direta. Em outros casos, avalio as alternativas na conversa de diagnóstico. Já trabalhei com integrações em sistemas do Judiciário e sei navegar pelas particularidades desse ecossistema.",
+    q: "Qual a diferença entre chamar uma API de LLM e ter um agente de IA?",
+    a: "Chamar uma API é mandar uma pergunta e receber uma resposta. Um agente tem ferramentas, memória e lógica de decisão, ele pode buscar dados, executar ações, consultar bases de conhecimento e encadear múltiplos passos para resolver um problema de forma autônoma. A diferença em resultado é enorme.",
+  },
+  {
+    q: "Você trabalha com modelos da OpenAI, Anthropic ou modelos abertos?",
+    a: "Com todos. A escolha do modelo depende do caso de uso, do orçamento e dos requisitos de privacidade de dados. Para dados sensíveis que não podem sair da sua infraestrutura, uso modelos abertos via Ollama. Para o melhor custo-benefício geral, trabalho com OpenAI e Anthropic.",
+  },
+  {
+    q: "Como funciona um pipeline RAG e quando faz sentido usar?",
+    a: "RAG (Retrieval-Augmented Generation) é a técnica de dar ao LLM acesso à sua base de conhecimento própria, documentos, manuais, histórico de atendimentos, no momento da resposta. Faz sentido quando você precisa que o modelo responda com base em informações específicas da sua empresa, que não estão no treinamento do modelo.",
   },
   {
     q: "Quanto custa um projeto?",
-    a: "Depende do escopo. Auditorias de segurança partem de R$ 2.500 e projetos de desenvolvimento são orçados sob medida após o diagnóstico gratuito. Não trabalho com tabela fixa porque cada produto tem complexidade diferente, prefiro entender o seu problema antes de colocar um número.",
+    a: "Depende do escopo. Integrações simples com LLMs partem de R$ 3.000, pipelines RAG e agentes mais completos são orçados sob medida após o diagnóstico gratuito. Não trabalho com tabela fixa porque cada projeto tem complexidade diferente, prefiro entender o seu problema antes de colocar um número.",
   },
   {
     q: "Quanto tempo leva para entregar?",
-    a: "Uma auditoria AppSec leva de 1 a 2 semanas. Projetos de desenvolvimento variam: MVPs simples saem em 4 a 6 semanas, produtos mais completos entre 8 e 12 semanas. Sempre defino um cronograma realista na proposta, sem promessa de prazo impossível.",
+    a: "Integrações e automações simples saem em 2 a 4 semanas. Agentes com múltiplas ferramentas ou pipelines RAG mais completos levam de 6 a 10 semanas. Sempre defino um cronograma realista na proposta, sem promessa de prazo impossível.",
   },
   {
     q: "Como funciona o diagnóstico gratuito?",
-    a: "É uma conversa de 30 a 45 minutos onde entendo o seu produto, os problemas que você quer resolver e o que você espera como resultado. Sem compromisso. No final você sai com clareza sobre o que fazer, independente de fechar comigo ou não.",
+    a: "É uma conversa de 30 a 45 minutos onde entendo o seu produto, os processos que você quer automatizar e o que você espera como resultado. Sem compromisso. No final você sai com clareza sobre o que fazer, independente de fechar comigo ou não.",
   },
   {
     q: "Como é a comunicação durante o projeto?",
@@ -29,16 +37,8 @@ const faqs = [
     a: "Sim. Ofereço um período de suporte pós-entrega incluso em todos os projetos. Para demandas contínuas, tenho planos de manutenção mensal, útil para quem precisa de evolução constante do produto sem abrir uma vaga CLT.",
   },
   {
-    q: "Você consegue atender bem sendo solo dev?",
-    a: "Essa é exatamente a vantagem. Sendo solo, escolho cuidadosamente quantos projetos aceito por vez. Quando o seu projeto entra na minha agenda, ele tem atenção total, não fica esperando na fila de um time ou sendo repassado para diversos desenvolvedores.",
-  },
-  {
     q: "Você trabalha com contrato?",
     a: "Sim, sempre. Todo projeto começa com um contrato claro definindo escopo, prazo, valor e condições de pagamento. Isso protege os dois lados e evita desentendimentos no meio do caminho.",
-  },
-  {
-    q: "E se eu não gostar do resultado?",
-    a: "Trabalho com revisões incluídas no escopo e entregas parciais ao longo do projeto, exatamente para evitar surpresas no final. Se algo não estiver como esperado, corrigimos juntos. Nunca entrego um projeto e sumo.",
   },
 ];
 ---
