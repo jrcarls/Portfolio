@@ -3,22 +3,22 @@ import { Button } from "@/ui/button";
 
 const services = [
   {
-    id: "appsec",
-    tag: "Segurança",
-    title: "AppSec & Segurança de Aplicações",
+    id: "ai",
+    tag: "IA Generativa",
+    title: "Agentes de IA & Integrações com LLMs",
     description:
-      "Analiso seu produto com a metodologia OWASP para identificar vulnerabilidades reais antes que virem incidentes. Revisão de código, modelagem de ameaças e relatório acionável.",
+      "Construo agentes, pipelines RAG e integrações com LLMs que transformam processos manuais em fluxos inteligentes — do prompt engineering à produção.",
     deliverables: [
-      "Análise das vulnerabilidades OWASP Top 10",
-      "Revisão de código e análise estática (SAST)",
-      "Modelagem de ameaças e revisão de arquitetura",
-      "Auditoria de autenticação, autorização e sessões",
-      "Relatório técnico + executivo com plano de remediação",
+      "Agentes de IA com ferramentas e integração via MCP",
+      "Pipeline RAG completo (chunking → embedding → retrieval → geração)",
+      "Integração com OpenAI, Anthropic e modelos abertos (Ollama, Llama)",
+      "Avaliação e otimização de prompts para resultados consistentes",
+      "Deploy com observabilidade e rastreamento de chamadas aos modelos",
     ],
-    tags: ["OWASP", "SAST", "Code Review", "Threat Modeling"],
-    primaryTag: "OWASP",
-    cta: "Quero uma auditoria",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>`,
+    tags: ["LangChain", "OpenAI", "Anthropic", "MCP"],
+    primaryTag: "LangChain",
+    cta: "Quero um agente de IA",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.83 2.82-2.04 3.53L15 12H9l1.04-2.47A4 4 0 0 1 8 6a4 4 0 0 1 4-4z"/><path d="M9 12v2a3 3 0 0 0 6 0v-2"/><path d="M6.5 17.5C5 19 5 21 5 21h14s0-2-1.5-3.5"/><path d="M12 17v4"/></svg>`,
     accentBorder: "border-t-2 border-t-indigo-500/70",
     tagLabel: "text-indigo-500 dark:text-indigo-400",
     iconBg: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-500/15",
@@ -28,18 +28,18 @@ const services = [
   },
   {
     id: "dev",
-    tag: "Desenvolvimento",
-    title: "Sistemas, API & RPA",
+    tag: "Engenharia",
+    title: "APIs, Automações & Produtos Web",
     description:
-      "Do endpoint ao produto completo. Construo APIs seguras, automações que eliminam retrabalho e aplicações web do zero ao deploy — para empresas de qualquer segmento.",
+      "Do backend ao produto completo. APIs robustas, automações inteligentes e aplicações web do zero ao deploy — com ou sem IA embarcada.",
     deliverables: [
-      "Automações de processos e fluxos operacionais (RPA/LLM)",
+      "Automações inteligentes de processos com LLMs e fluxos operacionais",
       "APIs REST com autenticação JWT/OAuth2 e documentação OpenAPI",
-      "Rate limiting, validação de entrada e tratamento de erros",
+      "Integrações com sistemas externos e webhooks",
       "Produtos web full-stack com Python + Django + Tailwind",
       "CI/CD, testes automatizados e deploy",
     ],
-    tags: ["Python", "Django", "FastAPI", "RPA"],
+    tags: ["Python", "Django", "FastAPI", "TypeScript"],
     primaryTag: "Python",
     cta: "Quero construir meu produto",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
@@ -71,7 +71,7 @@ const services = [
         O que eu entrego
       </h2>
       <p class="text-muted-foreground text-lg max-w-xl mx-auto">
-        Segurança e desenvolvimento que trabalham juntos.
+        IA generativa e engenharia de software que trabalham juntos.
       </p>
     </div>
 
