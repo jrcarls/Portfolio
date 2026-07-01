@@ -88,6 +88,13 @@ const linkClass = navigationMenuTriggerStyle();
   </div>
 </header>
 
+<!-- Scrim: foca a atenção no menu mobile ao abrir, desfocando o conteúdo abaixo -->
+<div
+  id="mobile-menu-scrim"
+  class="md:hidden hidden fixed inset-0 top-16 z-40 bg-background/40 backdrop-blur-sm"
+  aria-hidden="true"
+></div>
+
 <script>
   // @ts-nocheck
   import { animate, stagger, scroll } from "motion";
@@ -122,22 +129,32 @@ const linkClass = navigationMenuTriggerStyle();
   // menu mobile
   const menuToggle = document.getElementById("menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
+  const menuScrim = document.getElementById("mobile-menu-scrim");
   const iconOpen = document.getElementById("icon-open");
   const iconClose = document.getElementById("icon-close");
   const mobileLinks = document.querySelectorAll(".mobile-link");
 
+  const closeMobileMenu = () => {
+    animate("#mobile-menu", { opacity: [1, 0], y: [0, -8] }, { duration: 0.2, easing: "ease-in" }).then(() => {
+      mobileMenu?.classList.add("hidden");
+    });
+    animate("#mobile-menu-scrim", { opacity: [1, 0] }, { duration: 0.2, easing: "ease-in" }).then(() => {
+      menuScrim?.classList.add("hidden");
+    });
+    iconOpen?.classList.remove("hidden");
+    iconClose?.classList.add("hidden");
+    menuToggle?.setAttribute("aria-expanded", "false");
+  };
+
   menuToggle?.addEventListener("click", () => {
     const isOpen = !mobileMenu?.classList.contains("hidden");
     if (isOpen) {
-      animate("#mobile-menu", { opacity: [1, 0], y: [0, -8] }, { duration: 0.2, easing: "ease-in" }).then(() => {
-        mobileMenu?.classList.add("hidden");
-      });
-      iconOpen?.classList.remove("hidden");
-      iconClose?.classList.add("hidden");
-      menuToggle.setAttribute("aria-expanded", "false");
+      closeMobileMenu();
     } else {
       mobileMenu?.classList.remove("hidden");
+      menuScrim?.classList.remove("hidden");
       animate("#mobile-menu", { opacity: [0, 1], y: [-8, 0] }, { duration: 0.25, easing: "ease-out" });
+      animate("#mobile-menu-scrim", { opacity: [0, 1] }, { duration: 0.25, easing: "ease-out" });
       for (let i = 0; i < 5; i++) {
         animate(`[data-mobile-index="${i}"]`, { opacity: [0, 1], x: [-10, 0] }, { duration: 0.2, delay: 0.05 + i * 0.05, easing: "ease-out" });
       }
@@ -147,13 +164,10 @@ const linkClass = navigationMenuTriggerStyle();
     }
   });
 
+  menuScrim?.addEventListener("click", closeMobileMenu);
+
   mobileLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenu?.classList.add("hidden");
-      iconOpen?.classList.remove("hidden");
-      iconClose?.classList.add("hidden");
-      menuToggle?.setAttribute("aria-expanded", "false");
-    });
+    link.addEventListener("click", closeMobileMenu);
   });
 
   // scroll: fundo sólido
