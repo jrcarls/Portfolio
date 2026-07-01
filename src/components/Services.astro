@@ -3,52 +3,52 @@ import { Button } from "@/ui/button";
 
 const services = [
   {
-    id: "ai",
-    tag: "IA Generativa",
-    title: "Agentes de IA & Integrações com LLMs",
+    id: "analise",
+    tag: "Análise",
+    title: "Análise de Requisitos & Arquitetura de Solução",
     description:
-      "Construo agentes, pipelines RAG e integrações com LLMs que transformam processos manuais em fluxos inteligentes, do prompt engineering à produção.",
+      "Antes de codar, entendo o problema. Mapeio processos, requisitos e restrições do negócio para desenhar a arquitetura e a stack certas para o seu caso.",
     deliverables: [
-      "Agentes de IA com ferramentas e integração via MCP",
-      "Pipeline RAG completo (chunking → embedding → retrieval → geração)",
-      "Integração com OpenAI, Anthropic e modelos abertos (Ollama, Llama)",
-      "Avaliação e otimização de prompts para resultados consistentes",
-      "Deploy com observabilidade e rastreamento de chamadas aos modelos",
+      "Levantamento e documentação de requisitos",
+      "Mapeamento de processos e fluxos de dados",
+      "Definição de arquitetura e stack adequada ao problema",
+      "Diagnóstico técnico com plano de ação claro",
+      "Escopo, prazo e orçamento definidos antes de começar",
     ],
-    tags: ["LangChain", "OpenAI", "Anthropic", "MCP"],
-    primaryTag: "LangChain",
-    cta: "Quero um agente de IA",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4V2M15 4V2M9 20v2M15 20v2M4 9H2M4 15H2M20 9h2M20 15h2"/><path d="M12 8C10 8 8.5 9.5 8.5 11.5S10 15 12 15"/><path d="M12 8c2 0 3.5 1.5 3.5 3.5S14 15 12 15"/><line x1="12" y1="8" x2="12" y2="15"/></svg>`,
-    accentBorder: "border-t-2 border-t-violet-500/70",
-    tagLabel: "text-violet-500 dark:text-violet-400",
-    iconBg: "bg-violet-500/10 text-violet-600 dark:text-violet-400 group-hover:bg-violet-500/15",
-    checkColor: "text-violet-500 dark:text-violet-400",
-    tagBase: "bg-violet-500/10 border-violet-500/20 text-violet-700 dark:text-violet-400",
-    tagHighlight: "bg-violet-500/20 border-violet-500/40 text-violet-700 dark:text-violet-300 font-medium",
-  },
-  {
-    id: "dev",
-    tag: "Engenharia",
-    title: "APIs, Automações & Produtos Web",
-    description:
-      "Do backend ao produto completo. APIs robustas, automações inteligentes e aplicações web do zero ao deploy, com ou sem IA embarcada.",
-    deliverables: [
-      "Automações inteligentes de processos com LLMs e fluxos operacionais",
-      "APIs REST com autenticação JWT/OAuth2 e documentação OpenAPI",
-      "Integrações com sistemas externos e webhooks",
-      "Produtos web full-stack com Python + Django + Tailwind",
-      "CI/CD, testes automatizados e deploy",
-    ],
-    tags: ["Python", "Django", "FastAPI", "TypeScript"],
-    primaryTag: "Python",
-    cta: "Quero construir meu produto",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+    tags: ["Requisitos", "Arquitetura", "Diagnóstico", "Documentação"],
+    primaryTag: "Arquitetura",
+    cta: "Quero uma análise",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
     accentBorder: "border-t-2 border-t-sky-500/70",
     tagLabel: "text-sky-500 dark:text-sky-400",
     iconBg: "bg-sky-500/10 text-sky-600 dark:text-sky-400 group-hover:bg-sky-500/15",
     checkColor: "text-sky-500 dark:text-sky-400",
     tagBase: "bg-sky-500/10 border-sky-500/20 text-sky-700 dark:text-sky-400",
     tagHighlight: "bg-sky-500/20 border-sky-500/40 text-sky-700 dark:text-sky-300 font-medium",
+  },
+  {
+    id: "desenvolvimento",
+    tag: "Desenvolvimento",
+    title: "Sistemas, APIs, Automações & Agentes de IA",
+    description:
+      "Construo o que a análise definiu. APIs robustas, produtos web e automações do zero ao deploy, incluindo agentes de IA, pipelines RAG e integrações com LLMs quando o problema pede.",
+    deliverables: [
+      "APIs REST com autenticação JWT/OAuth2 e documentação OpenAPI",
+      "Produtos web full-stack com Python + Django + Tailwind",
+      "Automações de processos e integrações com sistemas externos e webhooks",
+      "Agentes de IA com ferramentas via MCP e pipelines RAG (chunking → embedding → retrieval → geração)",
+      "Integração com OpenAI, Anthropic e modelos abertos, com CI/CD e deploy",
+    ],
+    tags: ["Python", "Django", "LangChain", "MCP"],
+    primaryTag: "Python",
+    cta: "Quero construir meu produto",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+    accentBorder: "border-t-2 border-t-violet-500/70",
+    tagLabel: "text-violet-500 dark:text-violet-400",
+    iconBg: "bg-violet-500/10 text-violet-600 dark:text-violet-400 group-hover:bg-violet-500/15",
+    checkColor: "text-violet-500 dark:text-violet-400",
+    tagBase: "bg-violet-500/10 border-violet-500/20 text-violet-700 dark:text-violet-400",
+    tagHighlight: "bg-violet-500/20 border-violet-500/40 text-violet-700 dark:text-violet-300 font-medium",
   },
 ];
 ---
@@ -71,7 +71,7 @@ const services = [
         O que eu entrego
       </h2>
       <p class="text-muted-foreground text-lg max-w-xl mx-auto">
-        IA generativa e engenharia de software que trabalham juntos.
+        Análise, desenvolvimento de sistemas e automação inteligente quando o problema pede.
       </p>
     </div>
 

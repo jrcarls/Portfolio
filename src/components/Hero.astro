@@ -54,29 +54,29 @@ import avatar from "@/assets/avatar.png";
           class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/80 backdrop-blur-sm px-4 py-1.5 text-sm text-muted-foreground opacity-0"
         >
           <span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
-          IA Generativa & Engenharia de Software
+          Análise e Desenvolvimento de Sistemas
         </div>
 
         <h1
           id="hero-title"
           class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] opacity-0"
         >
-          Agentes de IA, automações<br />e produtos inteligentes
-          <br /><span id="hero-underline-target" class="text-primary relative">sob medida.</span>
+          Sistemas e APIs<br />sob medida
+          <br />para o <span id="hero-underline-target" class="text-primary relative">seu negócio.</span>
         </h1>
 
         <p
           id="hero-subtitle"
           class="text-lg text-muted-foreground max-w-lg leading-relaxed opacity-0 mx-auto lg:mx-0"
         >
-        Construo agentes de IA, pipelines RAG e integrações com LLMs que automatizam processos reais e escalam o seu negócio.
+        Analiso, projeto e desenvolvo sistemas, APIs e produtos web sob medida, incluindo agentes de IA e automações inteligentes quando o problema pede.
         </p>
 
         <div
           id="hero-bio"
           class="opacity-0 border-l-2 border-primary pl-4 text-sm text-muted-foreground leading-relaxed max-w-md mx-auto lg:mx-0"
         >
-        Muito prazer, sou o Jean. Profissional de TI há mais de 10 anos e engenheiro de IA com foco em aplicações práticas de LLMs, agentes e automação inteligente de processos.
+        Muito prazer, sou o Jean. Profissional de TI há mais de 10 anos, analista e desenvolvedor de sistemas com foco em produtos web, APIs e automação de processos, incluindo IA generativa quando faz sentido.
         </div>
 
         <div id="hero-ctas" class="flex flex-wrap justify-center lg:justify-start gap-3 opacity-0">
@@ -89,20 +89,15 @@ import avatar from "@/assets/avatar.png";
         </div>
 
         <!-- Indicadores -->
-        <div id="hero-stats" class="flex items-center justify-center lg:justify-start gap-6 pt-2 opacity-0">
-          <div class="text-center">
-            <p class="text-2xl font-bold text-foreground">10+</p>
-            <p class="text-xs text-muted-foreground">Anos em TI</p>
+        <div id="hero-stats" class="flex items-center justify-center lg:justify-start gap-6 pt-4 opacity-0">
+          <div class="text-center lg:text-left">
+            <p id="stat-anos-ti" class="text-3xl font-bold text-primary tabular-nums">0+</p>
+            <p class="text-xs text-muted-foreground mt-0.5">Anos de carreira em TI</p>
           </div>
-          <div class="w-px h-8 bg-border"></div>
-          <div class="text-center">
-            <p class="text-2xl font-bold text-foreground">5+</p>
-            <p class="text-xs text-muted-foreground">Anos desenvolvendo</p>
-          </div>
-          <div class="w-px h-8 bg-border"></div>
-          <div class="text-center">
-            <p class="text-2xl font-bold text-foreground">2+</p>
-            <p class="text-xs text-muted-foreground">Anos com LLMs</p>
+          <div class="w-px h-10 bg-border"></div>
+          <div class="text-center lg:text-left">
+            <p id="stat-anos-dev" class="text-3xl font-bold text-primary tabular-nums">0+</p>
+            <p class="text-xs text-muted-foreground mt-0.5">Anos desenvolvendo soluções web</p>
           </div>
         </div>
       </div>
@@ -134,7 +129,7 @@ import avatar from "@/assets/avatar.png";
             style="width:280px;height:280px;top:50%;left:50%;transform:translate(-50%,-50%)"
           >
             <div class="absolute inset-0 bg-linear-to-br from-primary/10 via-transparent to-primary/5"></div>
-            <Image src={avatar} alt="Jean Reis, engenheiro de IA generativa" width={280} height={280} loading="eager" fetchpriority="high" class="w-full h-full object-cover" />
+            <Image src={avatar} alt="Jean Reis, analista e desenvolvedor de sistemas" width={280} height={280} loading="eager" fetchpriority="high" class="w-full h-full object-cover" />
           </div>
 
           <!--
@@ -154,10 +149,10 @@ import avatar from "@/assets/avatar.png";
               class="absolute opacity-0 rounded-xl border border-border bg-card px-3 py-2 shadow-lg flex items-center gap-2 whitespace-nowrap"
               style="left:170px;top:0;transform:translateY(-50%)"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary shrink-0"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M9 4h6M12 4v4M2 14h2M20 14h2M9 13v2M15 13v2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="text-primary shrink-0"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></g></svg>
               <div>
-                <p class="text-xs text-muted-foreground">Agentes de IA</p>
-                <p class="text-sm font-semibold">LLMs · MCP</p>
+                <p class="text-xs text-muted-foreground">Sistemas</p>
+                <p class="text-sm font-semibold">API · Deploy</p>
               </div>
             </div>
           </div>
@@ -175,8 +170,8 @@ import avatar from "@/assets/avatar.png";
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="text-primary shrink-0"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></g></svg>
               <div>
-                <p class="text-xs text-muted-foreground">Pipelines RAG</p>
-                <p class="text-sm font-semibold">Embeddings · Retrieval</p>
+                <p class="text-xs text-muted-foreground">Automação</p>
+                <p class="text-sm font-semibold">Integrações · MCP</p>
               </div>
             </div>
           </div>
@@ -192,10 +187,10 @@ import avatar from "@/assets/avatar.png";
               class="absolute opacity-0 rounded-xl border border-border bg-card px-3 py-2 shadow-lg flex items-center gap-2 whitespace-nowrap"
               style="left:170px;top:0;transform:translateY(-50%)"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="text-primary shrink-0"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></g></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="text-primary shrink-0"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M12 2a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/><path d="M19 8c1.1 0 2 .9 2 2v1h-2V8z"/></g></svg>
               <div>
-                <p class="text-xs text-muted-foreground">Engenharia</p>
-                <p class="text-sm font-semibold">API · Deploy</p>
+                <p class="text-xs text-muted-foreground">IA Generativa</p>
+                <p class="text-sm font-semibold">LLMs · Agentes</p>
               </div>
             </div>
           </div>
@@ -219,6 +214,24 @@ import avatar from "@/assets/avatar.png";
   animate("#hero-bio",      { opacity: [0, 1], y: [-12, 0] }, { duration: 0.5, delay: 0.55, easing: "ease-out" });
   animate("#hero-ctas",     { opacity: [0, 1], y: [-12, 0] }, { duration: 0.5, delay: 0.7,  easing: "ease-out" });
   animate("#hero-stats",    { opacity: [0, 1], y: [-8,  0] }, { duration: 0.5, delay: 0.85, easing: "ease-out" });
+
+  // Contagem animada dos indicadores
+  const statCounters = [
+    { id: "stat-anos-ti",  value: 10 },
+    { id: "stat-anos-dev", value: 5 },
+  ];
+  statCounters.forEach(({ id, value }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    animate(0, value, {
+      duration: 1.2,
+      delay: 1.0,
+      ease: "easeOut",
+      onUpdate: (latest) => {
+        el.textContent = `${Math.round(latest)}+`;
+      },
+    });
+  });
 
   // Sublinhado estilo traço humano
   const underlineTarget = document.getElementById("hero-underline-target");
