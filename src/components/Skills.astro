@@ -1,0 +1,71 @@
+---
+const skills = ["Design", "Integração", "Segurança", "Testes", "Deploy"];
+---
+
+<section id="skills" class="relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex gap-6 sm:gap-12">
+    <p
+      class="sticky top-1/2 -translate-y-1/2 h-fit shrink-0 text-2xl sm:text-4xl font-semibold uppercase tracking-[0.28em] text-muted-foreground [writing-mode:vertical-rl] rotate-180"
+    >
+      Skills
+    </p>
+
+    <ul class="flex-1 py-[30vh]">
+      {
+        skills.map((skill) => (
+          <li
+            class="skill-item py-6 sm:py-8 text-[clamp(2.6rem,10vw,7.5rem)] font-[family-name:var(--font-display)] font-black uppercase leading-[0.9] tracking-[-0.04em] text-foreground"
+          >
+            {skill}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const items = gsap.utils.toArray<HTMLElement>(".skill-item");
+  if (items.length) {
+    gsap.set(items, { opacity: 0.18 });
+
+    const setActive = () => {
+      const mid = window.innerHeight * 0.5;
+      let closest = items[0];
+      let min = Infinity;
+
+      for (const el of items) {
+        const rect = el.getBoundingClientRect();
+        const distance = Math.abs(rect.top + rect.height / 2 - mid);
+        if (distance < min) {
+          min = distance;
+          closest = el;
+        }
+      }
+
+      for (const el of items) {
+        gsap.to(el, {
+          opacity: el === closest ? 1 : 0.18,
+          duration: 0.28,
+          overwrite: "auto",
+          ease: "power2.out",
+        });
+      }
+    };
+
+    ScrollTrigger.create({
+      trigger: "#skills",
+      start: "top bottom",
+      end: "bottom top",
+      onUpdate: setActive,
+      onRefresh: setActive,
+    });
+
+    setActive();
+  }
+</script>

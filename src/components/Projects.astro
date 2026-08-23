@@ -1,0 +1,159 @@
+---
+const projects = [
+  {
+    id: "01",
+    name: "Esboço Online",
+    tag: "Produto Web",
+    href: "https://esboco-online-landing.vercel.app",
+    external: true,
+  },
+  {
+    id: "02",
+    name: "API MCP",
+    tag: "Legaltech",
+    href: "#cases",
+    external: false,
+  },
+  {
+    id: "03",
+    name: "AppSec Tools",
+    tag: "Segurança",
+    href: "https://github.com/jrcarls/appsec-tools-kit",
+    external: true,
+  },
+  {
+    id: "04",
+    name: "GChurch",
+    tag: "Produto Web",
+    href: "https://github.com/jrcarls/gchurch",
+    external: true,
+  },
+  {
+    id: "05",
+    name: "Portfolio",
+    tag: "Pessoal",
+    href: "https://jeanreis.dev.br",
+    external: true,
+  },
+];
+---
+
+<section id="projetos" class="relative h-[300vh]">
+  <div
+    id="projects-sticky"
+    class="sticky top-16 h-[calc(100vh-4rem)] flex flex-col justify-center overflow-hidden"
+  >
+    <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 mb-8 sm:mb-10">
+      <h2 class="text-2xl sm:text-4xl font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+        Projetos
+      </h2>
+    </div>
+
+    <div id="projects-viewport" class="relative w-full overflow-visible">
+      <div
+        id="projects-track"
+        class="flex gap-6 sm:gap-8 w-max will-change-transform px-4 sm:px-[max(1rem,calc((100vw-400px)/2))]"
+      >
+        {
+          projects.map((project) => (
+            <a
+              href={project.href}
+              target={project.external ? "_blank" : undefined}
+              rel={project.external ? "noopener noreferrer" : undefined}
+              class="group relative shrink-0 w-[min(80vw,400px)] h-[380px] sm:h-[460px] rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div
+                class="absolute inset-0 bg-linear-to-br from-primary/15 via-transparent to-muted"
+                aria-hidden="true"
+              />
+              <span
+                class="pointer-events-none absolute -right-4 -top-6 font-[family-name:var(--font-display)] text-[8rem] font-black leading-none text-foreground/[0.06]"
+                aria-hidden="true"
+              >
+                {project.id}
+              </span>
+              <div class="absolute inset-x-0 bottom-0 p-7 sm:p-8">
+                <span class="block text-xs font-semibold uppercase tracking-widest text-primary mb-2">
+                  {project.id} · {project.tag}
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
+                  {project.name}
+                </h3>
+                <span class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                  Ver projeto
+                  <span
+                    aria-hidden="true"
+                    class="transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
+                </span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  :global(html.nav-hidden) #projects-sticky {
+    top: 0;
+    height: 100vh;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #projetos {
+      height: auto;
+    }
+
+    #projects-sticky {
+      position: relative;
+      top: 0;
+      height: auto;
+      padding-block: 4rem;
+    }
+
+    #projects-viewport {
+      overflow-x: auto;
+    }
+
+    #projects-track {
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const section = document.getElementById("projetos");
+    const track = document.getElementById("projects-track");
+
+    if (section && track) {
+      const getDistance = () => {
+        const first = track.firstElementChild as HTMLElement | null;
+        const last = track.lastElementChild as HTMLElement | null;
+        if (!first || !last) return 0;
+        return last.offsetLeft - first.offsetLeft;
+      };
+
+      gsap.to(track, {
+        x: () => -getDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top+=64",
+          end: "bottom bottom",
+          scrub: 0.6,
+          invalidateOnRefresh: true,
+        },
+      });
+    }
+  }
+</script>

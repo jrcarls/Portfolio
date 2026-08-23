@@ -14,13 +14,13 @@ const linkClass = navigationMenuTriggerStyle();
 
 <div
   id="scroll-progress"
-  class="fixed top-0 left-0 z-60 h-[2px] w-0 bg-primary origin-left"
+  class="fixed top-0 left-0 z-60 h-[2px] w-0 bg-primary origin-left transition-transform duration-300"
   aria-hidden="true"
 ></div>
 
 <header
   id="navbar"
-  class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300 opacity-0"
+  class="fixed top-0 left-0 right-0 z-50 transition-[color,background-color,border-color,transform] duration-300 opacity-0"
 >
   <div
     class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between"
@@ -33,7 +33,7 @@ const linkClass = navigationMenuTriggerStyle();
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuLink href="#servicos" class={linkClass}>Serviços</NavigationMenuLink>
+            <NavigationMenuLink href="#skills" class={linkClass}>Skills</NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink href="#cases" class={linkClass}>Cases</NavigationMenuLink>
@@ -83,7 +83,7 @@ const linkClass = navigationMenuTriggerStyle();
     class="md:hidden hidden border-t border-border bg-background/95 backdrop-blur-sm"
   >
     <nav class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-1">
-      <a data-mobile-index="0" href="#servicos" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Serviços</a>
+      <a data-mobile-index="0" href="#skills" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Skills</a>
       <a data-mobile-index="1" href="#cases" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Cases</a>
       <a data-mobile-index="2" href="#sobre" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Sobre</a>
       <a data-mobile-index="3" href="#faq" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">FAQ</a>
@@ -177,10 +177,23 @@ const linkClass = navigationMenuTriggerStyle();
     link.addEventListener("click", closeMobileMenu);
   });
 
-  // scroll: fundo sólido
+  // scroll: fundo sólido + esconde ao descer / mostra ao subir
   if (navbar) {
+    let lastY = window.scrollY;
+    let hidden = false;
+
+    const setHidden = (next) => {
+      if (hidden === next) return;
+      hidden = next;
+      const y = next ? "-100%" : "0";
+      navbar.style.transform = `translateY(${y})`;
+      if (progressBar) progressBar.style.transform = `translateY(${y})`;
+      document.documentElement.classList.toggle("nav-hidden", next);
+    };
+
     const update = () => {
-      if (window.scrollY > 10) {
+      const y = window.scrollY;
+      if (y > 10) {
         navbar.classList.add("bg-background/95", "backdrop-blur-sm", "border-b");
       } else {
         navbar.classList.remove(
@@ -189,6 +202,17 @@ const linkClass = navigationMenuTriggerStyle();
           "border-b",
         );
       }
+
+      const menuOpen = !mobileMenu?.classList.contains("hidden");
+      if (menuOpen || y < 80) {
+        setHidden(false);
+        lastY = y;
+        return;
+      }
+
+      if (y - lastY > 8) setHidden(true);
+      else if (lastY - y > 8) setHidden(false);
+      lastY = y;
     };
     window.addEventListener("scroll", update, { passive: true });
     update();

@@ -1,0 +1,80 @@
+<div
+  id="cursor-follow"
+  class="pointer-events-none fixed inset-0 z-[80] hidden"
+  aria-hidden="true"
+>
+  <div class="cursor-orb size-3 bg-primary"></div>
+  <div class="cursor-orb size-8 border-2 border-primary/70 bg-transparent"></div>
+  <div class="cursor-orb size-16 border border-primary/35 bg-transparent"></div>
+  <div class="cursor-orb size-28 border border-primary/15 bg-transparent"></div>
+</div>
+
+<style>
+  .cursor-orb {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 9999px;
+    will-change: transform;
+  }
+
+  :global(html.cursor-follow) {
+    cursor: none;
+  }
+
+  :global(html.cursor-follow a),
+  :global(html.cursor-follow button),
+  :global(html.cursor-follow [role="button"]) {
+    cursor: none;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+
+  const root = document.getElementById("cursor-follow");
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (root && finePointer && !reduceMotion) {
+    const orbs = Array.from(root.querySelectorAll<HTMLElement>(".cursor-orb"));
+    root.classList.remove("hidden");
+    document.documentElement.classList.add("cursor-follow");
+
+    const xTo = orbs.map((orb, i) => {
+      gsap.set(orb, { xPercent: -50, yPercent: -50 });
+      return gsap.quickTo(orb, "x", {
+        duration: 0.18 + i * 0.14,
+        ease: "power3.out",
+      });
+    });
+
+    const yTo = orbs.map((orb, i) =>
+      gsap.quickTo(orb, "y", {
+        duration: 0.18 + i * 0.14,
+        ease: "power3.out",
+      }),
+    );
+
+    window.addEventListener(
+      "pointermove",
+      (event) => {
+        xTo.forEach((move) => move(event.clientX));
+        yTo.forEach((move) => move(event.clientY));
+      },
+      { passive: true },
+    );
+
+    const interactive = "a, button, [role='button'], input, textarea, select";
+    document.addEventListener("pointerover", (event) => {
+      if (!(event.target instanceof Element)) return;
+      if (!event.target.closest(interactive)) return;
+      gsap.to(orbs, { scale: 1.45, duration: 0.25, ease: "power2.out", overwrite: "auto" });
+    });
+    document.addEventListener("pointerout", (event) => {
+      if (!(event.target instanceof Element)) return;
+      if (!event.target.closest(interactive)) return;
+      gsap.to(orbs, { scale: 1, duration: 0.25, ease: "power2.out", overwrite: "auto" });
+    });
+  }
+</script>
