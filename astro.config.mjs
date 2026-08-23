@@ -19,6 +19,13 @@ const BEJAMAS_ASTRO_FONTS = [
     cssVariable: "--font-logo",
     subsets: ["latin"],
   },
+  {
+    provider: fontProviders.google(),
+    name: "Poppins",
+    cssVariable: "--font-display",
+    subsets: ["latin"],
+    weights: ["800", "900"],
+  },
 ];
 // bejamas:astro-fonts:end
 

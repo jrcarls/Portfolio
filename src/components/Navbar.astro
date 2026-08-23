@@ -52,6 +52,13 @@ const linkClass = navigationMenuTriggerStyle();
     </nav>
 
     <div id="navbar-cta" class="flex items-center gap-2 opacity-0">
+      <span class="hidden lg:inline-flex items-center gap-2 pr-2 text-sm text-foreground/80">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+        </span>
+        Aberto para projetos
+      </span>
       <ThemeToggle />
       <Button as="a" href="#contato" class="hidden md:inline-flex">Entre em contato</Button>
       <button
