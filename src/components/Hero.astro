@@ -2,7 +2,7 @@
 import { Marquee } from "@/ui/marquee";
 
 const services = [
-  { label: "MVPs & SaaS", href: "#skills", active: true },
+  { label: "MVPs", href: "#skills", active: true },
   { label: "Integração de IA", href: "#skills", active: false },
   { label: "Front-end", href: "#skills", active: false },
   { label: "Back-end", href: "#skills", active: false },
@@ -40,12 +40,12 @@ const brands = [
 <section id="hero" class="relative h-[200vh]">
   <div
     id="hero-sticky"
-    class="sticky top-0 h-screen flex flex-col overflow-hidden"
+    class="sticky top-0 h-dvh flex flex-col overflow-hidden"
   >
   <div
-    class="relative z-10 flex flex-1 flex-col w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-14 pb-6"
+    class="relative z-10 flex flex-1 flex-col lg:grid lg:grid-rows-[minmax(0,0.8fr)_auto_minmax(0,1.2fr)] w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-20 lg:pt-14 pb-6"
   >
-    <div id="hero-heading" class="order-1 flex flex-col items-center gap-2 sm:gap-3">
+    <div id="hero-heading" class="order-1 lg:row-start-2 flex flex-col items-center gap-2 sm:gap-3">
       <h1
         id="hero-title"
         class="whitespace-nowrap text-center font-[family-name:var(--font-impact)] text-[clamp(2.5rem,12vw,10rem)] font-medium uppercase leading-[0.86] tracking-[-0.04em] text-foreground opacity-0 origin-center will-change-transform"
@@ -61,14 +61,14 @@ const brands = [
     </div>
 
     <div
-      class="order-2 mt-2 lg:mt-0 grid flex-1 grid-cols-1 lg:grid-cols-2 lg:items-center gap-8 lg:gap-6"
+      class="order-2 lg:row-start-3 mt-2 lg:mt-0 grid flex-1 lg:self-stretch grid-cols-1 lg:grid-cols-2 lg:items-center gap-8 lg:gap-6"
     >
       <div
         id="hero-copy"
         class="mt-6 sm:mt-0 space-y-10 text-center lg:text-left max-w-sm mx-auto lg:mx-0 lg:self-center opacity-0"
       >
         <p class="text-base sm:text-lg text-foreground/80 leading-relaxed">
-          Olá! Sou analista e desenvolvedor de sistemas. Projeto APIs, produtos web e automações sob medida — incluindo IA quando o problema pede.
+          Desenvolvo produtos digitais marcantes, unindo engenharia, visão de produto e experiências centradas nas pessoas.
         </p>
         <a
           id="hero-cta"
