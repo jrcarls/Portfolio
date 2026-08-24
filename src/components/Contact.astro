@@ -1,228 +1,235 @@
 ---
-import { Button } from "@/ui/button";
-import { Input } from "@/ui/input";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/ui/select";
-import { Textarea } from "@/ui/textarea";
+const channels = [
+  {
+    id: "01",
+    label: "WhatsApp",
+    value: "+55 71 99151-6655",
+    href: "https://wa.me/5571991516655?text=Olá%2C%20vim%20pelo%20site%20jeanreis.dev.br%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.",
+    external: true,
+    cta: "Abrir conversa",
+  },
+  {
+    id: "02",
+    label: "E-mail",
+    value: "contato@jeanreis.dev.br",
+    href: "mailto:contato@jeanreis.dev.br",
+    external: false,
+    cta: "Enviar e-mail",
+  },
+  {
+    id: "03",
+    label: "GitHub",
+    value: "github.com/jrcarls",
+    href: "https://github.com/jrcarls",
+    external: true,
+    cta: "Ver perfil",
+  },
+  {
+    id: "04",
+    label: "LinkedIn",
+    value: "linkedin.com/in/jeanreis-dev",
+    href: "https://www.linkedin.com/in/jeanreis-dev/",
+    external: true,
+    cta: "Conectar",
+  },
+];
 ---
 
-<section id="contato" class="py-24 relative overflow-hidden">
+<section id="contato" class="relative h-[240vh]">
   <div
-    class="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl -z-10"
-    aria-hidden="true"
-  ></div>
+    id="contact-sticky"
+    class="sticky top-16 z-20 h-[calc(100dvh-4rem)] flex flex-col justify-start lg:justify-center overflow-y-auto overflow-x-hidden bg-background"
+  >
+    <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-10">
+      <div class="mb-6 sm:mb-10">
+        <h2
+          class="text-2xl sm:text-4xl font-semibold uppercase tracking-[0.28em] pr-[0.28em] text-muted-foreground"
+        >
+          Contato
+        </h2>
+      </div>
 
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div data-reveal class="text-center mb-16">
-      <span
-        class="inline-block rounded-full border border-border bg-muted/80 backdrop-blur-sm px-4 py-1.5 text-sm text-muted-foreground mb-4"
-      >
-        Contato
-      </span>
-    </div>
-
-    <div class="grid lg:grid-cols-2 gap-16 items-start">
-
-      <!-- Esquerda: texto -->
-      <div data-reveal class="space-y-8">
-        <div>
-          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            Vamos conversar sobre o seu projeto
-          </h2>
-          <p class="text-muted-foreground text-lg leading-relaxed">
-            Conte o que você precisa e retorno em até 1 dia útil com uma
-            análise inicial sem compromisso.
+      <div class="relative">
+        <!-- Large reveal headline -->
+        <div class="overflow-hidden mb-6 sm:mb-10">
+          <p
+            id="contact-headline"
+            class="font-[family-name:var(--font-impact)] text-[clamp(2.2rem,8vw,5.5rem)] font-medium uppercase leading-[0.95] tracking-[-0.04em] text-foreground"
+          >
+            Vamos<br />conversar
           </p>
         </div>
 
-        <ul class="space-y-5">
-          <li class="flex items-start gap-4">
-            <div class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <path d="m9 12 2 2 4-4"/>
-              </svg>
-            </div>
-            <div>
-              <p class="font-semibold text-sm">Diagnóstico inicial gratuito</p>
-              <p class="text-muted-foreground text-sm mt-0.5">
-                Entendo o seu processo e identifico as melhores oportunidades para o seu sistema ou projeto antes de qualquer proposta.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start gap-4">
-            <div class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-            </div>
-            <div>
-              <p class="font-semibold text-sm">Resposta em até 1 dia útil</p>
-              <p class="text-muted-foreground text-sm mt-0.5">
-                Sem formulários que somem no vazio. Você recebe uma resposta real, de uma pessoa real.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start gap-4">
-            <div class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </div>
-            <div>
-              <p class="font-semibold text-sm">Sem intermediários</p>
-              <p class="text-muted-foreground text-sm mt-0.5">
-                Você fala diretamente com quem vai trabalhar no seu projeto.
-              </p>
-            </div>
-          </li>
+        <p
+          id="contact-lead"
+          class="max-w-lg text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 sm:mb-10"
+        >
+          Aberto para projetos, parcerias e conversas sobre sistemas, APIs e IA.
+          Escolha o canal — respondo pessoalmente.
+        </p>
+
+        <!-- Progress rail -->
+        <div
+          class="pointer-events-none absolute right-0 top-0 bottom-24 hidden w-px bg-border lg:block"
+          aria-hidden="true"
+        >
+          <div
+            id="contact-rail"
+            class="absolute inset-x-0 top-0 h-full w-full origin-top bg-primary"
+          ></div>
+        </div>
+
+        <ul
+          id="contact-channels"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border"
+        >
+          {
+            channels.map((ch) => (
+              <li class="contact-channel bg-card">
+                <a
+                  href={ch.href}
+                  target={ch.external ? "_blank" : undefined}
+                  rel={ch.external ? "noopener noreferrer" : undefined}
+                  class="group flex h-full flex-col justify-between gap-5 sm:gap-8 p-5 sm:p-8"
+                >
+                  <div class="flex items-start justify-between gap-4">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      {ch.id} · {ch.label}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      class="text-muted-foreground transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary"
+                    >
+                      ↗
+                    </span>
+                  </div>
+                  <div>
+                    <p class="text-lg sm:text-xl font-bold tracking-tight text-foreground mb-3 break-all">
+                      {ch.value}
+                    </p>
+                    <span class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                      {ch.cta}
+                      <span
+                        aria-hidden="true"
+                        class="transition-transform duration-200 group-hover:translate-x-1"
+                      >
+                        →
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              </li>
+            ))
+          }
         </ul>
 
-        <div class="pt-2">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex-1 h-px bg-border"></div>
-            <span class="text-xs text-muted-foreground">ou prefere algo mais direto?</span>
-            <div class="flex-1 h-px bg-border"></div>
-          </div>
-          <a
-            href="https://wa.me/5571991516655?text=Olá%2C%20vim%20pelo%20site%20jeanreis.dev.br%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3.5 text-sm font-medium hover:bg-muted transition-colors"
-          >
-            <div class="h-9 w-9 rounded-full flex items-center justify-center shrink-0" style="background-color:#25D366">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967c-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413c-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214l-3.741.982l.998-3.648l-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884c2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.9 11.9 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413Z"/>
-              </svg>
-            </div>
-            <div>
-              <p class="font-semibold">Fale pelo WhatsApp</p>
-              <p class="text-xs text-muted-foreground font-normal">Resposta rápida, direto comigo</p>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto text-muted-foreground">
-              <path d="M7 7h10v10M7 17 17 7"/>
-            </svg>
-          </a>
-        </div>
       </div>
-
-      <!-- Direita: formulário -->
-      <div data-reveal data-reveal-delay="0.15">
-        <form
-          id="contact-form"
-          class="rounded-2xl border border-border bg-card p-8 shadow-sm space-y-5"
-        >
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div class="space-y-1.5">
-              <label for="name" class="text-sm font-medium">Nome</label>
-              <Input
-                id="name"
-                name="name"
-                type="text"
-                required
-                placeholder="Seu nome"
-                size="lg"
-              />
-            </div>
-            <div class="space-y-1.5">
-              <label for="email" class="text-sm font-medium">Email</label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                required
-                placeholder="seu@email.com"
-                size="lg"
-              />
-            </div>
-          </div>
-
-          <div class="space-y-1.5">
-            <label for="company" class="text-sm font-medium">
-              Empresa <span class="text-muted-foreground font-normal">(opcional)</span>
-            </label>
-            <Input
-              id="company"
-              name="company"
-              type="text"
-              placeholder="Nome da empresa ou produto"
-              size="lg"
-            />
-          </div>
-
-          <div class="space-y-1.5">
-            <label class="text-sm font-medium">Serviço de interesse</label>
-            <Select name="service" size="lg" class="w-full">
-              <SelectTrigger size="lg" class="w-full">
-                <SelectValue placeholder="Selecione uma opção" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="dev">API, produto web ou sistema sob medida</SelectItem>
-                <SelectItem value="automacao">Automação inteligente de processos</SelectItem>
-                <SelectItem value="agente-ia">Agente de IA ou chatbot inteligente</SelectItem>
-                <SelectItem value="rag">Pipeline RAG e busca semântica</SelectItem>
-                <SelectItem value="other">Ainda não sei, quero conversar</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div class="space-y-1.5">
-            <label for="message" class="text-sm font-medium">Mensagem</label>
-            <Textarea
-              id="message"
-              name="message"
-              required
-              rows={4}
-              placeholder="Conte um pouco sobre o seu projeto ou dúvida..."
-              class="resize-none"
-            />
-          </div>
-
-          <Button type="submit" class="w-full">
-            Enviar mensagem
-          </Button>
-
-          <p class="text-center text-xs text-muted-foreground">
-            Ao enviar, você concorda com as política de privacidade.
-          </p>
-        </form>
-      </div>
-
     </div>
   </div>
 </section>
 
+<style>
+  .contact-channel {
+    will-change: opacity, filter, transform;
+  }
+
+  :global(html.nav-hidden) #contact-sticky {
+    top: 0;
+    height: 100vh;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #contato {
+      height: auto;
+    }
+
+    #contact-sticky {
+      position: relative;
+      top: 0;
+      height: auto;
+      padding-block: 6rem;
+    }
+
+    #contact-headline,
+    #contact-lead,
+    .contact-channel,
+    #contact-rail {
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+    }
+  }
+</style>
+
 <script>
-  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  gsap.registerPlugin(ScrollTrigger);
 
-    const btn = form.querySelector("button[type=submit]") as HTMLButtonElement | null;
-    if (!btn) return;
+  const section = document.getElementById("contato");
+  const headline = document.getElementById("contact-headline");
+  const lead = document.getElementById("contact-lead");
+  const channels = gsap.utils.toArray<HTMLElement>(".contact-channel");
+  const rail = document.getElementById("contact-rail");
 
-    btn.disabled = true;
-    btn.textContent = "Enviando...";
+  if (section && headline) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        body: new FormData(form),
+    if (reduced) {
+      gsap.set([headline, lead, channels, rail], { clearProps: "all" });
+    } else {
+      gsap.set(headline, { yPercent: 110, opacity: 0 });
+      gsap.set(lead, { opacity: 0, y: 28, filter: "blur(6px)" });
+      gsap.set(channels, { opacity: 0.28, y: 40, filter: "blur(6px)" });
+      if (rail) gsap.set(rail, { scaleY: 0, transformOrigin: "top center" });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top+=64",
+          end: "bottom bottom",
+          scrub: 0.55,
+          invalidateOnRefresh: true,
+        },
       });
 
-      if (res.ok) {
-        btn.textContent = "Mensagem enviada!";
-        form.reset();
-      } else {
-        btn.textContent = "Erro ao enviar. Tente novamente.";
-        btn.disabled = false;
+      tl.to(
+        headline,
+        { yPercent: 0, opacity: 1, ease: "none", duration: 0.22 },
+        0,
+      )
+        .to(
+          lead,
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            ease: "none",
+            duration: 0.18,
+          },
+          0.12,
+        )
+        .to(
+          channels,
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            ease: "none",
+            duration: 0.28,
+            stagger: 0.06,
+          },
+          0.28,
+        );
+
+      if (rail) {
+        tl.to(
+          rail,
+          { scaleY: 1, ease: "none", duration: 0.85 },
+          0.05,
+        );
       }
-    } catch {
-      btn.textContent = "Erro ao enviar. Tente novamente.";
-      btn.disabled = false;
     }
-  });
+  }
 </script>

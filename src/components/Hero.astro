@@ -1,13 +1,12 @@
 ---
-import { Image } from "astro:assets";
 import { Marquee } from "@/ui/marquee";
-import avatarHero from "@/assets/avatar_hero.png";
 
 const services = [
-  { label: "Análise de Sistemas", href: "#skills", active: false },
-  { label: "Sistemas & APIs", href: "#skills", active: true },
-  { label: "Automações", href: "#skills", active: false },
-  { label: "IA Generativa", href: "#skills", active: false },
+  { label: "MVPs & SaaS", href: "#skills", active: true },
+  { label: "Integração de IA", href: "#skills", active: false },
+  { label: "Front-end", href: "#skills", active: false },
+  { label: "Back-end", href: "#skills", active: false },
+  { label: "Refatoração", href: "#skills", active: false },
 ];
 
 const brands = [
@@ -41,43 +40,41 @@ const brands = [
 <section id="hero" class="relative h-[200vh]">
   <div
     id="hero-sticky"
-    class="sticky top-16 h-[calc(100vh-4rem)] flex flex-col overflow-hidden transition-[top,height] duration-300"
+    class="sticky top-0 h-screen flex flex-col overflow-hidden"
   >
   <div
-    id="hero-watermark"
-    class="pointer-events-none absolute inset-x-0 top-0 select-none overflow-hidden opacity-0"
-    aria-hidden="true"
+    class="relative z-10 flex flex-1 flex-col w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-14 pb-6"
   >
-    <p
-      class="whitespace-nowrap text-center font-[family-name:var(--font-display)] text-[22vw] font-black leading-none tracking-tighter text-foreground/[0.035] dark:text-foreground/[0.045]"
-    >
-      JEAN
-    </p>
-  </div>
-
-  <div
-    class="relative z-10 flex flex-1 flex-col w-full max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-6"
-  >
-    <h1
-      id="hero-title"
-      class="order-1 text-center font-[family-name:var(--font-display)] text-[clamp(3rem,13vw,10.5rem)] font-black uppercase leading-[0.86] tracking-[-0.04em] text-primary opacity-0 origin-center will-change-transform"
-    >
-      Jean Reis
-    </h1>
+    <div id="hero-heading" class="order-1 flex flex-col items-center gap-2 sm:gap-3">
+      <h1
+        id="hero-title"
+        class="whitespace-nowrap text-center font-[family-name:var(--font-impact)] text-[clamp(2.5rem,12vw,10rem)] font-medium uppercase leading-[0.86] tracking-[-0.04em] text-foreground opacity-0 origin-center will-change-transform"
+      >
+        Jean Reis
+      </h1>
+      <p
+        id="hero-subtitle"
+        class="text-center text-sm sm:text-base md:text-lg font-medium tracking-[0.2em] uppercase text-muted-foreground opacity-0"
+      >
+        Engenheiro de Software
+      </p>
+    </div>
 
     <div
-      class="order-2 mt-2 lg:mt-0 grid flex-1 grid-cols-1 lg:grid-cols-[1fr_minmax(260px,420px)_1fr] lg:items-center gap-8 lg:gap-6"
+      class="order-2 mt-2 lg:mt-0 grid flex-1 grid-cols-1 lg:grid-cols-2 lg:items-center gap-8 lg:gap-6"
     >
       <div
         id="hero-copy"
-        class="order-2 lg:order-1 space-y-10 text-center lg:text-left max-w-sm mx-auto lg:mx-0 lg:self-center opacity-0"
+        class="mt-6 sm:mt-0 space-y-10 text-center lg:text-left max-w-sm mx-auto lg:mx-0 lg:self-center opacity-0"
       >
         <p class="text-base sm:text-lg text-foreground/80 leading-relaxed">
           Olá! Sou analista e desenvolvedor de sistemas. Projeto APIs, produtos web e automações sob medida — incluindo IA quando o problema pede.
         </p>
         <a
           id="hero-cta"
-          href="#contato"
+          href="https://wa.me/5571991516655?text=Olá%2C%20vim%20pelo%20site%20jeanreis.dev.br%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+          target="_blank"
+          rel="noopener noreferrer"
           class="group inline-flex items-center gap-2 text-sm font-semibold tracking-[0.14em] uppercase text-foreground hover:text-primary transition-colors"
         >
           // Fale comigo
@@ -88,24 +85,9 @@ const brands = [
         </a>
       </div>
 
-      <div
-        id="hero-visual"
-        class="order-1 lg:order-2 relative mx-auto w-full max-w-[340px] sm:max-w-[400px] lg:max-w-none lg:-mt-28 opacity-0 origin-center will-change-transform"
-      >
-        <Image
-          src={avatarHero}
-          alt="Jean Reis, analista e desenvolvedor de sistemas"
-          width={800}
-          height={1100}
-          loading="eager"
-          fetchpriority="high"
-          class="hero-portrait relative z-10 mx-auto h-[52vh] min-h-[340px] max-h-[560px] w-auto object-cover object-[center_12%]"
-        />
-      </div>
-
       <ul
         id="hero-services"
-        class="order-3 space-y-2.5 text-center lg:text-right opacity-0"
+        class="space-y-2.5 text-center lg:text-right opacity-0"
       >
         {
           services.map((service) => (
@@ -146,18 +128,6 @@ const brands = [
   </div>
 </section>
 
-<style>
-  .hero-portrait {
-    -webkit-mask-image: linear-gradient(to bottom, black 58%, transparent 98%);
-    mask-image: linear-gradient(to bottom, black 58%, transparent 98%);
-  }
-
-  :global(html.nav-hidden) #hero-sticky {
-    top: 0;
-    height: 100vh;
-  }
-</style>
-
 <script>
   import { animate } from "motion";
   import gsap from "gsap";
@@ -165,12 +135,11 @@ const brands = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  animate("#hero-watermark", { opacity: [0, 1] }, { duration: 0.8, delay: 0.05, easing: "ease-out" });
   animate("#hero-title", { opacity: [0, 1], y: [-28, 0] }, { duration: 0.7, delay: 0.15, easing: [0.22, 1, 0.36, 1] });
-  animate("#hero-visual", { opacity: [0, 1], y: [36, 0] }, { duration: 0.8, delay: 0.28, easing: [0.22, 1, 0.36, 1] });
-  animate("#hero-copy", { opacity: [0, 1], y: [16, 0] }, { duration: 0.55, delay: 0.5, easing: "ease-out" });
-  animate("#hero-services", { opacity: [0, 1], y: [16, 0] }, { duration: 0.55, delay: 0.62, easing: "ease-out" });
-  animate("#hero-brands", { opacity: [0, 1] }, { duration: 0.55, delay: 0.8, easing: "ease-out" });
+  animate("#hero-subtitle", { opacity: [0, 1], y: [12, 0] }, { duration: 0.55, delay: 0.28, easing: "ease-out" });
+  animate("#hero-copy", { opacity: [0, 1], y: [16, 0] }, { duration: 0.55, delay: 0.35, easing: "ease-out" });
+  animate("#hero-services", { opacity: [0, 1], y: [16, 0] }, { duration: 0.55, delay: 0.45, easing: "ease-out" });
+  animate("#hero-brands", { opacity: [0, 1] }, { duration: 0.55, delay: 0.6, easing: "ease-out" });
 
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const hero = document.getElementById("hero");
@@ -178,38 +147,64 @@ const brands = [
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: hero,
-          start: "top top+=64",
-          end: "bottom top+=64",
+          start: "top top",
+          end: "bottom top",
           scrub: 0.6,
+          invalidateOnRefresh: true,
         },
       });
 
-      tl.to("#hero-visual", {
-        scale: 1.85,
-        filter: "blur(24px)",
-        opacity: 0,
-        ease: "none",
-        immediateRender: false,
-      }, 0)
-        .to("#hero-title", {
-          scale: 1.12,
-          y: -48,
-          opacity: 0,
-          ease: "none",
-          immediateRender: false,
-        }, 0)
-        .to("#hero-watermark", {
-          scale: 1.25,
-          opacity: 0,
-          ease: "none",
-          immediateRender: false,
-        }, 0)
-        .to(["#hero-copy", "#hero-services", "#hero-brands"], {
-          opacity: 0,
-          y: 28,
-          ease: "none",
-          immediateRender: false,
-        }, 0.05);
+      // fromTo explícito: ao voltar o scroll, restaura sempre o estado visível
+      tl.fromTo(
+        "#hero-title",
+        { scale: 1, y: 0, opacity: 1 },
+        { scale: 1.12, y: -48, opacity: 0, ease: "none", immediateRender: false },
+        0,
+      )
+        .fromTo(
+          "#hero-subtitle",
+          { y: 0, opacity: 1 },
+          { y: -24, opacity: 0, ease: "none", immediateRender: false },
+          0,
+        )
+        .fromTo(
+          "#hero-copy",
+          { x: 0, y: 0, opacity: 1, filter: "blur(0px)" },
+          {
+            x: -80,
+            y: 24,
+            opacity: 0,
+            filter: "blur(12px)",
+            ease: "none",
+            immediateRender: false,
+          },
+          0,
+        )
+        .fromTo(
+          "#hero-services",
+          { x: 0, y: 0, opacity: 1, filter: "blur(0px)" },
+          {
+            x: 80,
+            y: 24,
+            opacity: 0,
+            filter: "blur(12px)",
+            ease: "none",
+            immediateRender: false,
+          },
+          0,
+        )
+        .fromTo(
+          "#hero-brands",
+          { y: 0, opacity: 1, filter: "blur(0px)" },
+          {
+            y: 40,
+            opacity: 0,
+            filter: "blur(8px)",
+            ease: "none",
+            immediateRender: false,
+          },
+          0.05,
+        );
     }
   }
 </script>
