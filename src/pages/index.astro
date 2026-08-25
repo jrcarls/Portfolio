@@ -3,22 +3,22 @@ import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
 import Projects from "@/components/Projects.astro";
 import Skills from "@/components/Skills.astro";
-import Cases from "@/components/Cases.astro";
-import Processo from "@/components/Processo.astro";
+import Experiences from "@/components/Experiences.astro";
+import ScrollTextLines from "@/components/ScrollTextLines.astro";
 import Sobre from "@/components/Sobre.astro";
-import FAQ from "@/components/FAQ.astro";
 import Contact from "@/components/Contact.astro";
 import Footer from "@/components/Footer.astro";
 ---
 
 <Layout>
-  <Hero />
-  <Projects />
-  <Skills />
-  <Cases />
-  <Processo />
-  <Sobre />
-  <FAQ />
-  <Contact />
+  <div id="page-shell" class="relative z-10 bg-background">
+    <Hero />
+    <Projects />
+    <Skills />
+    <Experiences />
+    <ScrollTextLines />
+    <Sobre />
+    <Contact />
+  </div>
   <Footer />
 </Layout>

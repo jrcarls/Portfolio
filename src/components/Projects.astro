@@ -1,32 +1,60 @@
 ---
-const projects = [
+interface Project {
+  id: string;
+  name: string;
+  tag: string;
+  href: string;
+  external: boolean;
+  private: boolean;
+  summary: string;
+  technologies: string[];
+  screenshots: Array<{ src: string; alt: string }>;
+}
+
+const projects: Project[] = [
   {
     id: "01",
-    name: "Esboço Online",
+    name: "ZapCut",
     tag: "Produto Web",
-    href: "https://esboco-online-landing.vercel.app",
+    href: "https://www.zapcut.com.br/",
     external: true,
+    private: false,
+    summary: "",
+    technologies: [],
+    screenshots: [],
   },
   {
     id: "02",
-    name: "API MCP",
-    tag: "Legaltech",
-    href: "#cases",
-    external: false,
+    name: "Esboço Online",
+    tag: "Produto Web",
+    href: "https://www.esbocoonline.com.br/",
+    external: true,
+    private: false,
+    summary: "",
+    technologies: [],
+    screenshots: [],
   },
   {
     id: "03",
-    name: "AppSec Tools",
-    tag: "Segurança",
+    name: "Murdock",
+    tag: "Legaltech",
     href: "https://github.com/jrcarls/appsec-tools-kit",
     external: true,
+    private: true,
+    summary: "As informações detalhadas deste projeto serão adicionadas em breve.",
+    technologies: [],
+    screenshots: [],
   },
   {
     id: "04",
-    name: "GChurch",
-    tag: "Produto Web",
+    name: "Spels (em breve)",
+    tag: "Em breve",
     href: "https://github.com/jrcarls/gchurch",
     external: true,
+    private: true,
+    summary: "As informações detalhadas deste projeto serão adicionadas em breve.",
+    technologies: [],
+    screenshots: [],
   },
   {
     id: "05",
@@ -34,6 +62,10 @@ const projects = [
     tag: "Pessoal",
     href: "https://jeanreis.dev.br",
     external: true,
+    private: false,
+    summary: "",
+    technologies: [],
+    screenshots: [],
   },
 ];
 ---
@@ -55,49 +87,154 @@ const projects = [
         class="flex gap-6 sm:gap-8 w-max will-change-transform px-4 sm:px-[max(1rem,calc((100vw-400px)/2))]"
       >
         {
-          projects.map((project) => (
-            <a
-              href={project.href}
-              target={project.external ? "_blank" : undefined}
-              rel={project.external ? "noopener noreferrer" : undefined}
-              class="group relative shrink-0 w-[min(80vw,400px)] h-[380px] sm:h-[460px] rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+          projects.map((project) => {
+            const Card = project.private ? "button" : "a";
+
+            return (
+            <Card
+              type={project.private ? "button" : undefined}
+              href={project.private ? undefined : project.href}
+              target={project.external && !project.private ? "_blank" : undefined}
+              rel={project.external && !project.private ? "noopener noreferrer" : undefined}
+              data-private-project={project.private ? project.id : undefined}
+              aria-haspopup={project.private ? "dialog" : undefined}
+              class:list={[
+                "group relative shrink-0 w-[min(80vw,400px)] h-[380px] sm:h-[460px] rounded-none border border-border bg-card overflow-hidden text-left transition-colors",
+                "hover:border-primary hover:bg-primary/5",
+              ]}
             >
               <div
-                class="absolute inset-0 bg-linear-to-br from-primary/15 via-transparent to-muted"
+                class="absolute inset-0 bg-linear-to-b from-muted/60 via-transparent to-transparent"
                 aria-hidden="true"
               />
               <span
-                class="pointer-events-none absolute -right-4 -top-6 font-[family-name:var(--font-display)] text-[8rem] font-black leading-none text-foreground/[0.06]"
+                class="pointer-events-none absolute right-4 top-3 font-[family-name:var(--font-display)] text-[6rem] sm:text-[7rem] font-black leading-none text-foreground/[0.07]"
                 aria-hidden="true"
               >
                 {project.id}
               </span>
-              <div class="absolute inset-x-0 bottom-0 p-7 sm:p-8">
-                <span class="block text-xs font-semibold uppercase tracking-widest text-primary mb-2">
+              <div class="absolute inset-x-0 top-0 h-px bg-foreground/20" aria-hidden="true" />
+              <div class="absolute inset-x-0 bottom-0 border-t border-border p-7 sm:p-8">
+                <span class="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
                   {project.id} · {project.tag}
                 </span>
-                <h3 class="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
+                <h3 class="text-2xl sm:text-3xl font-bold tracking-tight mb-4 text-foreground">
                   {project.name}
                 </h3>
                 <span class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                  Ver projeto
-                  <span
-                    aria-hidden="true"
-                    class="transition-transform duration-200 group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
+                  {project.private ? (
+                    <>
+                      Ver detalhes
+                      <svg
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="size-4"
+                      >
+                        <rect width="16" height="11" x="4" y="10" rx="2" />
+                        <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                      </svg>
+                    </>
+                  ) : (
+                    "Ver projeto"
+                  )}
+                  {!project.private && (
+                    <span
+                      aria-hidden="true"
+                      class="transition-transform duration-200 group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  )}
                 </span>
               </div>
-            </a>
-          ))
+            </Card>
+            );
+          })
         }
       </div>
     </div>
   </div>
 </section>
 
+<dialog
+  id="project-dialog"
+  aria-labelledby="project-dialog-title"
+  class="m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-4xl overflow-y-auto bg-transparent p-0 text-foreground"
+>
+  <div id="project-dialog-panel" class="border border-border bg-card shadow-2xl">
+    <div class="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card px-5 py-4 sm:px-7">
+      <span class="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+        Projeto privado
+      </span>
+      <button
+        id="project-dialog-close"
+        type="button"
+        autofocus
+        aria-label="Fechar detalhes do projeto"
+        class="group inline-flex size-10 cursor-pointer items-center justify-center border border-border text-xl text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground"
+      >
+        <span aria-hidden="true" class="transition-transform duration-200 group-hover:rotate-90">×</span>
+      </button>
+    </div>
+    <div id="project-dialog-content"></div>
+  </div>
+
+  {
+    projects.filter((project) => project.private).map((project) => (
+      <template id={`private-project-${project.id}`}>
+        <article class="px-5 py-7 sm:px-8 sm:py-10">
+          <span class="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+            {project.id} · {project.tag}
+          </span>
+          <h2
+            id="project-dialog-title"
+            class="mt-3 font-[family-name:var(--font-display)] text-3xl font-bold uppercase tracking-[-0.03em] sm:text-5xl"
+          >
+            {project.name}
+          </h2>
+          <p class="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {project.summary}
+          </p>
+
+          {project.technologies.length > 0 && (
+            <ul class="mt-7 flex flex-wrap gap-2">
+              {project.technologies.map((technology) => (
+                <li class="border border-border px-3 py-1.5 text-xs text-muted-foreground">
+                  {technology}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {project.screenshots.length > 0 && (
+            <div class="mt-9 grid gap-4 sm:grid-cols-2">
+              {project.screenshots.map((screenshot) => (
+                <img
+                  src={screenshot.src}
+                  alt={screenshot.alt}
+                  loading="lazy"
+                  class="w-full border border-border bg-muted object-cover"
+                />
+              ))}
+            </div>
+          )}
+        </article>
+      </template>
+    ))
+  }
+</dialog>
+
 <style>
+  #project-dialog::backdrop {
+    background: oklch(0 0 0 / 0.68);
+    backdrop-filter: blur(6px);
+  }
+
   :global(html.nav-hidden) #projects-sticky {
     top: 0;
     height: 100vh;
@@ -126,12 +263,71 @@ const projects = [
 </style>
 
 <script>
+  import { animate } from "motion";
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
 
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const projectDialog = document.querySelector<HTMLDialogElement>("#project-dialog");
+  const projectDialogPanel = document.querySelector<HTMLElement>("#project-dialog-panel");
+  const projectDialogContent = document.querySelector<HTMLElement>("#project-dialog-content");
+  const projectDialogClose = document.querySelector<HTMLButtonElement>("#project-dialog-close");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let projectTrigger: HTMLButtonElement | null = null;
+  let projectDialogClosing = false;
+
+  const closeProjectDialog = async () => {
+    if (!projectDialog?.open || projectDialogClosing) return;
+    projectDialogClosing = true;
+
+    if (!reducedMotion && projectDialogPanel) {
+      await Promise.all([
+        animate(projectDialog, { opacity: [1, 0] }, { duration: 0.18, easing: "ease-in" }),
+        animate(projectDialogPanel, { y: [0, 20], scale: [1, 0.985] }, { duration: 0.18, easing: "ease-in" }),
+      ]);
+    }
+
+    projectDialog.close();
+    projectDialog.style.opacity = "";
+    projectDialogPanel?.removeAttribute("style");
+    projectDialogClosing = false;
+    projectTrigger?.focus();
+  };
+
+  document.querySelectorAll<HTMLButtonElement>("[data-private-project]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const projectId = button.dataset.privateProject;
+      const template = projectId
+        ? document.querySelector<HTMLTemplateElement>(`#private-project-${projectId}`)
+        : null;
+
+      if (!projectDialog || !projectDialogContent || !template) return;
+      projectTrigger = button;
+      projectDialogContent.replaceChildren(template.content.cloneNode(true));
+      projectDialog.showModal();
+
+      if (!reducedMotion && projectDialogPanel) {
+        animate(projectDialog, { opacity: [0, 1] }, { duration: 0.2, easing: "ease-out" });
+        animate(
+          projectDialogPanel,
+          { opacity: [0, 1], y: [30, 0], scale: [0.97, 1] },
+          { duration: 0.38, easing: [0.22, 1, 0.36, 1] },
+        );
+      }
+    });
+  });
+
+  projectDialogClose?.addEventListener("click", closeProjectDialog);
+  projectDialog?.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeProjectDialog();
+  });
+  projectDialog?.addEventListener("click", (event) => {
+    if (event.target === projectDialog) closeProjectDialog();
+  });
+
+  if (!reducedMotion) {
     const section = document.getElementById("projetos");
     const track = document.getElementById("projects-track");
 

@@ -1,121 +1,148 @@
 ---
-import { Image } from "astro:assets";
-import fotoPerfil from "@/assets/foto_perfil.png";
+const lines = [
+  "Sou engenheiro de software com cinco anos de experiência no desenvolvimento de soluções digitais.",
+  "Atuo no ciclo completo, do levantamento de requisitos e modelagem de dados à entrega e evolução do produto.",
+  "Com Python e TypeScript, desenvolvo aplicações web, APIs e integrações orientadas às necessidades do negócio.",
+  "Também integro LLMs e soluções inteligentes quando elas geram valor real.",
+  "Antes da tecnologia, procuro entender o problema, o usuário e o resultado esperado.",
+];
+
+const fullText = lines.join(" ");
 ---
 
-<section id="sobre" class="py-24 relative overflow-hidden">
-
-  <!-- Blob de fundo -->
+<section id="sobre" class="relative h-[220vh]">
   <div
-    class="absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full bg-primary/8 blur-[100px] -z-10"
-    aria-hidden="true"
-  ></div>
-
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
-    <!-- Header -->
-    <div data-reveal class="text-center mb-16">
-      <span class="inline-block rounded-full border border-border bg-muted/80 backdrop-blur-sm px-4 py-1.5 text-sm text-muted-foreground mb-4">
-        Sobre
-      </span>
-      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
-        Jean Reis, Analista e Desenvolvedor de Sistemas
-      </h2>
-    </div>
-
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <!-- Visual -->
-      <div data-reveal class="flex justify-center">
-        <div class="relative">
-          <!-- Anel decorativo externo -->
-          <div class="absolute inset-0 -m-8 rounded-full border border-dashed border-primary/20 animate-spin" style="animation-duration:25s"></div>
-          <!-- Anel intermediário -->
-          <div class="absolute inset-0 -m-4 rounded-full border border-primary/10"></div>
-
-          <!-- Imagem -->
-          <div class="relative w-72 h-72 rounded-full overflow-hidden border-2 border-border shadow-2xl bg-card">
-            <div class="absolute inset-0 bg-linear-to-br from-primary/15 via-transparent to-transparent"></div>
-            <Image
-              src={fotoPerfil}
-              alt="Jean Reis, analista e desenvolvedor de sistemas"
-              width={288}
-              height={288}
-              loading="lazy"
-              class="w-full h-full object-cover"
-            />
-          </div>
-
-          <!-- Card com nome -->
-          <div
-            data-reveal
-            data-reveal-delay="0.2"
-            class="absolute -bottom-5 left-1/2 -translate-x-1/2 w-max rounded-xl border border-border bg-card/85 backdrop-blur-sm px-4 py-2.5 shadow-lg text-center"
-          >
-            <p class="text-sm font-semibold">Jean Reis</p>
-            <p class="text-xs text-muted-foreground italic">"Daria tudo que sei pela metade do que ignoro."</p>
-          </div>
-
-          <!-- Badge flutuante: país -->
-          <div
-            data-reveal
-            data-reveal-delay="0.3"
-            class="absolute -top-3 -right-6 rounded-xl border border-border bg-card/85 backdrop-blur-sm px-3 py-2 shadow-lg flex items-center gap-2"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" class="text-primary shrink-0">
-              <g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13.618 21.367A2.37 2.37 0 0 1 12 22a2.37 2.37 0 0 1-1.617-.633C6.412 17.626 1.09 13.447 3.685 7.38C5.09 4.1 8.458 2 12.001 2s6.912 2.1 8.315 5.38c2.592 6.06-2.717 10.259-6.698 13.987Z"/><path d="M15.5 11a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0Z"/></g>
-            </svg>
-            <span class="text-xs font-medium">Brasil</span>
-          </div>
-        </div>
+    id="sobre-sticky"
+    class="sticky top-16 z-10 h-[calc(100vh-4rem)] flex flex-col justify-center overflow-hidden bg-background"
+  >
+    <div class="max-w-6xl mx-auto w-full px-4 sm:px-6">
+      <div class="mb-16 sm:mb-20">
+        <h2
+          class="text-2xl sm:text-4xl font-semibold uppercase tracking-[0.28em] text-muted-foreground"
+        >
+          Sobre mim
+        </h2>
       </div>
 
-      <!-- Conteúdo -->
-      <div class="space-y-6">
-
-        <div data-reveal class="space-y-4 text-muted-foreground leading-relaxed">
-          <p>
-            Sou analista e desenvolvedor de sistemas com mais de 10 anos em TI,
-            focado na construção de sistemas, APIs e produtos web que resolvem problemas reais de negócio, incluindo,
-            quando faz sentido, agentes de IA e automações inteligentes.
-            Atuo sob uma premissa simples: <strong class="text-foreground">
-              a solução deve funcionar no mundo real</strong>, não só em demos.
-          </p>
-          <p>
-            Analiso o problema antes de escolher a tecnologia, e uso as ferramentas certas para cada caso para entregar soluções que geram resultado mensurável.
-            Por atuar de forma independente e sem intermediários, garanto atenção total a cada projeto do início ao fim,
-            você fala direto com quem vai construir a solução.
-          </p>
-        </div>
-
-        <!-- Destaques -->
-        <div data-reveal data-reveal-delay="0.1" class="grid sm:grid-cols-2 gap-4 pt-2">
-
-          <div class="rounded-xl border border-sky-500/20 bg-card p-4 space-y-2">
-            <div class="h-9 w-9 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-600 dark:text-sky-400">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-              </svg>
-            </div>
-            <p class="text-sm font-semibold">Análise</p>
-            <p class="text-xs text-muted-foreground">Requisitos · Arquitetura · Diagnóstico</p>
-          </div>
-
-          <div class="rounded-xl border border-violet-500/20 bg-card p-4 space-y-2">
-            <div class="h-9 w-9 rounded-lg bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </svg>
-            </div>
-            <p class="text-sm font-semibold">Desenvolvimento</p>
-            <p class="text-xs text-muted-foreground">Sistemas · APIs · IA Generativa</p>
-          </div>
-
-        </div>
-
+      <div
+        id="typewriter"
+        class="min-h-[12rem] sm:min-h-[14rem]"
+        data-text={fullText}
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <p
+          id="typewriter-text"
+          class="font-[family-name:var(--font-impact)] text-[clamp(1.35rem,4.2vw,2.35rem)] font-medium leading-[1.35] tracking-[-0.02em] text-foreground"
+        >
+          <span id="typewriter-content"></span><span
+            id="typewriter-cursor"
+            class="typewriter-cursor inline-block w-[0.08em] h-[0.9em] ml-[0.06em] align-[-0.05em] bg-primary"
+            aria-hidden="true"></span>
+        </p>
       </div>
+
+      <p
+        id="sobre-meta"
+        class="mt-10 text-sm text-muted-foreground/70 tracking-wide opacity-0"
+      >
+        Jean Reis · Salvador, BA
+      </p>
     </div>
   </div>
 </section>
+
+<style>
+  .typewriter-cursor {
+    animation: cursor-blink 1s steps(1) infinite;
+  }
+
+  @keyframes cursor-blink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  :global(html.nav-hidden) #sobre-sticky {
+    top: 0;
+    height: 100vh;
+  }
+
+  :global(html.reduced-motion) .typewriter-cursor {
+    animation: none;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #sobre {
+      height: auto;
+    }
+
+    #sobre-sticky {
+      position: relative;
+      top: 0;
+      height: auto;
+      padding-block: 6rem;
+    }
+
+    #sobre-meta {
+      opacity: 1 !important;
+    }
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.getElementById("sobre");
+  const root = document.getElementById("typewriter");
+  const contentEl = document.getElementById("typewriter-content");
+  const metaEl = document.getElementById("sobre-meta");
+  const fullText = root?.dataset.text ?? "";
+
+  if (section && contentEl && fullText) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const total = fullText.length;
+
+    if (reduced) {
+      document.documentElement.classList.add("reduced-motion");
+      contentEl.textContent = fullText;
+      if (metaEl) metaEl.style.opacity = "1";
+    } else {
+      let lastLen = -1;
+
+      const setProgress = (progress: number) => {
+        const p = Math.max(0, Math.min(1, progress));
+        const len = Math.round(p * total);
+        if (len === lastLen) return;
+        lastLen = len;
+        contentEl.textContent = fullText.slice(0, len);
+
+        if (metaEl) {
+          const metaOpacity = p > 0.88 ? (p - 0.88) / 0.12 : 0;
+          metaEl.style.opacity = String(Math.max(0, Math.min(1, metaOpacity)));
+        }
+      };
+
+      setProgress(0);
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top+=64",
+        end: "bottom bottom",
+        scrub: 0.4,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => setProgress(self.progress),
+        onRefresh: (self) => setProgress(self.progress),
+      });
+    }
+  }
+</script>

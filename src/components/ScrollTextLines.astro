@@ -1,0 +1,173 @@
+---
+const lines = [
+  {
+    text: "Arquitetura / Escala / Entrega",
+    speed: 0.55,
+    direction: 1,
+    weight: "solid" as const,
+  },
+  {
+    text: "Engenharia sob medida",
+    speed: 0.9,
+    direction: -1,
+    weight: "outline" as const,
+  },
+  {
+    text: "Produto / Processo / Impacto",
+    speed: 0.7,
+    direction: 1,
+    weight: "solid" as const,
+  },
+  {
+    text: "Descoberta / Prototipo / Lancamento",
+    speed: 1.15,
+    direction: -1,
+    weight: "outline" as const,
+  },
+  {
+    text: "Do problema a solucao",
+    speed: 0.65,
+    direction: 1,
+    weight: "solid" as const,
+  },
+];
+
+const repeats = 6;
+---
+
+<section
+  id="scroll-lines"
+  class="relative h-[180vh] sm:h-[200vh]"
+  aria-label="Frases em movimento"
+>
+  <div
+    id="scroll-lines-sticky"
+    class="sticky top-16 z-10 flex h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden bg-background"
+  >
+    <div class="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-gradient-to-b from-background to-transparent"></div>
+    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-background to-transparent"></div>
+
+    <div
+      id="scroll-lines-track"
+      class="flex w-full flex-col gap-3 sm:gap-4 md:gap-5"
+      role="presentation"
+    >
+      {
+        lines.map((line, i) => (
+          <div
+            class="scroll-line relative overflow-hidden"
+            data-speed={line.speed}
+            data-direction={line.direction}
+            style={`--line-i: ${i}`}
+          >
+            <div class="scroll-line-inner flex w-max will-change-transform">
+              {Array.from({ length: repeats }).map(() => (
+                <span
+                  class:list={[
+                    "scroll-line-text shrink-0 px-[0.18em] font-[family-name:var(--font-impact)] text-[clamp(1.9rem,7vw,5.25rem)] font-medium uppercase leading-[0.9] tracking-[-0.04em]",
+                    line.weight === "outline"
+                      ? "scroll-line-outline text-transparent"
+                      : "text-foreground",
+                  ]}
+                >
+                  {line.text}
+                  <span class="mx-[0.22em] inline-block text-primary/50" aria-hidden="true">
+                    /
+                  </span>
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .scroll-line-outline {
+    -webkit-text-stroke: 1.5px var(--foreground);
+    paint-order: stroke fill;
+  }
+
+  .dark .scroll-line-outline {
+    -webkit-text-stroke: 1.5px var(--foreground);
+  }
+
+  .scroll-line-inner {
+    will-change: transform;
+  }
+
+  :global(html.nav-hidden) #scroll-lines-sticky {
+    top: 0;
+    height: 100vh;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #scroll-lines {
+      height: auto;
+    }
+
+    #scroll-lines-sticky {
+      position: relative;
+      top: 0;
+      height: auto;
+      padding-block: 5rem;
+    }
+
+    .scroll-line-inner {
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.getElementById("scroll-lines");
+  const rows = gsap.utils.toArray<HTMLElement>(".scroll-line");
+
+  if (section && rows.length) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reduced) {
+      const ctx = gsap.context(() => {
+        rows.forEach((row) => {
+          const inner = row.querySelector<HTMLElement>(".scroll-line-inner");
+          if (!inner) return;
+
+          const speed = Number(row.dataset.speed ?? "1");
+          const direction = Number(row.dataset.direction ?? "1");
+          // travel ~ half a repeated block so the loop feels continuous
+          const travel = () => Math.max(inner.scrollWidth * 0.18, 180) * speed;
+
+          gsap.fromTo(
+            inner,
+            { x: () => (direction > 0 ? 0 : -travel()) },
+            {
+              x: () => (direction > 0 ? -travel() : 0),
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.45,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+        });
+      }, section);
+
+      // cleanup on view transitions / HMR if needed
+      document.addEventListener(
+        "astro:before-swap",
+        () => ctx.revert(),
+        { once: true },
+      );
+    }
+  }
+</script>

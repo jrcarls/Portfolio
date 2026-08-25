@@ -2,11 +2,26 @@
 import { Marquee } from "@/ui/marquee";
 
 const services = [
-  { label: "MVPs", href: "#skills", active: true },
-  { label: "Integração de IA", href: "#skills", active: false },
-  { label: "Front-end", href: "#skills", active: false },
-  { label: "Back-end", href: "#skills", active: false },
-  { label: "Refatoração", href: "#skills", active: false },
+  {
+    label: "MVPs",
+    description: "Criação da primeira versão funcional de um produto, com escopo focado no problema principal, nas jornadas essenciais e no aprendizado com usuários reais.",
+  },
+  {
+    label: "Integração",
+    description: "Integração entre sistemas, APIs e serviços para conectar dados e processos, incluindo LLMs, agentes e bases de conhecimento quando agregam valor ao produto.",
+  },
+  {
+    label: "Front-end",
+    description: "Desenvolvimento de interfaces responsivas e acessíveis, com componentes reutilizáveis, integração com APIs e atenção aos detalhes da experiência de uso.",
+  },
+  {
+    label: "Back-end",
+    description: "Construção de APIs, regras de negócio, autenticação, integrações e modelos de dados com uma estrutura confiável, testável e preparada para evoluir.",
+  },
+  {
+    label: "Refatoração",
+    description: "Evolução incremental de sistemas existentes para reduzir complexidade, corrigir gargalos e melhorar arquitetura, testes, segurança e manutenção.",
+  },
 ];
 
 const brands = [
@@ -75,9 +90,16 @@ const brands = [
           href="https://wa.me/5571991516655?text=Olá%2C%20vim%20pelo%20site%20jeanreis.dev.br%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Fale comigo"
+          data-hero-reveal
           class="group inline-flex items-center gap-2 text-sm font-semibold tracking-[0.14em] uppercase text-foreground hover:text-primary transition-colors"
         >
-          // Fale comigo
+          <span class="hero-reveal-viewport" aria-hidden="true">
+            <span class="hero-reveal-track">
+              <span class="hero-reveal-copy">// Fale comigo</span>
+              <span class="hero-reveal-copy">// Fale comigo</span>
+            </span>
+          </span>
           <span
             aria-hidden="true"
             class="transition-transform duration-200 group-hover:translate-x-1"
@@ -92,17 +114,23 @@ const brands = [
         {
           services.map((service) => (
             <li>
-              <a
-                href={service.href}
-                class:list={[
-                  "inline-block text-base sm:text-lg transition-colors",
-                  service.active
-                    ? "text-foreground font-medium"
-                    : "text-muted-foreground/55 hover:text-muted-foreground",
-                ]}
+              <button
+                type="button"
+                aria-label={service.label}
+                aria-controls="service-tooltip"
+                aria-expanded="false"
+                data-hero-reveal
+                data-service-title={service.label}
+                data-service-description={service.description}
+                class="inline-block cursor-pointer text-base text-muted-foreground transition-colors hover:text-foreground sm:text-lg"
               >
-                {service.label}
-              </a>
+                <span class="hero-reveal-viewport" aria-hidden="true">
+                  <span class="hero-reveal-track">
+                    <span class="hero-reveal-copy">{service.label}</span>
+                    <span class="hero-reveal-copy">{service.label}</span>
+                  </span>
+                </span>
+              </button>
             </li>
           ))
         }
@@ -128,6 +156,47 @@ const brands = [
   </div>
 </section>
 
+<div
+  id="service-tooltip"
+  role="tooltip"
+  aria-hidden="true"
+  class="pointer-events-none fixed z-[80] hidden w-[min(20rem,calc(100vw-2rem))] border border-border bg-card p-5 text-left shadow-xl"
+>
+  <span class="mb-2 block text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-primary">
+    Serviço
+  </span>
+  <p id="service-tooltip-title" class="text-base font-semibold text-foreground"></p>
+  <p id="service-tooltip-description" class="mt-2 text-sm leading-relaxed text-muted-foreground"></p>
+</div>
+
+<style>
+  .hero-reveal-viewport {
+    display: inline-block;
+    height: 1.35em;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+
+  .hero-reveal-track {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+  }
+
+  .hero-reveal-copy {
+    display: block;
+    height: 1.35em;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal-track {
+      transform: none !important;
+    }
+  }
+</style>
+
 <script>
   import { animate } from "motion";
   import gsap from "gsap";
@@ -141,7 +210,127 @@ const brands = [
   animate("#hero-services", { opacity: [0, 1], y: [16, 0] }, { duration: 0.55, delay: 0.45, easing: "ease-out" });
   animate("#hero-brands", { opacity: [0, 1] }, { duration: 0.55, delay: 0.6, easing: "ease-out" });
 
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!reducedMotion) {
+    document.querySelectorAll<HTMLElement>("[data-hero-reveal]").forEach((link) => {
+      const track = link.querySelector<HTMLElement>(".hero-reveal-track");
+      if (!track) return;
+
+      const reveal = (active: boolean) => {
+        animate(
+          track,
+          { y: active ? "-50%" : "0%" },
+          { type: "spring", stiffness: 430, damping: 32, mass: 0.7 },
+        );
+      };
+
+      link.addEventListener("mouseenter", () => reveal(true));
+      link.addEventListener("mouseleave", () => reveal(false));
+      link.addEventListener("focus", () => reveal(true));
+      link.addEventListener("blur", () => reveal(false));
+    });
+  }
+
+  const serviceTooltip = document.querySelector<HTMLElement>("#service-tooltip");
+  const serviceTooltipTitle = document.querySelector<HTMLElement>("#service-tooltip-title");
+  const serviceTooltipDescription = document.querySelector<HTMLElement>("#service-tooltip-description");
+  const serviceButtons = document.querySelectorAll<HTMLButtonElement>("[data-service-title]");
+  let activeServiceButton: HTMLButtonElement | null = null;
+
+  const positionServiceTooltip = (button: HTMLButtonElement) => {
+    if (!serviceTooltip) return;
+
+    const gap = 16;
+    const margin = 16;
+    const buttonRect = button.getBoundingClientRect();
+    const tooltipWidth = serviceTooltip.offsetWidth;
+    const tooltipHeight = serviceTooltip.offsetHeight;
+    let left: number;
+    let top: number;
+
+    if (window.innerWidth >= 768) {
+      left = buttonRect.left - tooltipWidth - gap;
+      if (left < margin) left = buttonRect.right + gap;
+      top = buttonRect.top + buttonRect.height / 2 - tooltipHeight / 2;
+    } else {
+      left = buttonRect.left + buttonRect.width / 2 - tooltipWidth / 2;
+      top = buttonRect.bottom + 12;
+      if (top + tooltipHeight > window.innerHeight - margin) {
+        top = buttonRect.top - tooltipHeight - 12;
+      }
+    }
+
+    serviceTooltip.style.left = `${Math.min(Math.max(left, margin), window.innerWidth - tooltipWidth - margin)}px`;
+    serviceTooltip.style.top = `${Math.min(Math.max(top, margin), window.innerHeight - tooltipHeight - margin)}px`;
+  };
+
+  const closeServiceTooltip = (restoreFocus = false) => {
+    if (!serviceTooltip || !activeServiceButton) return;
+    const previousButton = activeServiceButton;
+    previousButton.setAttribute("aria-expanded", "false");
+    activeServiceButton = null;
+
+    const finish = () => {
+      serviceTooltip.classList.add("hidden");
+      serviceTooltip.setAttribute("aria-hidden", "true");
+      serviceTooltip.removeAttribute("style");
+      if (restoreFocus) previousButton.focus();
+    };
+
+    if (reducedMotion) {
+      finish();
+    } else {
+      animate(
+        serviceTooltip,
+        { opacity: [1, 0], y: [0, 6] },
+        { duration: 0.16, easing: "ease-in" },
+      ).then(finish);
+    }
+  };
+
+  serviceButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!serviceTooltip || !serviceTooltipTitle || !serviceTooltipDescription) return;
+
+      if (activeServiceButton === button) {
+        closeServiceTooltip();
+        return;
+      }
+
+      activeServiceButton?.setAttribute("aria-expanded", "false");
+      activeServiceButton = button;
+      button.setAttribute("aria-expanded", "true");
+      serviceTooltipTitle.textContent = button.dataset.serviceTitle ?? "";
+      serviceTooltipDescription.textContent = button.dataset.serviceDescription ?? "";
+      serviceTooltip.classList.remove("hidden");
+      serviceTooltip.setAttribute("aria-hidden", "false");
+      positionServiceTooltip(button);
+
+      if (!reducedMotion) {
+        animate(
+          serviceTooltip,
+          { opacity: [0, 1], y: [8, 0], scale: [0.98, 1] },
+          { duration: 0.28, easing: [0.22, 1, 0.36, 1] },
+        );
+      }
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target as Element;
+    if (activeServiceButton && !target.closest("[data-service-title]")) {
+      closeServiceTooltip();
+    }
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && activeServiceButton) closeServiceTooltip(true);
+  });
+  window.addEventListener("resize", () => closeServiceTooltip(), { passive: true });
+  window.addEventListener("scroll", () => closeServiceTooltip(), { passive: true });
+
+  if (!reducedMotion) {
     const hero = document.getElementById("hero");
     if (hero) {
       const tl = gsap.timeline({

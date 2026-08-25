@@ -1,0 +1,311 @@
+---
+const experiences = [
+  {
+    id: "01",
+    period: "Abril - Atual",
+    role: "Engenheiro de Software",
+    company: "Freire, Gerbasi & Bittencourt Advogados · Autônomo",
+    location: "Salvador, BA",
+    description:
+      "Desenvolvimento de produto web com TypeScript, criando interfaces em Vue e serviços de back-end com NestJS.",
+    tags: ["TypeScript", "Vue", "NestJS"],
+  },
+  {
+    id: "02",
+    period: "Mar 2024 - Atual",
+    role: "Analista de Desenvolvimento Low-Code - Pleno",
+    company: "MTM Tecnologia · SEFAZ-BA",
+    location: "Salvador, BA",
+    description:
+      "Levantamento de requisitos e documentação de processos junto ao cliente. Desenvolvimento de interfaces interativas com JavaScript e Vue, além de back-end e integrações REST e SOAP em Python, aplicando regras de negócio complexas e manipulação de dados em plataformas low-code.",
+    tags: ["Python", "JavaScript", "Vue", "REST & SOAP"],
+  },
+  {
+    id: "03",
+    period: "Ago 2024",
+    role: "Code Review de Segurança - Freelancer",
+    company: "Freire, Gerbasi & Bittencourt Advogados",
+    location: "Salvador, BA",
+    description:
+      "Revisão de código com foco em segurança de aplicações, analisando riscos, vulnerabilidades e pontos de melhoria com base nas categorias do OWASP Top 10.",
+    tags: ["AppSec", "OWASP Top 10", "Code Review", "Segurança"],
+  },
+  {
+    id: "04",
+    period: "Nov 2023 - Mar 2024",
+    role: "Analista de Desenvolvimento de Sistemas - Pleno",
+    company: "Freire, Gerbasi & Bittencourt Advogados",
+    location: "Salvador, BA",
+    description:
+      "Liderança técnica no system design e no desenvolvimento de uma aplicação web com Flask e jQuery. Atuação na modelagem de bancos relacionais, definição da arquitetura de software e mentoria de desenvolvedores juniores para acelerar as entregas do time.",
+    tags: ["Flask", "JavaScript", "System Design", "SQL"],
+  },
+  {
+    id: "05",
+    period: "Abr 2022 - Nov 2023",
+    role: "Analista de Desenvolvimento de Sistemas - Júnior",
+    company: "Freire, Gerbasi & Bittencourt Advogados",
+    location: "Salvador, BA",
+    description:
+      "Desenvolvimento de automações e web scraping com Python, Selenium e WebDriver, reduzindo em mais de 50% o tempo dedicado a rotinas jurídicas manuais. Criação de processos ETL e otimização de consultas SQL para melhorar relatórios internos.",
+    tags: ["Python", "Selenium", "ETL", "SQL"],
+  },
+  {
+    id: "06",
+    period: "Nov 2021 - Abr 2022",
+    role: "Analista de Desenvolvimento de Sistemas - Estagiário",
+    company: "Freire, Gerbasi & Bittencourt Advogados",
+    location: "Salvador, BA",
+    description:
+      "Apoio ao desenvolvimento e à manutenção corretiva de sistemas de automação RPA em Python, com suporte à documentação técnica das soluções e ao mapeamento dos fluxos de banco de dados.",
+    tags: ["Python", "RPA", "Documentação", "Banco de dados"],
+  },
+];
+---
+
+<section id="experiencias" class="relative py-24 sm:py-32 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="mb-12 sm:mb-16">
+      <h2
+        class="text-2xl sm:text-4xl font-semibold uppercase tracking-[0.28em] text-muted-foreground"
+      >
+        Experiências
+      </h2>
+    </div>
+
+    <div id="exp-timeline" class="relative">
+      <div
+        class="pointer-events-none absolute left-[0.9375rem] sm:left-1/2 top-2 bottom-2 w-px -translate-x-1/2 bg-border"
+        aria-hidden="true"
+      >
+        <div
+          id="exp-line-progress"
+          class="absolute inset-x-0 top-0 h-full w-full origin-top bg-primary"
+        ></div>
+      </div>
+
+      <ol class="relative m-0 list-none space-y-12 sm:space-y-16 p-0">
+        {
+          experiences.map((exp, i) => {
+            const side = i % 2 === 0 ? "left" : "right";
+            return (
+              <li class="exp-item relative" data-side={side}>
+                <div class="grid grid-cols-[1.875rem_1fr] items-start gap-5 sm:grid-cols-[1fr_1.875rem_1fr] sm:gap-8">
+                  {/* Desktop left slot */}
+                  <div class="hidden sm:block sm:col-start-1">
+                    {side === "left" && (
+                      <article class="exp-card border border-border bg-card p-6 sm:p-8 text-right">
+                        <span class="mb-3 block text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                          {exp.id} · {exp.period}
+                        </span>
+                        <h3 class="mb-1 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                          {exp.role}
+                        </h3>
+                        <p class="mb-4 text-sm font-medium text-foreground/70">
+                          {exp.company}
+                          <span class="text-muted-foreground"> · {exp.location}</span>
+                        </p>
+                        <p class="mb-5 text-sm leading-relaxed text-muted-foreground sm:text-[0.95rem]">
+                          {exp.description}
+                        </p>
+                        <div class="flex flex-wrap justify-end gap-2">
+                          {exp.tags.map((tag) => (
+                            <span class="border border-border px-2.5 py-1 text-xs text-muted-foreground">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </article>
+                    )}
+                  </div>
+
+                  {/* Node */}
+                  <div class="relative z-10 col-start-1 row-start-1 flex justify-center pt-1 sm:col-start-2">
+                    <span class="exp-node relative flex h-4 w-4 shrink-0 items-center justify-center" aria-hidden="true">
+                      <span class="exp-node-ring absolute inset-0 border border-border bg-background" />
+                      <span class="exp-node-dot absolute inset-[5px] bg-muted-foreground/50" />
+                    </span>
+                  </div>
+
+                  {/* Mobile always + desktop right slot */}
+                  <div
+                    class:list={[
+                      "col-start-2 row-start-1 min-w-0 sm:row-start-1",
+                      side === "left" ? "sm:col-start-1 sm:hidden" : "sm:col-start-3",
+                    ]}
+                  >
+                    <article
+                      class:list={[
+                        "exp-card border border-border bg-card p-6 sm:p-8",
+                        side === "left" && "sm:text-right",
+                      ]}
+                    >
+                      <span class="mb-3 block text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                        {exp.id} · {exp.period}
+                      </span>
+                      <h3 class="mb-1 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                        {exp.role}
+                      </h3>
+                      <p class="mb-4 text-sm font-medium text-foreground/70">
+                        {exp.company}
+                        <span class="text-muted-foreground"> · {exp.location}</span>
+                      </p>
+                      <p class="mb-5 text-sm leading-relaxed text-muted-foreground sm:text-[0.95rem]">
+                        {exp.description}
+                      </p>
+                      <div
+                        class:list={[
+                          "flex flex-wrap gap-2",
+                          side === "left" && "sm:justify-end",
+                        ]}
+                      >
+                        {exp.tags.map((tag) => (
+                          <span class="border border-border px-2.5 py-1 text-xs text-muted-foreground">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </article>
+                  </div>
+
+                  {/* Desktop empty opposite */}
+                  {side === "left" ? (
+                    <div class="hidden sm:block sm:col-start-3" aria-hidden="true" />
+                  ) : (
+                    <div class="hidden sm:block sm:col-start-1" aria-hidden="true" />
+                  )}
+                </div>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp-node-ring,
+  .exp-node-dot {
+    border-radius: 0;
+  }
+
+  .exp-card {
+    will-change: opacity, filter, transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #exp-line-progress {
+      transform: scaleY(1) !important;
+    }
+
+    .exp-card,
+    .exp-node-ring,
+    .exp-node-dot {
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.getElementById("experiencias");
+  const line = document.getElementById("exp-line-progress");
+  const items = gsap.utils.toArray<HTMLElement>(".exp-item");
+
+  if (section && line && items.length) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduced) {
+      gsap.set(line, { scaleY: 1, transformOrigin: "top center" });
+      gsap.set(".exp-card", { clearProps: "all" });
+      gsap.set(".exp-node-ring", {
+        scale: 1,
+        borderColor: "var(--primary)",
+      });
+      gsap.set(".exp-node-dot", {
+        scale: 1,
+        backgroundColor: "var(--primary)",
+      });
+    } else {
+      gsap.set(line, { scaleY: 0, transformOrigin: "top center" });
+      gsap.set(".exp-card", { opacity: 0.35, y: 24, filter: "blur(6px)" });
+      gsap.set(".exp-node-ring", { scale: 0.55, borderColor: "var(--border)" });
+      gsap.set(".exp-node-dot", { scale: 0.55 });
+
+      ScrollTrigger.create({
+        trigger: "#exp-timeline",
+        start: "top 70%",
+        end: "bottom 45%",
+        scrub: 0.45,
+        onUpdate: (self) => {
+          gsap.set(line, { scaleY: self.progress });
+        },
+      });
+
+      items.forEach((item) => {
+        const cards = item.querySelectorAll(".exp-card");
+        const ring = item.querySelector(".exp-node-ring");
+        const dot = item.querySelector(".exp-node-dot");
+
+        ScrollTrigger.create({
+          trigger: item,
+          start: "top 80%",
+          onEnter: () => {
+            gsap.to(cards, {
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+              duration: 0.55,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+            gsap.to(ring, {
+              scale: 1,
+              duration: 0.35,
+              ease: "back.out(1.7)",
+              borderColor: "var(--primary)",
+              overwrite: "auto",
+            });
+            gsap.to(dot, {
+              scale: 1,
+              duration: 0.28,
+              delay: 0.06,
+              ease: "power2.out",
+              backgroundColor: "var(--primary)",
+              overwrite: "auto",
+            });
+          },
+          onLeaveBack: () => {
+            gsap.to(cards, {
+              opacity: 0.35,
+              y: 24,
+              filter: "blur(6px)",
+              duration: 0.35,
+              ease: "power2.in",
+              overwrite: "auto",
+            });
+            gsap.to(ring, {
+              scale: 0.55,
+              duration: 0.25,
+              borderColor: "var(--border)",
+              overwrite: "auto",
+            });
+            gsap.to(dot, {
+              scale: 0.55,
+              duration: 0.2,
+              backgroundColor: "var(--muted-foreground)",
+              overwrite: "auto",
+            });
+          },
+        });
+      });
+    }
+  }
+</script>

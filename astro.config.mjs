@@ -26,6 +26,13 @@ const BEJAMAS_ASTRO_FONTS = [
     subsets: ["latin"],
     weights: ["800", "900"],
   },
+  {
+    provider: fontProviders.google(),
+    name: "Inter Tight",
+    cssVariable: "--font-impact",
+    subsets: ["latin"],
+    weights: ["400", "500", "600", "700"],
+  },
 ];
 // bejamas:astro-fonts:end
 

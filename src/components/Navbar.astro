@@ -1,106 +1,107 @@
 ---
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  navigationMenuTriggerStyle,
-} from "@/ui/navigation-menu";
-import { Button } from "@/ui/button";
 import ThemeToggle from "@/components/ThemeToggle.astro";
 
-const linkClass = navigationMenuTriggerStyle();
+const links = [
+  { href: "#hero", label: "Intro" },
+  { href: "#projetos", label: "Projetos" },
+  { href: "#skills", label: "Skills" },
+  { href: "#experiencias", label: "Experiências" },
+  { href: "#sobre", label: "Sobre" },
+  { href: "#contato", label: "Contato" },
+];
 ---
 
 <div
   id="scroll-progress"
-  class="fixed top-0 left-0 z-60 h-[2px] w-0 bg-primary origin-left transition-transform duration-300"
+  class="fixed top-0 left-0 z-[70] h-[2px] w-0 bg-primary origin-left"
   aria-hidden="true"
 ></div>
 
-<header
-  id="navbar"
-  class="fixed top-0 left-0 right-0 z-50 transition-[color,background-color,border-color,transform] duration-300 opacity-0"
->
-  <div
-    class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between"
-  >
-    <a id="navbar-logo" href="/" class="flex items-center gap-2 text-xl tracking-tight opacity-0 font-[family-name:var(--font-logo)]">
+<header id="navbar" class="fixed inset-x-0 top-0 z-50 pointer-events-none opacity-0">
+  <div class="flex items-start justify-between gap-4 p-4 sm:p-6">
+    <a
+      id="navbar-logo"
+      href="/"
+      class="pointer-events-auto inline-flex items-center rounded-full border border-white/15 bg-black/35 px-4 py-2 text-sm tracking-tight text-white backdrop-blur-md opacity-0 font-[family-name:var(--font-logo)] hover:bg-black/50 transition-colors"
+    >
       jeanreis.dev.br
     </a>
 
-    <nav id="navbar-links" class="hidden md:block opacity-0">
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="#skills" class={linkClass}>Skills</NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="#cases" class={linkClass}>Cases</NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="#sobre" class={linkClass}>Sobre</NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="#faq" class={linkClass}>FAQ</NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="#contato" class={linkClass}>Contato</NavigationMenuLink>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-    </nav>
-
-    <div id="navbar-cta" class="flex items-center gap-2 opacity-0">
-      <span class="hidden lg:inline-flex items-center gap-2 pr-2 text-sm text-foreground/80">
-        <span class="relative flex h-2 w-2">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-        </span>
-        Aberto para projetos
-      </span>
-      <ThemeToggle />
-      <Button as="a" href="#contato" class="hidden md:inline-flex">Entre em contato</Button>
+    <div id="navbar-actions" class="pointer-events-auto flex items-center gap-2 opacity-0">
+      <div class="rounded-full border border-white/15 bg-black/35 backdrop-blur-md">
+        <ThemeToggle />
+      </div>
       <button
         id="menu-toggle"
-        class="md:hidden inline-flex items-center justify-center rounded-md p-2 text-foreground hover:bg-accent transition-colors"
+        type="button"
+        class="inline-flex h-11 items-center justify-center rounded-full border border-white/15 bg-black/35 px-5 text-sm font-medium tracking-[0.14em] uppercase text-white backdrop-blur-md transition-colors hover:bg-black/50"
         aria-label="Abrir menu"
         aria-expanded="false"
+        aria-controls="site-menu"
       >
-        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/>
-        </svg>
-        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
+        <span id="menu-toggle-label">Menu</span>
       </button>
     </div>
   </div>
-
-  <!-- Mobile menu -->
-  <div
-    id="mobile-menu"
-    class="md:hidden hidden border-t border-border bg-background/95 backdrop-blur-sm"
-  >
-    <nav class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-1">
-      <a data-mobile-index="0" href="#skills" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Skills</a>
-      <a data-mobile-index="1" href="#cases" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Cases</a>
-      <a data-mobile-index="2" href="#sobre" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Sobre</a>
-      <a data-mobile-index="3" href="#faq" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">FAQ</a>
-      <a data-mobile-index="4" href="#contato" class="mobile-link rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">Contato</a>
-      <div class="pt-2 border-t border-border mt-1">
-        <Button as="a" href="#contato" class="w-full">Entre em contato</Button>
-      </div>
-    </nav>
-  </div>
 </header>
 
-<!-- Scrim: foca a atenção no menu mobile ao abrir, desfocando o conteúdo abaixo -->
 <div
-  id="mobile-menu-scrim"
-  class="md:hidden hidden fixed inset-0 top-16 z-40 bg-background/40 backdrop-blur-sm"
-  aria-hidden="true"
-></div>
+  id="site-menu"
+  class="fixed inset-0 z-[60] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu de navegação"
+>
+  <div id="site-menu-scrim" class="absolute inset-0 bg-black/55 backdrop-blur-md"></div>
+
+  <div class="relative z-10 flex h-full flex-col px-6 py-6 sm:px-10 sm:py-8">
+    <div class="flex items-start justify-between gap-4">
+      <a
+        href="/"
+        class="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm tracking-tight text-white backdrop-blur-md font-[family-name:var(--font-logo)]"
+      >
+        jeanreis.dev.br
+      </a>
+      <button
+        id="menu-close"
+        type="button"
+        class="inline-flex h-11 items-center justify-center rounded-full border border-white/15 bg-white/10 px-5 text-sm font-medium tracking-[0.14em] uppercase text-white backdrop-blur-md transition-colors hover:bg-white/15"
+      >
+        Close
+      </button>
+    </div>
+
+    <nav class="flex flex-1 flex-col items-center justify-center gap-2 sm:gap-3">
+      {
+        links.map((link, i) => (
+          <a
+            href={link.href}
+            data-menu-link
+            data-menu-index={i}
+            class="menu-link text-center font-[family-name:var(--font-impact)] text-[clamp(2rem,8vw,4.5rem)] font-black uppercase leading-none tracking-[-0.03em] text-white/90 transition-colors hover:text-primary"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex flex-col items-center gap-3 pb-4 text-center sm:flex-row sm:justify-between sm:text-left">
+      <p class="text-xs tracking-[0.18em] uppercase text-white/50">
+        Aberto para projetos
+      </p>
+      <a
+        href="https://wa.me/5571991516655?text=Olá%2C%20vim%20pelo%20site%20jeanreis.dev.br%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+        target="_blank"
+        rel="noopener noreferrer"
+        data-menu-link
+        class="text-sm font-medium tracking-[0.14em] uppercase text-white/80 transition-colors hover:text-primary"
+      >
+        Fale comigo →
+      </a>
+    </div>
+  </div>
+</div>
 
 <script>
   // @ts-nocheck
@@ -108,113 +109,78 @@ const linkClass = navigationMenuTriggerStyle();
 
   const navbar = document.getElementById("navbar");
   const logo = document.getElementById("navbar-logo");
-  const links = document.getElementById("navbar-links");
-  const cta = document.getElementById("navbar-cta");
-
-  // entrada: header desliza de cima + fade
-  animate(
-    navbar! as Element,
-    { opacity: [0, 1], y: [-20, 0] },
-    { duration: 0.5, easing: "ease-out" },
-  );
-
-  // logo, links e CTA entram em sequência com stagger
-  animate(
-    [logo!, links!, cta!] as Element[],
-    { opacity: [0, 1], y: [-8, 0] },
-    { duration: 0.4, delay: stagger(0.1, { startDelay: 0.25 }), easing: "ease-out" },
-  );
-
-  // barra de progresso de scroll
+  const actions = document.getElementById("navbar-actions");
+  const menu = document.getElementById("site-menu");
+  const menuToggle = document.getElementById("menu-toggle");
+  const menuClose = document.getElementById("menu-close");
+  const menuLabel = document.getElementById("menu-toggle-label");
+  const menuLinks = document.querySelectorAll("[data-menu-link]");
   const progressBar = document.getElementById("scroll-progress");
+
+  animate(navbar, { opacity: [0, 1], y: [-16, 0] }, { duration: 0.5, easing: "ease-out" });
+  animate(
+    [logo, actions],
+    { opacity: [0, 1], y: [-8, 0] },
+    { duration: 0.4, delay: stagger(0.08, { startDelay: 0.2 }), easing: "ease-out" },
+  );
+
   if (progressBar) {
     scroll((progress) => {
       progressBar.style.width = `${progress * 100}%`;
     });
   }
 
-  // menu mobile
-  const menuToggle = document.getElementById("menu-toggle");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuScrim = document.getElementById("mobile-menu-scrim");
-  const iconOpen = document.getElementById("icon-open");
-  const iconClose = document.getElementById("icon-close");
-  const mobileLinks = document.querySelectorAll(".mobile-link");
+  let menuOpen = false;
 
-  const closeMobileMenu = () => {
-    animate("#mobile-menu", { opacity: [1, 0], y: [0, -8] }, { duration: 0.2, easing: "ease-in" }).then(() => {
-      mobileMenu?.classList.add("hidden");
-    });
-    animate("#mobile-menu-scrim", { opacity: [1, 0] }, { duration: 0.2, easing: "ease-in" }).then(() => {
-      menuScrim?.classList.add("hidden");
-    });
-    iconOpen?.classList.remove("hidden");
-    iconClose?.classList.add("hidden");
-    menuToggle?.setAttribute("aria-expanded", "false");
+  const setMenuOpen = (open) => {
+    if (menuOpen === open) return;
+    menuOpen = open;
+
+    menuToggle?.setAttribute("aria-expanded", String(open));
+    if (menuLabel) menuLabel.textContent = open ? "Close" : "Menu";
+    document.documentElement.classList.toggle("menu-open", open);
+    document.body.style.overflow = open ? "hidden" : "";
+
+    if (open) {
+      menu?.classList.remove("hidden");
+      animate("#site-menu-scrim", { opacity: [0, 1] }, { duration: 0.3, easing: "ease-out" });
+      animate(
+        ".menu-link",
+        { opacity: [0, 1], y: [24, 0] },
+        { duration: 0.45, delay: stagger(0.05, { startDelay: 0.08 }), easing: [0.22, 1, 0.36, 1] },
+      );
+    } else {
+      animate("#site-menu-scrim", { opacity: [1, 0] }, { duration: 0.25, easing: "ease-in" });
+      animate(
+        ".menu-link",
+        { opacity: [1, 0], y: [0, -12] },
+        { duration: 0.2, easing: "ease-in" },
+      ).then(() => {
+        menu?.classList.add("hidden");
+      });
+    }
   };
 
-  menuToggle?.addEventListener("click", () => {
-    const isOpen = !mobileMenu?.classList.contains("hidden");
-    if (isOpen) {
-      closeMobileMenu();
-    } else {
-      mobileMenu?.classList.remove("hidden");
-      menuScrim?.classList.remove("hidden");
-      animate("#mobile-menu", { opacity: [0, 1], y: [-8, 0] }, { duration: 0.25, easing: "ease-out" });
-      animate("#mobile-menu-scrim", { opacity: [0, 1] }, { duration: 0.25, easing: "ease-out" });
-      for (let i = 0; i < 5; i++) {
-        animate(`[data-mobile-index="${i}"]`, { opacity: [0, 1], x: [-10, 0] }, { duration: 0.2, delay: 0.05 + i * 0.05, easing: "ease-out" });
-      }
-      iconOpen?.classList.add("hidden");
-      iconClose?.classList.remove("hidden");
-      menuToggle.setAttribute("aria-expanded", "true");
-    }
+  menuToggle?.addEventListener("click", () => setMenuOpen(!menuOpen));
+  menuClose?.addEventListener("click", () => setMenuOpen(false));
+  document.getElementById("site-menu-scrim")?.addEventListener("click", () => setMenuOpen(false));
+
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
   });
 
-  menuScrim?.addEventListener("click", closeMobileMenu);
-
-  mobileLinks.forEach((link) => {
-    link.addEventListener("click", closeMobileMenu);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menuOpen) setMenuOpen(false);
   });
-
-  // scroll: fundo sólido + esconde ao descer / mostra ao subir
-  if (navbar) {
-    let lastY = window.scrollY;
-    let hidden = false;
-
-    const setHidden = (next) => {
-      if (hidden === next) return;
-      hidden = next;
-      const y = next ? "-100%" : "0";
-      navbar.style.transform = `translateY(${y})`;
-      if (progressBar) progressBar.style.transform = `translateY(${y})`;
-      document.documentElement.classList.toggle("nav-hidden", next);
-    };
-
-    const update = () => {
-      const y = window.scrollY;
-      if (y > 10) {
-        navbar.classList.add("bg-background/95", "backdrop-blur-sm", "border-b");
-      } else {
-        navbar.classList.remove(
-          "bg-background/95",
-          "backdrop-blur-sm",
-          "border-b",
-        );
-      }
-
-      const menuOpen = !mobileMenu?.classList.contains("hidden");
-      if (menuOpen || y < 80) {
-        setHidden(false);
-        lastY = y;
-        return;
-      }
-
-      if (y - lastY > 8) setHidden(true);
-      else if (lastY - y > 8) setHidden(false);
-      lastY = y;
-    };
-    window.addEventListener("scroll", update, { passive: true });
-    update();
-  }
 </script>
+
+<style>
+  :global(html.menu-open) {
+    overflow: hidden;
+  }
+
+  :global(html.menu-open) #navbar {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+</style>
