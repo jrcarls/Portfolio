@@ -177,14 +177,16 @@ const marqueeTechnologies = [
   <div
     id="hero-scroll-cue"
     aria-hidden="true"
-    class="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-1.5 text-muted-foreground opacity-0"
+    class="absolute bottom-4 left-1/2 z-20 -translate-x-1/2"
   >
-    <span class="text-[0.6rem] font-semibold uppercase tracking-[0.22em] whitespace-nowrap">
-      Role para explorar
-    </span>
-    <svg class="hero-scroll-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-      <path d="m6 9 6 6 6-6" />
-    </svg>
+    <div id="hero-scroll-cue-content" class="flex flex-col items-center gap-1.5 text-muted-foreground opacity-0">
+      <span class="text-[0.6rem] font-semibold uppercase tracking-[0.22em] whitespace-nowrap">
+        Role para explorar
+      </span>
+      <svg class="hero-scroll-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </div>
   </div>
   </div>
 </section>
@@ -255,7 +257,7 @@ const marqueeTechnologies = [
   animate("#hero-copy", { opacity: [0, 1], y: [16, 0] }, { duration: 0.55, delay: 0.35, easing: "ease-out" });
   animate("#hero-services", { opacity: [0, 1], y: [16, 0] }, { duration: 0.55, delay: 0.45, easing: "ease-out" });
   animate("#hero-brands", { opacity: [0, 1] }, { duration: 0.55, delay: 0.6, easing: "ease-out" });
-  animate("#hero-scroll-cue", { opacity: [0, 1], y: [6, 0] }, { duration: 0.45, delay: 0.8, easing: "ease-out" });
+  animate("#hero-scroll-cue-content", { opacity: [0, 1], y: [6, 0] }, { duration: 0.45, delay: 0.8, easing: "ease-out" });
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
