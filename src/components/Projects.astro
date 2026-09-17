@@ -7,6 +7,7 @@ interface Project {
   external: boolean;
   private: boolean;
   summary: string;
+  guide: string;
   technologies: string[];
   screenshots: Array<{ src: string; alt: string }>;
 }
@@ -20,6 +21,7 @@ const projects: Project[] = [
     external: true,
     private: false,
     summary: "",
+    guide: "Começamos por ZapCut. Role para avançar pela vitrine de produtos.",
     technologies: [],
     screenshots: [],
   },
@@ -31,6 +33,7 @@ const projects: Project[] = [
     external: true,
     private: false,
     summary: "",
+    guide: "Este é o Esboço Online. Continue descendo para conhecer o próximo projeto.",
     technologies: [],
     screenshots: [],
   },
@@ -42,6 +45,7 @@ const projects: Project[] = [
     external: true,
     private: true,
     summary: "As informações detalhadas deste projeto serão adicionadas em breve.",
+    guide: "Murdock é uma legaltech. Abra o card se quiser ver os detalhes disponíveis.",
     technologies: [],
     screenshots: [],
   },
@@ -53,6 +57,7 @@ const projects: Project[] = [
     external: true,
     private: true,
     summary: "As informações detalhadas deste projeto serão adicionadas em breve.",
+    guide: "Spels está em breve. Ainda há mais um projeto para explorar logo adiante.",
     technologies: [],
     screenshots: [],
   },
@@ -64,6 +69,7 @@ const projects: Project[] = [
     external: true,
     private: false,
     summary: "",
+    guide: "Por fim, este portfólio: um espaço para apresentar processo, produtos e tecnologia.",
     technologies: [],
     screenshots: [],
   },
@@ -75,6 +81,29 @@ const projects: Project[] = [
     id="projects-sticky"
     class="sticky top-16 h-[calc(100vh-4rem)] flex flex-col justify-center overflow-hidden"
   >
+    <aside
+      id="project-guide"
+      class="pointer-events-none absolute right-3 top-4 z-20 flex max-w-[min(17rem,calc(100vw-1.5rem))] items-end gap-2 sm:right-6 sm:top-6"
+      aria-label="Guia dos projetos"
+      data-messages={JSON.stringify(projects.map((project) => project.guide))}
+    >
+      <div class="project-guide-bubble border border-border bg-card/95 px-3 py-2.5 shadow-lg backdrop-blur-sm sm:px-4 sm:py-3">
+        <span id="project-guide-index" class="block text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-primary">01 / 05</span>
+        <p id="project-guide-message" class="mt-1 max-w-48 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+          {projects[0].guide}
+        </p>
+        <span class="mt-2 inline-flex items-center gap-1 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-primary">
+          Role para baixo
+          <span aria-hidden="true">↓</span>
+        </span>
+      </div>
+      <span
+        id="project-guide-character"
+        class="project-guide-character size-12 shrink-0 sm:size-16"
+        aria-hidden="true"
+      ></span>
+    </aside>
+
     <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 mb-8 sm:mb-10">
       <h2 class="text-2xl sm:text-4xl font-semibold uppercase tracking-[0.28em] text-muted-foreground">
         Projetos
@@ -240,6 +269,19 @@ const projects: Project[] = [
     height: 100vh;
   }
 
+  .project-guide-character {
+    animation: project-guide-float 2.8s ease-in-out infinite;
+    background: var(--primary);
+    -webkit-mask: url("/project-guide-mascot.svg") center / contain no-repeat;
+    mask: url("/project-guide-mascot.svg") center / contain no-repeat;
+    filter: drop-shadow(0 8px 10px oklch(0 0 0 / 0.14));
+  }
+
+  @keyframes project-guide-float {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-6px) rotate(2deg); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #projetos {
       height: auto;
@@ -259,6 +301,10 @@ const projects: Project[] = [
     #projects-track {
       transform: none !important;
     }
+
+    .project-guide-character {
+      animation: none;
+    }
   }
 </style>
 
@@ -273,6 +319,10 @@ const projects: Project[] = [
   const projectDialogPanel = document.querySelector<HTMLElement>("#project-dialog-panel");
   const projectDialogContent = document.querySelector<HTMLElement>("#project-dialog-content");
   const projectDialogClose = document.querySelector<HTMLButtonElement>("#project-dialog-close");
+  const projectGuide = document.querySelector<HTMLElement>("#project-guide");
+  const projectGuideMessage = document.querySelector<HTMLElement>("#project-guide-message");
+  const projectGuideIndex = document.querySelector<HTMLElement>("#project-guide-index");
+  const projectGuideMessages = JSON.parse(projectGuide?.dataset.messages ?? "[]") as string[];
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let projectTrigger: HTMLButtonElement | null = null;
   let projectDialogClosing = false;
@@ -348,6 +398,29 @@ const projects: Project[] = [
           end: "bottom bottom",
           scrub: 0.6,
           invalidateOnRefresh: true,
+        },
+      });
+
+      let activeGuideProject = 0;
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top+=64",
+        end: "bottom bottom",
+        onUpdate: (self) => {
+          const nextProject = Math.min(
+            projectGuideMessages.length - 1,
+            Math.floor(self.progress * projectGuideMessages.length),
+          );
+
+          if (nextProject === activeGuideProject || !projectGuideMessage || !projectGuideIndex) return;
+          activeGuideProject = nextProject;
+          projectGuideMessage.textContent = projectGuideMessages[nextProject];
+          projectGuideIndex.textContent = `${String(nextProject + 1).padStart(2, "0")} / ${String(projectGuideMessages.length).padStart(2, "0")}`;
+          animate(
+            [projectGuideMessage, projectGuideIndex],
+            { opacity: [0, 1], y: [5, 0] },
+            { duration: 0.22, easing: "ease-out" },
+          );
         },
       });
     }
