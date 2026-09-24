@@ -1,5 +1,6 @@
 ---
 import { Marquee } from "@/ui/marquee";
+import HeroWater from "./HeroWater.astro";
 
 const services = [
   {
@@ -77,6 +78,7 @@ const marqueeTechnologies = [
     class="relative z-10 flex flex-1 flex-col lg:grid lg:grid-rows-[minmax(0,0.8fr)_auto_minmax(0,1.2fr)] w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-20 lg:pt-14 pb-6"
   >
     <div id="hero-heading" class="order-1 lg:row-start-2 flex flex-col items-center gap-2 sm:gap-3">
+      <HeroWater />
       <h1
         id="hero-title"
         class="whitespace-nowrap text-center font-[family-name:var(--font-impact)] text-[clamp(2.5rem,12vw,10rem)] font-medium uppercase leading-[0.86] tracking-[-0.04em] text-foreground opacity-0 origin-center will-change-transform"
@@ -206,6 +208,11 @@ const marqueeTechnologies = [
 </div>
 
 <style>
+  #hero-heading {
+    position: relative;
+    isolation: isolate;
+  }
+
   .hero-reveal-viewport {
     display: inline-block;
     height: 1.35em;

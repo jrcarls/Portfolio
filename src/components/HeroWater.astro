@@ -1,0 +1,122 @@
+<svg class="water-surface" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="hero-water-refraction" x="-15%" y="-40%" width="130%" height="180%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.025" numOctaves="2" seed="8" result="water" />
+      <feDisplacementMap in="SourceGraphic" in2="water" scale="0" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g class="water-ripples" fill="none" stroke="currentColor" stroke-width="0.7" />
+</svg>
+
+<style>
+  .water-surface {
+    position: absolute;
+    inset: -64px -24px;
+    width: calc(100% + 48px);
+    height: calc(100% + 128px);
+    overflow: visible;
+    pointer-events: none;
+    color: var(--foreground);
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce), (hover: none) {
+    .water-surface { display: none; }
+  }
+</style>
+
+<script>
+  const heading = document.querySelector<HTMLElement>("#hero-heading");
+  const surface = heading?.querySelector<SVGSVGElement>(".water-surface");
+  const ripples = surface?.querySelector<SVGGElement>(".water-ripples");
+  const noise = surface?.querySelector("feTurbulence");
+  const displacement = surface?.querySelector("feDisplacementMap");
+  const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const pointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+  if (heading && surface && ripples && noise && displacement) {
+    const text = heading.querySelectorAll<HTMLElement>("h1, p");
+    const waves: { node: SVGEllipseElement; born: number }[] = [];
+    let frame = 0;
+    let lastWave = 0;
+    let previous = 0;
+    let strength = 0;
+    let target = 0;
+    let phase = 0;
+
+    const reset = () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      strength = target = 0;
+      waves.splice(0).forEach(({ node }) => node.remove());
+      text.forEach((element) => element.style.removeProperty("filter"));
+      displacement.setAttribute("scale", "0");
+    };
+
+    const tick = (now: number) => {
+      const delta = Math.min((now - previous) / 1000, 0.05);
+      previous = now;
+      phase += delta;
+      target *= Math.exp(-delta * 1.1);
+      strength += (target - strength) * (1 - Math.exp(-delta * 5));
+      displacement.setAttribute("scale", (strength * 16).toFixed(2));
+      noise.setAttribute("baseFrequency", `${0.012 + Math.sin(phase * 1.1) * 0.002} ${0.025 + Math.cos(phase * 0.8) * 0.003}`);
+
+      for (let index = waves.length - 1; index >= 0; index--) {
+        const wave = waves[index];
+        const age = (now - wave.born) / 3000;
+        if (age >= 1) {
+          wave.node.remove();
+          waves.splice(index, 1);
+          continue;
+        }
+        const radius = 10 + age * 180;
+        wave.node.setAttribute("rx", radius.toFixed(2));
+        wave.node.setAttribute("ry", (radius * 0.62).toFixed(2));
+        wave.node.setAttribute("opacity", (Math.sin(Math.PI * age) * (1 - age) * 0.16).toFixed(3));
+      }
+
+      if (strength < 0.005 && target < 0.005 && waves.length === 0) {
+        reset();
+        return;
+      }
+      frame = requestAnimationFrame(tick);
+    };
+
+    // Listen to the whole surrounding band, including the empty space between letters.
+    const move = (event: PointerEvent) => {
+      if (preference.matches || !pointer.matches || event.pointerType === "touch") return;
+      const bounds = surface.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) return;
+      const now = performance.now();
+      target = 1;
+      if (now - lastWave > 140) {
+        const node = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+        node.setAttribute("cx", String(event.clientX - bounds.left));
+        node.setAttribute("cy", String(event.clientY - bounds.top));
+        node.setAttribute("opacity", "0");
+        ripples.append(node);
+        waves.push({ node, born: now });
+        lastWave = now;
+      }
+      if (!frame) {
+        text.forEach((element) => element.style.filter = "url(#hero-water-refraction)");
+        previous = now;
+        frame = requestAnimationFrame(tick);
+      }
+    };
+
+    document.addEventListener("pointermove", move, { passive: true });
+    const visibility = () => { if (document.hidden) reset(); };
+    document.addEventListener("visibilitychange", visibility);
+    preference.addEventListener("change", reset);
+    window.addEventListener("scroll", reset, { passive: true });
+    document.addEventListener("astro:before-swap", () => {
+      reset();
+      document.removeEventListener("pointermove", move);
+      document.removeEventListener("visibilitychange", visibility);
+      preference.removeEventListener("change", reset);
+      window.removeEventListener("scroll", reset);
+    }, { once: true });
+  }
+</script>
