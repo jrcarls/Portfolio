@@ -402,17 +402,11 @@ const marqueeTechnologies = [
 
       // fromTo explícito: ao voltar o scroll, restaura sempre o estado visível
       tl.fromTo(
-        "#hero-title",
+        "#hero-title, #hero-subtitle",
         { scale: 1, y: 0, opacity: 1 },
         { scale: 1.12, y: -48, opacity: 0, ease: "none", immediateRender: false },
         0,
       )
-        .fromTo(
-          "#hero-subtitle",
-          { y: 0, opacity: 1 },
-          { y: -24, opacity: 0, ease: "none", immediateRender: false },
-          0,
-        )
         .fromTo(
           "#hero-copy",
           { x: 0, y: 0, opacity: 1, filter: "blur(0px)" },
