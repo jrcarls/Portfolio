@@ -1,43 +1,14 @@
-# Astro Starter Kit: Minimal
+# Stack
 
-```sh
-bun create astro@latest -- --template minimal
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Astro 6** (`output: "static"`) com `@astrojs/sitemap` e fontes do Google via `fontProviders`
+- **TypeScript 5**
+- **Tailwind CSS 4** integrado pelo `@tailwindcss/vite`
+- **Bejamas UI / shadcn** (`components.json`, estilo `bejamas-juno`) sobre **CVA**, **clsx** e **tailwind-merge**
+- **Hugeicons** (`@iconify-json/hugeicons`) como biblioteca de ícones
+- **GSAP** e **Motion** para animações, junto de **rough-notation**
+- **Resend** para envio de e-mail transacional
+- **Upstash Redis** + **Upstash Ratelimit** para rate limiting
+- **Zod** para validação de dados
+- **Sharp** para processamento de imagens
+- **pnpm** como gerenciador de pacotes
+- **Vercel** como plataforma de deploy (`@astrojs/vercel`)
