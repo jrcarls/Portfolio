@@ -1,43 +1,87 @@
-# Astro Starter Kit: Minimal
+# Portfolio — jeanreis.dev.br
 
-```sh
-bun create astro@latest -- --template minimal
-```
+Site de portfólio pessoal de **Jean Reis**, desenvolvedor de software e criador de produtos digitais. É uma landing page de página única (`one-page`) que apresenta o profissional, seus serviços, projetos, stack e experiência, além de canais de contato.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 📌 Visão geral
 
-## 🚀 Project Structure
+- **O que é:** portfólio/landing page pessoal em português (pt-BR), com tema claro/escuro.
+- **Objetivo:** apresentar Jean Reis, gerar credibilidade e converter visitantes em conversas (contato por WhatsApp, e-mail, GitHub ou LinkedIn).
+- **Abordagem:** site estático, focado em performance, SEO e animações de scroll.
+- **Domínio:** https://jeanreis.dev.br
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🧩 Seções da página
+
+A página inicial (`src/pages/index.astro`) é composta por:
+
+1. **Hero** — apresentação com efeito de scroll (GSAP ScrollTrigger) e destaque de serviços.
+2. **Projects** — projetos/cases entregues.
+3. **Skills** — competências técnicas.
+4. **Experiences** — trajetória profissional.
+5. **ScrollTextLines** — faixa de texto com animação de scroll.
+6. **Sobre** — bio e áreas de atuação.
+7. **Contato** — canais diretos (WhatsApp, e-mail, GitHub, LinkedIn).
+8. **Footer** — rodapé com navegação.
+
+Componentes auxiliares: `Navbar`, `ThemeToggle`, `CursorFollow`, `HeroWater`, além dos botões flutuantes de WhatsApp e "voltar ao topo".
+
+## 🛠️ Stack
+
+| Área | Tecnologias |
+| --- | --- |
+| Framework | [Astro](https://astro.build) 6 (saída estática) |
+| Estilo | [Tailwind CSS](https://tailwindcss.com) v4 (via `@tailwindcss/vite`) |
+| UI | Componentes no estilo [shadcn](https://ui.shadcn.com) (`src/ui/`) + [data-slot](https://www.npmjs.com/package/@data-slot/navigation-menu) |
+| Linguagem | TypeScript |
+| Animações | [GSAP](https://gsap.com) + [Motion](https://motion.dev) |
+| Ícones | Iconify (`@iconify-json/hugeicons`) e SVGs próprios |
+| Fontes | Astro Fonts (Google Fonts: Inter, Suez One, Poppins, Inter Tight) |
+| SEO | `@astrojs/sitemap`, meta tags, Open Graph e JSON-LD (`Layout.astro`) |
+| Deploy | [Vercel](https://vercel.com) (`@astrojs/vercel`) |
+| Serviços previstos | [Resend](https://resend.com) (e-mail) e [Upstash](https://upstash.com) (rate limit) |
+
+## 📁 Estrutura
 
 ```text
 /
-├── public/
+├── public/               # assets estáticos (ícones, imagens, og.svg)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── assets/           # imagens processadas pelo Astro
+│   ├── components/       # seções e componentes da página
+│   ├── layouts/          # Layout.astro (head, SEO, scripts globais)
+│   ├── lib/              # utilitários (utils.ts, select.ts)
+│   ├── pages/            # rotas (index.astro)
+│   ├── styles/           # globals.css (tema e Tailwind)
+│   └── ui/               # primitivos de UI reutilizáveis
+├── astro.config.mjs      # site, fontes, sitemap, adapter Vercel
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🚀 Como rodar
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Pré-requisitos: Node.js e [pnpm](https://pnpm.io).
 
-Any static assets, like images, can be placed in the `public/` directory.
+```bash
+pnpm install          # instala as dependências
+pnpm dev              # servidor de desenvolvimento em http://localhost:4321
+pnpm build            # gera o build de produção em ./dist/
+pnpm preview          # pré-visualiza o build localmente
+pnpm astro ...        # comandos da CLI do Astro (ex.: astro check)
+```
 
-## 🧞 Commands
+## 🔑 Variáveis de ambiente
 
-All commands are run from the root of the project, from a terminal:
+Copie `.env.example` para `.env` e preencha conforme a necessidade:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+```env
+RESEND_API_KEY=
+CONTACT_TO_EMAIL=
+CONTACT_FROM_EMAIL=
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+```
 
-## 👀 Want to learn more?
+## 📝 Notas
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- A seção de contato atualmente expõe canais diretos; o envio do formulário por e-mail ainda está pendente (ver `CONVERSAO.md`).
+- Planejamento de posicionamento e SEO fica em `REPOSITIONING_PLAN.md` e `SEO_PLAN.md`.
+- Contexto do projeto (branding, SEO, perfil) está documentado em `memory/`.
